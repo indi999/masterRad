@@ -17,18 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
-
 Auth::routes();
-
+Route::get('/', 'PagesController@index')->name('welcome');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Tasks
-Route::get('/tasks', [App\Http\Controllers\AdminTaskController::class, 'index'])->name('tasks');
-
-//Users
-
-// Managers -----------------------------------------------------------------------------------------------------
-
+Route::get('/tasks', [App\Http\Controllers\TaskController::class, 'index'])->name('tasks');
+    // Managers -----------------------------------------------------------------------------------------------------
+        // task store
+        // task update
+        // task delete
 
 
 // ADMIN ROUTES -------------------------------------------------------------------------------------------------
