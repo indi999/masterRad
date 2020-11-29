@@ -15,6 +15,10 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+
+                    @include('tasks.index')
+
                 </div>
             </div>
         </div>

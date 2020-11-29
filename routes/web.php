@@ -12,11 +12,44 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Tasks
+Route::get('/tasks', [App\Http\Controllers\AdminTaskController::class, 'index'])->name('tasks');
+
+//Users
+
+// Managers -----------------------------------------------------------------------------------------------------
+
+
+
+// ADMIN ROUTES -------------------------------------------------------------------------------------------------
+Route::middleware('is_admin')->prefix('admin')->group(function(){
+    // Dashboard
+    Route::get('/', 'HomeController@dashboard')->name('admin.dashboard');
+
+    //Tasks
+    Route::resource('/tasks', 'Admin\AdminTaskController',[
+        'as' => 'admin'
+    ])->except(['create','edit']);
+
+    //Deparments
+    Route::resource('/deparments', 'Admin\AdminDeparmentController',[
+        'as' => 'admin'
+    ])->except(['create','edit']);
+
+    // Users
+    Route::patch('/users/{user}/status', 'Admin\AdminUsersController@status')->name('admin.users.status'); // blocked
+    Route::resource('/users', 'Admin\AdminUsersController',[
+        'as' => 'admin'
+    ])->except(['create','edit']);
+
+});

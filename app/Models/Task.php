@@ -15,7 +15,6 @@ class Task extends Model
      * @var array
      */
     protected $fillable = [
-
         'number',
         'user_id',
         'brand',
@@ -25,6 +24,8 @@ class Task extends Model
         'status',
         'date_end',
         'time_end',
+        'expected_date_end',
+        'expected_time_end',
     ];
 
     public function deparments()
