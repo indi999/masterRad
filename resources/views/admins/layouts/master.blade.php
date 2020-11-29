@@ -1,9 +1,9 @@
-@include('layouts.header')
+@include('admins.layouts.header')
 
 <!-- Navbar ----------------------------------------------------------------------->
-@include('layouts.navigation')
+@include('admins.layouts.navigation')
 
 <!-- Content -->
 @yield('content')
 
-@include('layouts.footer')
+@include('admins.layouts.footer')
