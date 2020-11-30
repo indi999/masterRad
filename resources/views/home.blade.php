@@ -14,6 +14,8 @@
                         </div>
                     @endif
 
+                    <h1>USER AND MANAGER PANEL</h1>
+
                     {{ __('You are logged in!') }}
                 </div>
             </div>

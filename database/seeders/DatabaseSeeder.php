@@ -1,8 +1,6 @@
 <?php
 
 namespace Database\Seeders;
-
-use CreateMailboxesSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,8 +14,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $this->call(TaskSeeder::class);
-        $this->call(UsersSeeder::class);
-        $this->call(DeparmentSeeder::class);
+        $this->call(CreateDeparmentSeeder::class);
+        $this->call(CreateTaskSeeder::class);
+        $this->call(CreateUserSeeder::class);
     }
 }

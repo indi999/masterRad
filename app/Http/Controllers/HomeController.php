@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Task;
 
 class HomeController extends Controller
 {
@@ -16,6 +17,12 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+    public function welcome()
+    {
+        $task = Task::all();
+        return view('welcome', compact('task'));
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -23,6 +30,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $task= Task::all();
+        return view('home', compact('task'));
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function dashboard()
+    {
+        return view('admins.dashboard');
     }
 }

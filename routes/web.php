@@ -22,8 +22,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//Route::get('/', 'App\Http\Controllers\HomeController@welcome')->name('welcome');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', 'App\Http\Controllers\HomeController@welcome')->name('welcome');
 
 // Tasks
 Route::get('/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks');
@@ -41,6 +41,7 @@ Route::get('/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks')
 
 // ADMIN ROUTES -------------------------------------------------------------------------------------------------
 Route::middleware('is_admin')->prefix('admin')->group(function(){
+
     // Dashboard
     Route::get('/', 'App\Http\Controllers\HomeController@dashboard')->name('admin.dashboard');
 
