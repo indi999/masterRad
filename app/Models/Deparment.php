@@ -20,7 +20,7 @@ class Deparment extends Model
 
     public function tasks()
     {
-        return $this->belongsToMany(Task::class, 'task_deparment','task_id', 'deparment_id');
+        return $this->belongsToMany(Task::class, 'task_deparments');  //,'task_id', 'deparment_id'
     }
 
     public function users()

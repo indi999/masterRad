@@ -20,8 +20,8 @@ class CreateTaskDeparmentsTable extends Migration
 
             $table->timestamps();
 
-            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
-            $table->foreign('deparment_id')->references('id')->on('deparments')->onDelete('cascade');
+            //$table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
+            //$table->foreign('deparment_id')->references('id')->on('deparments')->onDelete('cascade');
         });
     }
 
