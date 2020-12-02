@@ -24,6 +24,27 @@ class CreateUserSeeder extends Seeder
                 'lastname'=>'Adminovic',
                 'is_admin'=>true,
                 'password'=> bcrypt('secret'),
+                'role'=>'admin',
+
+            ],
+            [
+                'deparment_id'=>1,
+                'firstname'=>'UserManager1',
+                'lastname'=>'Userovic',
+                'email'=>'manager1@test.com',
+                'is_admin'=>false,
+                'password'=> bcrypt('123456'),
+                'role'=>'manager',
+
+            ],
+            [
+                'deparment_id'=>2,
+                'firstname'=>'UserManager2',
+                'lastname'=>'Userovic',
+                'email'=>'manager2@test.com',
+                'is_admin'=>false,
+                'password'=> bcrypt('123456'),
+                'role'=>'manager',
 
             ],
             [
@@ -33,6 +54,7 @@ class CreateUserSeeder extends Seeder
                 'email'=>'user1@test.com',
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
+                'role'=>'user',
 
             ],
             [
@@ -42,15 +64,38 @@ class CreateUserSeeder extends Seeder
                 'email'=>'user2@test.com',
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
+                'role'=>'user',
 
             ],
             [
-                'deparment_id'=>3,
+                'deparment_id'=>2,
                 'firstname'=>'User3',
                 'lastname'=>'Userovic3',
                 'email'=>'user3@test.com',
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
+                'role'=>'user',
+
+            ],
+            [
+                'deparment_id'=>3,
+                'firstname'=>'User4',
+                'lastname'=>'Userovic4',
+                'email'=>'user4@test.com',
+                'is_admin'=>false,
+                'password'=> bcrypt('123456'),
+                'role'=>'user',
+
+            ],
+
+            [
+                'deparment_id'=>2,
+                'firstname'=>'production',
+                'lastname'=>'production',
+                'email'=>'production@test.com',
+                'is_admin'=>false,
+                'password'=> bcrypt('123456'),
+                'role'=>'production',
 
             ],
         ];

@@ -14,6 +14,6 @@ class CreateTaskSeeder extends Seeder
      */
     public function run()
     {
-        //
+
     }
 }

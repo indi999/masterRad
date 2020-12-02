@@ -25,7 +25,7 @@ class DeparmentController extends Controller
      */
     public function index()
     {
-        //
+        return view('deparments.index');
     }
 
     /**
@@ -57,7 +57,7 @@ class DeparmentController extends Controller
      */
     public function show(Deparment $deparment)
     {
-        //
+        return view('deparments.show');
     }
 
     /**
@@ -68,7 +68,7 @@ class DeparmentController extends Controller
      */
     public function edit(Deparment $deparment)
     {
-        //
+        return view('deparments.edit');
     }
 
     /**

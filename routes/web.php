@@ -25,19 +25,29 @@ Auth::routes();
 //Route::get('/', 'App\Http\Controllers\HomeController@welcome')->name('welcome');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//USERS
+
+
 // Tasks
 Route::get('/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks');
     // Managers -----------------------------------------------------------------------------------------------------
-    Route::get('/manager/add_job', 'App\Http\Controllers\HomeController@jobManagerAddJob')->name('manager.add_job');
-        // task store
-        Route::get('/manager/list_job', 'App\Http\Controllers\HomeController@managerListJob')->name('manager.list_job');
+    Route::prefix('manager')->group(function(){
+        // Add Task
+        Route::get('/add_job', 'App\Http\Controllers\HomeController@jobManagerAddJob')->name('manager.add_job');
+        // Task List
+        Route::get('/list_job', 'App\Http\Controllers\HomeController@managerListJob')->name('manager.list_job');
+        //task store
+        Route::post('/tasks/store', 'App\Http\Controllers\TaskController@store')->name('task.store');
         // task update
-
+        Route::patch('/tasks/{task} ', 'App\Http\Controllers\TaskController@store')->name('task.update');
         // task delete
 
+        // all users
+        Route::get('/users', 'App\Http\Controllers\UserController@index')->name('users.index');
         // show deparment
-        Route::get('/manager/deparments/{deparment}', 'App\Http\Controllers\HomeController@show')->name('deparment.show');
+        Route::get('/deparments/{deparment}', 'App\Http\Controllers\HomeController@show')->name('deparment.show');
 
+    });
 
 // ADMIN ROUTES -------------------------------------------------------------------------------------------------
 Route::middleware('is_admin')->prefix('admin')->group(function(){

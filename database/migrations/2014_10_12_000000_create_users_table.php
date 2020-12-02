@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->boolean('is_admin')->default(false);
+            $table->string('role');
             $table->boolean('status')->default(true); //true/false
             $table->string('image')->default("none");
 

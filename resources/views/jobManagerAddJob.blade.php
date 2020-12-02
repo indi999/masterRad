@@ -2,6 +2,7 @@
 
 @section('content')
     <!-- Content -->
+    <h1>Create Jobs</h1>
 
     @include('deparments.create')
 
