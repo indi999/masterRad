@@ -19,6 +19,7 @@ class CreateTaskSeeder extends Seeder
         $tasks = [
             [
                 'number' => 123456,
+                'user_id' => 2,
                 'brand' => 'Beneton d.o.o.',
                 'client' => 'Beneton',
                 'sale' => "sale",
@@ -31,6 +32,7 @@ class CreateTaskSeeder extends Seeder
             ],
             [
                 'number' => 3726485,
+                'user_id' => 3,
                 'brand' => 'Sauter d.o.o.',
                 'client' => 'Sauter',
                 'sale' => "sale",
@@ -44,6 +46,7 @@ class CreateTaskSeeder extends Seeder
             ],
             [
                 'number' => 9483723,
+                'user_id' => 2,
                 'brand' => 'BIZUP d.o.o.',
                 'client' => 'BizUp',
                 'sale' => "sale",
@@ -57,6 +60,7 @@ class CreateTaskSeeder extends Seeder
 
             [
                 'number' => 6463738,
+                'user_id' => 2,
                 'brand' => 'Avtera d.o.o.',
                 'client' => 'Avtera',
                 'sale' => "sale",
@@ -70,6 +74,7 @@ class CreateTaskSeeder extends Seeder
 
             [
                 'number' => 447866558,
+                'user_id' => 3,
                 'brand' => 'Eurotay d.o.o.',
                 'client' => 'Eurotay',
                 'sale' => "sale",
