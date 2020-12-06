@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Http\Request;
 
-use App\User;
+use App\Models\User;
 
 class AdminUsersController extends Controller
 {
@@ -24,10 +24,23 @@ class AdminUsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $users = User::all();
         return view('admins.users.index',compact('users'));
+    }
+
+    public function employees()
+    {
+        $users = User::where('role','=','user')->get();
+        return view('admins.users.employees',compact('users'));
+    }
+
+    public function managers()
+    {
+        $users = User::where('role','=','manager')->get();
+        return view('admins.users.managers',compact('users'));
     }
 
     /**
@@ -60,7 +73,6 @@ class AdminUsersController extends Controller
         $user = User::create($attributes);
         return view('admins.users.index', compact('users'))->with('message','New user is create!');
 
-
     }
 
     /**
@@ -80,9 +92,9 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('admins.users.edit', compact('user'));
     }
 
     /**
@@ -110,7 +122,6 @@ class AdminUsersController extends Controller
 
     public function status(User $user)
     {
-        //dd($user,Auth::user()->is_admin);
         $result = $user->update([
             'status' => request()->has('status')
         ]);

@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Deparment;
+use App\Models\Department;
 
-class CreateDeparmentSeeder extends Seeder
+class CreateDepartmentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class CreateDeparmentSeeder extends Seeder
      */
     public function run()
     {
-        $deparment = [
+        $department = [
             [
                 'name'=>'Produkcija',
             ],
@@ -27,8 +27,8 @@ class CreateDeparmentSeeder extends Seeder
             ],
         ];
 
-        foreach ($deparment as $key => $value) {
-            Deparment::create($value);
+        foreach ($department as $key => $value) {
+            Department::create($value);
         }
     }
 }

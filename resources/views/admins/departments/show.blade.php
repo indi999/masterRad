@@ -2,6 +2,8 @@
 
 @section('content')
 
-<h3>User Edit</h3>
+
+<h3>Sector Show</h3>
+
 
 @endsection

@@ -28,10 +28,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function home()
     {
-        $task= Task::all();
-        return view('home', compact('task'));
+        $tasks = Task::all();
+        $users = User::where('role','=','user')->get();
+        return view('home', compact('tasks','users'));
     }
 
     /**

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TaskDeparment extends Model
+class TaskDepartment extends Model
 {
     use HasFactory;
 
@@ -18,7 +18,7 @@ class TaskDeparment extends Model
      */
     protected $fillable = [
         'task_id',
-        'deparment_id',
+        'department_id',
     ];
 
 

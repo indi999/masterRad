@@ -1,8 +1,9 @@
 @extends('admins.layouts.master')
 
 @section('content')
-    <!-- Content -->
-    <h1>ADMIN PANEL</h1>
+
+
+    <h3>All Managers</h3>
 
     <!-- Succes message -->
     @if(session('message'))
@@ -19,7 +20,16 @@
         @endforeach
     @endif
 
-    @include('admins.tasks.create')
+    @if($users->count()>0)
+        @foreach($users as $user)
+            <ul>
+                <li>{{$user->email}}</li>
+                <li>{{$user->role}}</li>
+            </ul>
+        @endforeach
+    @endif
 
+    <h3>modal</h3>
+    @include('admins.users.create')
 
 @endsection

@@ -18,7 +18,7 @@ class CreateUserSeeder extends Seeder
     {
         $user = [
             [
-                'deparment_id'=>0,
+                'department_id'=>0,
                 'email'=>'admin@test.com',
                 'firstname'=>'Admin',
                 'lastname'=>'Adminovic',
@@ -28,7 +28,7 @@ class CreateUserSeeder extends Seeder
 
             ],
             [
-                'deparment_id'=>1,
+                'department_id'=>1,
                 'firstname'=>'UserManager1',
                 'lastname'=>'Userovic',
                 'email'=>'manager1@test.com',
@@ -38,7 +38,7 @@ class CreateUserSeeder extends Seeder
 
             ],
             [
-                'deparment_id'=>2,
+                'department_id'=>2,
                 'firstname'=>'UserManager2',
                 'lastname'=>'Userovic',
                 'email'=>'manager2@test.com',
@@ -48,7 +48,7 @@ class CreateUserSeeder extends Seeder
 
             ],
             [
-                'deparment_id'=>1,
+                'department_id'=>1,
                 'firstname'=>'User1',
                 'lastname'=>'Userovic1',
                 'email'=>'user1@test.com',
@@ -58,7 +58,7 @@ class CreateUserSeeder extends Seeder
 
             ],
             [
-                'deparment_id'=>2,
+                'department_id'=>2,
                 'firstname'=>'User2',
                 'lastname'=>'Userovic2',
                 'email'=>'user2@test.com',
@@ -68,7 +68,7 @@ class CreateUserSeeder extends Seeder
 
             ],
             [
-                'deparment_id'=>2,
+                'department_id'=>2,
                 'firstname'=>'User3',
                 'lastname'=>'Userovic3',
                 'email'=>'user3@test.com',
@@ -78,7 +78,7 @@ class CreateUserSeeder extends Seeder
 
             ],
             [
-                'deparment_id'=>3,
+                'department_id'=>3,
                 'firstname'=>'User4',
                 'lastname'=>'Userovic4',
                 'email'=>'user4@test.com',
@@ -89,7 +89,7 @@ class CreateUserSeeder extends Seeder
             ],
 
             [
-                'deparment_id'=>2,
+                'department_id'=>2,
                 'firstname'=>'production',
                 'lastname'=>'production',
                 'email'=>'production@test.com',

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Deparment;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
-class DeparmentController extends Controller
+class DepartmentController extends Controller
 {
 
     /**
@@ -52,10 +52,10 @@ class DeparmentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Deparment  $deparment
+     * @param  \App\Models\Department  $deparment
      * @return \Illuminate\Http\Response
      */
-    public function show(Deparment $deparment)
+    public function show(Department $deparment)
     {
         return view('deparments.show');
     }
@@ -63,10 +63,10 @@ class DeparmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Deparment  $deparment
+     * @param  \App\Models\Department  $deparment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Deparment $deparment)
+    public function edit(Department $deparment)
     {
         return view('deparments.edit');
     }
@@ -75,10 +75,10 @@ class DeparmentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Deparment  $deparment
+     * @param  \App\Models\Department  $deparment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Deparment $deparment)
+    public function update(Request $request, Department $deparment)
     {
         //
     }
@@ -86,10 +86,10 @@ class DeparmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Deparment  $deparment
+     * @param  \App\Models\Department  $deparment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Deparment $deparment)
+    public function destroy(Department $deparment)
     {
         //
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Auth;
 
 class AdminTaskController extends Controller
 {
@@ -27,7 +28,7 @@ class AdminTaskController extends Controller
     public function index()
     {
         $tasks = Task::all();
-        return view('tasks');
+        return view('admins.tasks.index',compact('tasks'));
     }
 
     /**
@@ -37,7 +38,7 @@ class AdminTaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('admins.deshboard');
     }
 
     /**
@@ -59,7 +60,7 @@ class AdminTaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+        return view('admins.tasks.show', compact('task'));
     }
 
     /**
@@ -70,7 +71,7 @@ class AdminTaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return view('admins.tasks.edit', compact('task'));
     }
 
     /**

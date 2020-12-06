@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTaskDeparmentsTable extends Migration
+class CreateTaskDepartmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateTaskDeparmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('task_deparments', function (Blueprint $table) {
+        Schema::create('task_departments', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('task_id'); // task id, bigInteger('task_id')->unsigned()
-            $table->unsignedInteger('deparment_id'); // sektor id
+            $table->unsignedInteger('department_id'); // sektor id
 
             $table->timestamps();
 
@@ -32,11 +32,7 @@ class CreateTaskDeparmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('task_deparments');
+        Schema::dropIfExists('task_departments');
     }
 }
 
-/**
- *             $table->integer('candidate_id')->unsigned();
-               $table->integer('job_id')->unsigned();
- */

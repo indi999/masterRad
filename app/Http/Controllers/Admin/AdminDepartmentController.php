@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
-use App\Models\Deparment;
+use Auth;
 use Illuminate\Http\Request;
+use App\Models\Department;
 
-class AdminDeparmentController extends Controller
+class AdminDepartmentController extends Controller
 {
 
     /**
@@ -28,8 +28,8 @@ class AdminDeparmentController extends Controller
     public function index()
     {
         if(Auth::user()->is_admin == true){
-            $deparments = Deparment::all();
-            return view('admins.deparments.index',compact('deparments'));
+            $departments = Department::all();
+            return view('admins.departments.index',compact('departments'));
         }
         return back()->with('message', 'you have not permition!');
     }
@@ -57,7 +57,7 @@ class AdminDeparmentController extends Controller
                 'name' => ['required', 'string', 'max:50'],
             ]);
 
-            $deparment = Deparment::create($attributes);
+            $deparment = Department::create($attributes);
 
             if($deparment){
                 return back()->with('message', 'New deparment created seccseful!');
@@ -71,33 +71,36 @@ class AdminDeparmentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Deparment  $deparment
+     * @param  \App\Models\Department  $deparment
      * @return \Illuminate\Http\Response
      */
-    public function show(Deparment $deparment)
+    public function show(Department $deparment)
     {
-        //
+        if(Auth::user()->is_admin == true){
+            return view('admins.deparments.show', compact('deparment'));
+        }
+        return back()->with('message', 'you have not permition!');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Deparment  $deparment
+     * @param  \App\Models\Department  $deparment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Deparment $deparment)
+    public function edit(Department $deparment)
     {
-        //
+        return view('admins.deparments.edit', compact('deparment'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Deparment  $deparment
+     * @param  \App\Models\Department  $deparment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Deparment $deparment)
+    public function update(Request $request, Department $deparment)
     {
         //dd(request()->all());
         // VALIDACIJA
@@ -116,10 +119,10 @@ class AdminDeparmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Deparment  $deparment
+     * @param  \App\Models\Department  $deparment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Deparment $deparment)
+    public function destroy(Department $deparment)
     {
         //
     }

@@ -1,8 +1,9 @@
 @extends('admins.layouts.master')
 
 @section('content')
-    <!-- Content -->
-    <h1>ADMIN PANEL</h1>
+
+
+    <h3>All Sector</h3>
 
     <!-- Succes message -->
     @if(session('message'))
@@ -10,6 +11,7 @@
             {{session('message')}}
         </div>
     @endif
+
     <!-- Error message -->
     @if(count($errors)>0)
         @foreach($errors->all() as $error)
@@ -19,7 +21,18 @@
         @endforeach
     @endif
 
-    @include('admins.tasks.create')
 
+
+    <h3>modal</h3>
+    @include('admins.departments.create')
+
+
+    @if($departments->count()>0)
+        @foreach($departments as $department)
+            <ul>
+                <li>{{$department->name}}</li>
+            </ul>
+        @endforeach
+    @endif
 
 @endsection

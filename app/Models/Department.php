@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Deparment extends Model
+class Department extends Model
 {
     use HasFactory;
 
@@ -20,7 +20,7 @@ class Deparment extends Model
 
     public function tasks()
     {
-        return $this->belongsToMany(Task::class, 'task_deparments');  //,'task_id', 'deparment_id'
+        return $this->belongsToMany(Task::class, 'task_departments');  //,'task_id', 'department_id'
     }
 
     public function users()

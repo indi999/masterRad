@@ -1,11 +1,9 @@
 @extends('admins.layouts.master')
 
 @section('content')
-    <!-- Content -->
 
 
-    <h3>Sector Create</h3>
-
+<h3>Sector Edit</h3>
 
 
 @endsection
