@@ -27,13 +27,14 @@ class TaskController extends Controller
     {
         // Get the currently authenticated user's
         $user = Auth::user();
-        $tasks = Task::where('finish', false)->where('user_id','=', $user->id)->get();
         if($user->role == 'manager')  {
           // if manager
+          $tasks = Task::where('finish', false)->where('user_id','=', $user->id)->get();
           return view('tasks.index', compact('tasks'));
       }
       // if employees
       //$tasks = Task::where('finish', false)->departments()->where('name','=',$user->department->name)->get();
+      $tasks = Task::where('finish', false)->get();
       return view('tasks.sectorJobs', compact('tasks'));
     }
 
@@ -41,14 +42,14 @@ class TaskController extends Controller
     {
         // Get the currently authenticated user's
         $user = Auth::user();
-        $tasks = Task::where('finish', true)->where('user_id','=', $user->id)->get();
         if($user->role == 'manager')  {
             // if manager
-            //$tasks = Task::where('finish', true)->where('user_id','=', $user->id)->get();
+            $tasks = Task::where('finish', true)->where('user_id','=', $user->id)->get();
             return view('tasks.index', compact('tasks'));
         }
         // if employees
         //$tasks = Task::where('finish', true)->departments()->where('name','=',$user->department->name)->get();
+        $tasks = Task::where('finish', true)->get();
         return view('tasks.sectorJobs', compact('tasks'));
     }
 
