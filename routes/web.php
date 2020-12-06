@@ -31,20 +31,20 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name(
 // Tasks
 Route::get('/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks');
 
-    // Add Task
-    Route::get('/add_job', 'App\Http\Controllers\HomeController@jobManagerAddJob')->name('manager.add_job');
+
     // Task List
-    Route::get('/list_of_job', 'App\Http\Controllers\HomeController@managerListJob')->name('manager.list_job');
-    //task store
+    Route::get('/tasks', 'App\Http\Controllers\TaskController@index')->name('jobs.index');
+    // Add Task
+    Route::get('/tasks/add_job', 'App\Http\Controllers\TaskController@create')->name('jobs.create');
     Route::post('/tasks/store', 'App\Http\Controllers\TaskController@store')->name('task.store');
     // task update
-    Route::patch('/tasks/{task} ', 'App\Http\Controllers\TaskController@store')->name('task.update');
+    Route::patch('/tasks/{task} ', 'App\Http\Controllers\TaskController@update')->name('task.update');
     // task delete
 
     // all users
-    Route::get('/users', 'App\Http\Controllers\UserController@index')->name('users.index');
-    // show deparment
-    Route::get('/sektor/{sektor}', 'App\Http\Controllers\DepartmentController@show')->name('department.show');
+    Route::get('/employees', 'App\Http\Controllers\UserController@employees')->name('users.employees');
+    // show sektors
+    Route::get('/sektors/{sektor}', 'App\Http\Controllers\DepartmentController@show')->name('sektors.show');
 
 
 

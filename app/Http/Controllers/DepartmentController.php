@@ -57,7 +57,7 @@ class DepartmentController extends Controller
      */
     public function show(Department $deparment)
     {
-        return view('deparments.show');
+        return view('deparments.show',compact('deparment'));
     }
 
     /**
@@ -68,7 +68,7 @@ class DepartmentController extends Controller
      */
     public function edit(Department $deparment)
     {
-        return view('deparments.edit');
+        return view('deparments.edit',compact('deparment'));
     }
 
     /**

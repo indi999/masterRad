@@ -1,4 +1,4 @@
-<h1>Create Job Firm</h1>
+<h1>Create Job</h1>
 <form>
     <!-- select user -->
 

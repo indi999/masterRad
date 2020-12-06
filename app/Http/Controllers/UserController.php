@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\User;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -22,10 +22,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function employees()
     {
-        $users = User::all();
-        return view('users.index', );
+        $users = User::where('role','=','users')->get();
+        return view('users.index', compact('users'));
     }
 
 }

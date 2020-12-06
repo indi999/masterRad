@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -60,7 +59,7 @@ class LoginController extends Controller
             }
         }else{
             return redirect()->route('login')
-                ->with('error','Email-Address And Password Are Wrong.');
+                   ->with('error','Email-Address And Password Are Wrong.');
         }
 
     }
