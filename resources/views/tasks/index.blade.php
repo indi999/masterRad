@@ -28,8 +28,10 @@
                 @foreach($task->departments as $department)
                     <ul>
                         <li>{{$department->name}}</li>
+                        <li>{{$department->pivot->status}}</li>
                     </ul>
                 @endforeach
+                <li>{{$task->brand}}</li>
             </ul>
         @endforeach
     @endif
