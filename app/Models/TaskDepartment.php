@@ -9,7 +9,7 @@ class TaskDepartment extends Model
 {
     use HasFactory;
 
-    public $table = 'task_deparments';
+    public $table = 'task_departments';
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +19,7 @@ class TaskDepartment extends Model
     protected $fillable = [
         'task_id',
         'department_id',
+        'status',
     ];
 
 

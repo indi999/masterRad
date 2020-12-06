@@ -1,9 +1,15 @@
-@include('admins.layouts.header')
+@guest
+    <!-- if not auth - admin // some message -->
+@else
 
-<!-- Navbar ----------------------------------------------------------------------->
-@include('admins.layouts.navigation')
+    @include('admins.layouts.header')
 
-<!-- Content -->
-@yield('content')
+    <!-- Navbar ----------------------------------------------------------------------->
+    @include('admins.layouts.navigation')
 
-@include('admins.layouts.footer')
+        <!-- Content -->
+        @yield('content')
+
+    @include('admins.layouts.footer')
+
+@endguest

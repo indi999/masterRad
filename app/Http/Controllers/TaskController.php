@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use Illuminate\Http\Request;
+use Auth;
 
 class TaskController extends Controller
 {
@@ -24,15 +25,29 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
-        return view('tasks.index', compact('tasks'));
+      if(Auth::user()->role == 'manager')  {
+          // if manager
+          $tasks = Task::where('finish', false)->get();
+          return view('tasks.index', compact('tasks'));
+      }
+      // if employees
+      $tasks = Task::where('finish', false)->where('')->get();
+      return view('tasks.sectorJobs', compact('tasks'));
+
     }
 
-    public function sectorJobs()  // for sector
+    public function arhive()
     {
-        $tasks = Task::all();
-        return view('task.index',compact('tasks'));
+        if(Auth::user()->role == 'manager')  {
+            // if manager
+            $tasks = Task::where('finish', true)->get();
+            return view('tasks.index', compact('tasks'));
+        }
+        // if employees
+        $tasks = Task::where('finish', true)->get();
+        return view('tasks.sectorJobs', compact('tasks'));
     }
+
 
     /**
      * Show the form for creating a new resource.

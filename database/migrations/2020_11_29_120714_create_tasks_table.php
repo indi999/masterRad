@@ -16,18 +16,18 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id('id');
             $table->integer('number')->unique();
-            $table->unsignedInteger('user_id'); // user id
+            //$table->unsignedInteger('user_id'); // user id
             $table->string('brand');
             $table->string('client');
             $table->string('sale');
-            $table->string('desc');
-
-            $table->boolean('status')->default(true);
+            $table->longText('desc');
 
             $table->string('date_end');
             $table->string('time_end');
             $table->string('expected_date_end');
             $table->string('expected_time_end');
+
+            $table->boolean('finish')->default(false);
 
             $table->timestamps();
         });

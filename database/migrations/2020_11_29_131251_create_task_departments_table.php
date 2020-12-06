@@ -17,6 +17,7 @@ class CreateTaskDepartmentsTable extends Migration
             $table->id();
             $table->unsignedInteger('task_id'); // task id, bigInteger('task_id')->unsigned()
             $table->unsignedInteger('department_id'); // sektor id
+            $table->boolean('status')->default(true);
 
             $table->timestamps();
 

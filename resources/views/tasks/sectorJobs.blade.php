@@ -20,7 +20,7 @@
     @endif
 
 
-<!-- ARHIVA JOBS -->
+<!-- Sector JOBS -->
     @if($tasks->count()>0)
         @foreach($tasks as $task)
             <ul>

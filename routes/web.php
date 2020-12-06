@@ -33,12 +33,13 @@ Route::get('/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks')
 
 
     // Task List
-    Route::get('/tasks', 'App\Http\Controllers\TaskController@index')->name('jobs.index');
+    Route::get('/jobs', 'App\Http\Controllers\TaskController@index')->name('jobs.index'); // active tasks
+    Route::get('/jobs/arhive', 'App\Http\Controllers\TaskController@arhive')->name('jobs.arhive'); // arhive tasks
     // Add Task
-    Route::get('/tasks/add_job', 'App\Http\Controllers\TaskController@create')->name('jobs.create');
-    Route::post('/tasks/store', 'App\Http\Controllers\TaskController@store')->name('task.store');
+    Route::get('/jobs/create', 'App\Http\Controllers\TaskController@create')->name('jobs.create');
+    Route::post('/jobs/store', 'App\Http\Controllers\TaskController@store')->name('jobs.store');
     // task update
-    Route::patch('/tasks/{task} ', 'App\Http\Controllers\TaskController@update')->name('task.update');
+    Route::patch('/jobs/{jobs} ', 'App\Http\Controllers\TaskController@update')->name('jobs.update');
     // task delete
 
     // all users

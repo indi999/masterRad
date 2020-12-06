@@ -16,16 +16,16 @@ class Task extends Model
      */
     protected $fillable = [
         'number',
-        'user_id',
+        //'user_id',
         'brand',
         'client',
         'sale',
         'desc',
-        'status',
         'date_end',
         'time_end',
         'expected_date_end',
         'expected_time_end',
+        'finish',
     ];
 
     public function deparments()
