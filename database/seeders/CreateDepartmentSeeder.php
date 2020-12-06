@@ -28,6 +28,9 @@ class CreateDepartmentSeeder extends Seeder
             [
                 'name'=>'ISPORUKA',
             ],
+            [
+                'name'=>'ALL',
+            ],
         ];
 
         foreach ($department as $key => $value) {

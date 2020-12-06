@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\TaskDepartment;
+use App\Models\DepartmentTask;
 use Illuminate\Database\Seeder;
 
-class CreateTaskDepartmentSeeder extends Seeder
+class CreateDepartmentTaskSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,20 +14,20 @@ class CreateTaskDepartmentSeeder extends Seeder
      */
     public function run()
     {
-        $taskDepartment = [
+        $departmentTask = [
             [
                 'task_id' => 3,
                 'department_id' => 1,
                 'status' => true,
             ],
             [
-                'task_id' => 3,
+                'task_id' => 2,
                 'department_id' => 2,
                 'status' => true,
             ],
             [
-                'task_id' => 4,
-                'department_id' => 3,
+                'task_id' => 3,
+                'department_id' => 2,
                 'status' => false,
             ],
             [
@@ -61,8 +61,8 @@ class CreateTaskDepartmentSeeder extends Seeder
             ],
         ];
 
-        foreach ($taskDepartment as $key => $value) {
-            TaskDepartment::create($value);
+        foreach ($departmentTask as $key => $value) {
+            DepartmentTask::create($value);
         }
     }
 }

@@ -27,34 +27,28 @@ class TaskController extends Controller
     {
         // Get the currently authenticated user's
         $user = Auth::user();
+        $tasks = Task::where('finish', false)->where('user_id','=', $user->id)->get();
         if($user->role == 'manager')  {
           // if manager
-          $tasks = Task::where('finish', false)->where('user_id','=', $user->id)->get();
-
-          dd($tasks);
-
           return view('tasks.index', compact('tasks'));
       }
       // if employees
-      $tasks = Task::where('finish', false)->department()->where('name','=',$user->department->name)->get();
-
-        dd($tasks);
-
+      //$tasks = Task::where('finish', false)->departments()->where('name','=',$user->department->name)->get();
       return view('tasks.sectorJobs', compact('tasks'));
-
     }
 
     public function arhive()
     {
         // Get the currently authenticated user's
         $user = Auth::user();
+        $tasks = Task::where('finish', true)->where('user_id','=', $user->id)->get();
         if($user->role == 'manager')  {
             // if manager
-            $tasks = Task::where('finish', true)->where('user_id','=', $user->id)->get();;
+            //$tasks = Task::where('finish', true)->where('user_id','=', $user->id)->get();
             return view('tasks.index', compact('tasks'));
         }
         // if employees
-        $tasks = Task::where('finish', true)->departments()->where('name','=',$user->department->name)->get();
+        //$tasks = Task::where('finish', true)->departments()->where('name','=',$user->department->name)->get();
         return view('tasks.sectorJobs', compact('tasks'));
     }
 

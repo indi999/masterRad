@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>JOBS</h1>
+    <h1>JOBS  Sektor:{{ auth()->user()->department->name}} / ROLE: {{ auth()->user()->role}}</h1>
 
     <!-- Succes message -->
     @if(session('message'))
@@ -25,6 +25,11 @@
         @foreach($tasks as $task)
             <ul>
                 <li>{{$task->number}}</li>
+                @foreach($task->departments as $department)
+                    <ul>
+                        <li>{{$department->name}}</li>
+                    </ul>
+                @endforeach
             </ul>
         @endforeach
     @endif

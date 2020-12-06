@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TaskDepartment extends Model
+class DepartmentTask extends Model
 {
     use HasFactory;
 
-    public $table = 'task_departments';
+    public $table = 'department_task';
 
     /**
      * The attributes that are mass assignable.

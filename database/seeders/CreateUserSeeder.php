@@ -28,7 +28,7 @@ class CreateUserSeeder extends Seeder
 
             ],
             [
-                'department_id'=>1,
+                'department_id'=>5,
                 'firstname'=>'UserManager1',
                 'lastname'=>'Userovic',
                 'email'=>'manager1@test.com',
@@ -38,7 +38,7 @@ class CreateUserSeeder extends Seeder
 
             ],
             [
-                'department_id'=>2,
+                'department_id'=>5,
                 'firstname'=>'UserManager2',
                 'lastname'=>'Userovic',
                 'email'=>'manager2@test.com',

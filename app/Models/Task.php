@@ -30,7 +30,7 @@ class Task extends Model
 
     public function departments()
     {
-        return $this->belongsToMany(Department::class, 'task_departments'); //, 'department_id','task_id'
+        return $this->belongsToMany(Department::class); //, 'task_departments', 'department_id','task_id'
     }
 
     public function user()
