@@ -15,7 +15,7 @@
                         @endif
 
                         <h1>USER AND MANAGER PANEL</h1>
-                        @include('tasks.index')
+                        @include('tasks.create')
 
                         {{ __('You are logged in!') }}
                     </div>

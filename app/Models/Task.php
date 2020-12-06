@@ -28,7 +28,7 @@ class Task extends Model
         'finish',
     ];
 
-    public function deparments()
+    public function departments()
     {
         return $this->belongsToMany(Department::class, 'task_departments'); //, 'department_id','task_id'
     }

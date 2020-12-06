@@ -16,14 +16,17 @@ class CreateDepartmentSeeder extends Seeder
     {
         $department = [
             [
-                'name'=>'Produkcija',
+                'name'=>'DIZAJN/PRIPREMA',
             ],
             [
-                'name'=>'Dizajn',
+                'name'=>'PRODUKCIJA',
 
             ],
             [
-                'name'=>'Development',
+                'name'=>'DORADA',
+            ],
+            [
+                'name'=>'ISPORUKA',
             ],
         ];
 

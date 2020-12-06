@@ -90,12 +90,12 @@ class CreateUserSeeder extends Seeder
 
             [
                 'department_id'=>2,
-                'firstname'=>'production',
-                'lastname'=>'production',
-                'email'=>'production@test.com',
+                'firstname'=>'User5',
+                'lastname'=>'Userovic5',
+                'email'=>'user5@test.com',
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
-                'role'=>'production',
+                'role'=>'user',
 
             ],
         ];
