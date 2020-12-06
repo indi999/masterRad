@@ -30,6 +30,7 @@
                         <li>{{$task->number}}</li>
                         <li>{{$department->name}}</li>
                         <li>{{$task->brand}}</li>
+                        <li>{{$department->pivot->status}}</li>
                     </ul>
                 @endif
             @endforeach
