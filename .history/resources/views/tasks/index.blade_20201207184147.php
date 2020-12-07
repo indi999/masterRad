@@ -29,6 +29,7 @@
                                     @if($tasks->count()>0)
                                         @foreach($tasks as $task)
 
+                                        dd({{$task->departments}})
 
                                             <tr>
                                                 <th scope="row">{{$task->number}}</th>
@@ -38,25 +39,21 @@
                                                 <td scope="row">{{$task->desc}}</td>
                                                 <td scope="row">{{$task->date_end}} <i class="fa fa-calendar" aria-hidden="true"></i></td>
                                                 <td scope="row">{{$task->expected_date_end}}</td>
+                                                 @foreach($task->departments as $department)
+                                                    <td scope="row">{{$department->name}} - {{$department->pivot->status}} <i class="fa fa-calendar"
+                                                        aria-hidden="true"></i></td>
 
-                                                    @foreach($task->departments as $department)
-                                                            @switch($department->name)
-                                                                @case('DIZAJN/PRIPREMA')
-                                                                    <td scope="row" class="active">{{$department->name}} - {{$department->pivot->status}}<i class="fa fa-calendar" aria-hidden="true"></i></td>
-                                                                    @break
-                                                                @case('PRODUKCIJA')
-                                                                    <td scope="row" class="active">{{$department->name}} - {{$department->pivot->status}}<i class="fa fa-calendar" aria-hidden="true"></i></td>
-                                                                    @break
-                                                                @case('DORADA')
-                                                                    <td scope="row" class="active">{{$department->name}} - {{$department->pivot->status}}<i class="fa fa-calendar" aria-hidden="true"></i></td>
-                                                                    @break
-                                                                @case('ISPORUKA')
-                                                                  <td scope="row" class="active">{{$department->name}} - {{$department->pivot->status}}<i class="fa fa-calendar" aria-hidden="true"></i></td>
-                                                                    @break
-                                                                @default
-                                                                     <td scope="row" class="inactive"><i class="fa fa-calendar" aria-hidden="true"></i></td>
-                                                            @endswitch
-                                                    @endforeach
+                                                    @if($department->pivot->status == 0)
+                                                       scscsc
+                                                    @endif
+
+
+
+                                                    dd({{$task->department}})
+
+
+
+                                                @endforeach
                                                 <td class="delete-user">
                                                     <a href="#">Obriši</a>
                                                 </td>
