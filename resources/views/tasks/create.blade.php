@@ -10,7 +10,7 @@
                         <div class="menu-items">
                             <ul>
                                 <li class="users"><a href="#"><i class="fa fa-users" aria-hidden="true"></i>Lista korisnika</a></li>
-                                <li><a href="{{ route('jobs.index') }}"><i class="fa fa-list" aria-hidden="true"></i>Lista poslova</a></li>
+                                <li><a href="{{ route('home') }}"><i class="fa fa-list" aria-hidden="true"></i>Lista poslova</a></li>
                                 <li class="add-job"><a href="#"><i class="fa fa-plus" aria-hidden="true"></i>Dodaj posao</a></li>
                             </ul>
                         </div>

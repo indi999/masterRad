@@ -20,7 +20,7 @@ class Department extends Model
 
     public function tasks()
     {
-        return $this->belongsToMany(Task::class)->withPivot('status');  //, 'task_departments','task_id', 'department_id'
+        return $this->belongsToMany(Task::class)->withPivot('status','is_active');  //, 'task_departments','task_id', 'department_id'
     }
 
     public function users()
