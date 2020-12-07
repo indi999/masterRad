@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+@section('content')
+
 <h1>JOBS  Sektor:{{ auth()->user()->department->name}} / ROLE: {{ auth()->user()->role}}</h1>
 
 @if($tasks->count()>0)
@@ -63,5 +67,7 @@
         </div>
     </div>
 </div>
+
+@endsection
 
 
