@@ -16,22 +16,23 @@ class Task extends Model
      */
     protected $fillable = [
         'number',
-        'user_id',
+        'user_id', // manager
         'brand',
         'client',
         'sale',
         'desc',
-        'status',
         'date_end',
         'time_end',
         'expected_date_end',
         'expected_time_end',
+        'finish',
     ];
 
-    public function deparments()
+    public function departments()
     {
-        return $this->belongsToMany(Deparment::class, 'task_deparments'); //, 'deparment_id','task_id'
+        return $this->belongsToMany(Department::class)->withPivot('status'); //, 'task_departments', 'department_id','task_id'
     }
+
 
     public function user()
     {

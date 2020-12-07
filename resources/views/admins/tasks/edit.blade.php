@@ -1,1 +1,7 @@
-<h3>Task Edit</h3>
+@extends('admins.layouts.master')
+
+@section('content')
+
+<h3>JOB Edit</h3>
+
+@endsection
