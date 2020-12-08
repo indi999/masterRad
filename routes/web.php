@@ -33,8 +33,8 @@ Route::get('/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks')
 
 
     // Task List
-    Route::get('/jobs', 'App\Http\Controllers\TaskController@index')->name('jobs.index'); // active tasks
-    Route::get('/jobs/arhive', 'App\Http\Controllers\TaskController@arhive')->name('jobs.arhive'); // arhive tasks
+    //Route::get('/jobs', 'App\Http\Controllers\TaskController@index')->name('jobs.index'); // active tasks
+    //Route::get('/jobs/arhive', 'App\Http\Controllers\TaskController@arhive')->name('jobs.arhive'); // arhive tasks
     // Add Task
     Route::get('/jobs/create', 'App\Http\Controllers\TaskController@create')->name('jobs.create');
     Route::post('/jobs/store', 'App\Http\Controllers\TaskController@store')->name('jobs.store');

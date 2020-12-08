@@ -1,7 +1,8 @@
-@extends('layouts.app')
+@extends('admins.layouts.master')
 
 @section('content')
-    <!-- Succes message -->
+
+ <!-- Succes message -->
     @if(session('message'))
         <div class="alert alert-danger">
             {{session('message')}}
@@ -16,10 +17,18 @@
         @endforeach
     @endif
 
-    @if(auth()->user()->role == 'manager')
-        @include('tasks.index')
-    @else
-        @include('tasks.sectorJobs')
-    @endif
+
+
+    <main>
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="part-table admin-table">
+                    @include('admins.tasks.index')
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
 
 @endsection

@@ -2,6 +2,7 @@
 
 @section('content')
 
+<h1>JOBS  Sektor:{{ auth()->user()->department->name}} / ROLE: {{ auth()->user()->role}}</h1>
 
 
 
@@ -36,8 +37,8 @@
 
                                         <tr>
                                             <th scope="row">{{$task->number}}</th>
-                                            <td>{{$task->brand}}</td>
-                                            <td>MULTI BRAND POLICA</td>
+                                            <td>Scholl</td>
+                                            <td>{{$task->brand}}<</td>
                                             <td>31.12.2020</td>
                                             <td>31.12.2020</td>
                                             <td class="status">

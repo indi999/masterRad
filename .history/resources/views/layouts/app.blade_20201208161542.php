@@ -49,7 +49,7 @@
 
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('jobs.create') }}">Dodaj posao</a>
+                        <a class="nav-link" href="{{ route('tasks.create') }}">Dodaj posao</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Logout</a>

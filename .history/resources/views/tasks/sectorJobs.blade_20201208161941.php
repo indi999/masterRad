@@ -36,8 +36,8 @@
 
                                         <tr>
                                             <th scope="row">{{$task->number}}</th>
+                                            <td>Scholl</td>
                                             <td>{{$task->brand}}</td>
-                                            <td>MULTI BRAND POLICA</td>
                                             <td>31.12.2020</td>
                                             <td>31.12.2020</td>
                                             <td class="status">

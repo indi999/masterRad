@@ -16,10 +16,13 @@
         @endforeach
     @endif
 
-    @if(auth()->user()->role == 'manager')
-        @include('tasks.index')
+
+
+    @if(auth()->user->role == 'manager')
+        @include('tasks.create')
     @else
-        @include('tasks.sectorJobs')
-    @endif
+
+
+
 
 @endsection

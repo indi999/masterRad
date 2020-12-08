@@ -44,18 +44,16 @@
       @if ( auth()->user()->role == 'manager')
         <nav class="navbar navbar-expand-lg">
             <!--<span class="date">{{ date('Y-m-d') }}</span>-->
-            @if(Route::is('home') )
+            @if(Route::is('jobs.index') || Route::is('home'))
                 <a class="navbar-brand" href="#">Job Manager / Lista poslova</a>
-
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('jobs.create') }}">Dodaj posao</a>
+                        <a class="nav-link" href="{{ route('home') }}">Dodaj posao</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Logout</a>
                     </li>
                 </ul>
-
             @else
                 <a class="navbar-brand" href="#">Job Manager / Unos poslova</a>
             @endif
