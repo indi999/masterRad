@@ -30,7 +30,7 @@ class Task extends Model
 
     public function departments()
     {
-        return $this->belongsToMany(Department::class)->withPivot('status','is_active'); //, 'task_departments', 'department_id','task_id'
+        return $this->belongsToMany(Department::class)->withPivot('id','is_active','is_late','is_finish'); //, 'task_departments', 'department_id','task_id'
     }
 
 

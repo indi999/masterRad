@@ -18,7 +18,8 @@ class CreateDepartmentTaskTable extends Migration
             $table->integer('task_id')->unsigned();
             $table->integer('department_id')->unsigned();
             $table->boolean('is_active')->default(false);
-            $table->boolean('status')->default(true);
+            $table->boolean('is_late')->default(false);
+            $table->boolean('is_finish')->default(false);
 
             $table->foreign('task_id')->references('id')->on('tasks')
                   ->onDelete('cascade');

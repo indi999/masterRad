@@ -19,7 +19,9 @@ class DepartmentTask extends Model
     protected $fillable = [
         'task_id',
         'department_id',
-        'status',
+        'is_active',
+        'is_late',
+        'is_finish',
     ];
 
 

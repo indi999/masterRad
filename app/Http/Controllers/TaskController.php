@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\DepartmentTask;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -118,5 +119,24 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         //
+    }
+
+
+    // Checkbox pivot DepartmentTask
+    public function isLate(DepartmentTask $departmentTask)
+    {
+        $departmentTask->update([
+            'is_late' => request()->has('is_late')
+        ]);
+        return back();
+    }
+
+    public function isFinish(DepartmentTask $departmentTask)
+    {
+        //dd('yes12', $book);
+        $departmentTask->update([
+            'is_finish' => request()->has('is_finish')
+        ]);
+        return back();
     }
 }

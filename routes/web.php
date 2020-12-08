@@ -34,12 +34,15 @@ Route::get('/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks')
 
     // Task List
     //Route::get('/jobs', 'App\Http\Controllers\TaskController@index')->name('jobs.index'); // active tasks
-    //Route::get('/jobs/arhive', 'App\Http\Controllers\TaskController@arhive')->name('jobs.arhive'); // arhive tasks
+    Route::get('/jobs/arhive', 'App\Http\Controllers\TaskController@arhive')->name('jobs.arhive'); // arhive tasks
     // Add Task
     Route::get('/jobs/create', 'App\Http\Controllers\TaskController@create')->name('jobs.create');
     Route::post('/jobs/store', 'App\Http\Controllers\TaskController@store')->name('jobs.store');
     // task update
     Route::patch('/jobs/{jobs} ', 'App\Http\Controllers\TaskController@update')->name('jobs.update');
+    // task chackbox
+    Route::patch('/jobs/{departmentTask}/late', 'App\Http\Controllers\TaskController@isLate')->name('jobs.late');
+    Route::patch('/jobs/{departmentTask}/finish', 'App\Http\Controllers\TaskController@isFinish')->name('jobs.finish');
     // task delete
 
     // all users
