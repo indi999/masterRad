@@ -72,7 +72,25 @@
     @endif
 
     @if ( auth()->user()->role == 'user')
-        <nav class="navbar navbar-expand-lg design">
+    
+                <?php $sectorName = auth()->user()->department->name;?>
+                @switch($sectorName)
+                    @case('DIZAJN/PRIPREMA')
+                         <nav class="navbar navbar-expand-lg design">
+                         @break
+                    @case('PRODUKCIJA')
+                        <nav class="navbar navbar-expand-lg production">
+                        @break
+                    @case('DORADA')
+                         <nav class="navbar navbar-expand-lg add">
+                        @break
+                    @case('ISPORUKA')
+                         <nav class="navbar navbar-expand-lg delivery">
+                        @break
+                    @default
+                     <nav class="navbar navbar-expand-lg">
+                @endswitch
+        
             <a class="navbar-brand" href="#">{{ auth()->user()->department->name}}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

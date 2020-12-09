@@ -504,3 +504,10 @@ main {
 .inactive {
     background: #ccc !important;
 }
+
+
+
+.navbar.design {background: #52c7e8;}
+.navbar.production {background: #45ba8f;}
+.navbar.add {background: #edb93d;}
+.navbar.delivery {background: #e33770;}
