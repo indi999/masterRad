@@ -61,6 +61,10 @@ class HomeController extends Controller
      */
     public function dashboard()
     {
-        return view('admins.tasks.show', compact('task'));
+        if( Auth::user()->is_admin )  {
+            // if manager
+            $tasks = Task::where('finish', false)->get();
+            return view('admins.tasks.index', compact('tasks'));
+        }
     }
 }
