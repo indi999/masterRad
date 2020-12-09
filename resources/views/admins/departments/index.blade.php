@@ -2,9 +2,6 @@
 
 @section('content')
 
-
-    <h3>All Sector</h3>
-
     <!-- Succes message -->
     @if(session('message'))
         <div class="alert alert-danger">
@@ -21,18 +18,46 @@
         @endforeach
     @endif
 
+    <!-- Departments -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="part-table admin-table">
+                    <div class="add-btn">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Dodaj sektor</button>
+                    </div>
 
+                    <div class="table-responsive  table-striped table-bordered">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">id</th>
+                                <th scope="col">Ime sektora</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                @if($departments->count()>0)
+                                    @foreach($departments as $department)
+                                    <th scope="row">{{$department->id}}</th>
+                                        <td>{{$department->name}}</td>
+                                        <td class="delete-user">
+                                            <a href="#">Obriši</a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                @endif
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <h3>modal</h3>
+    <!-- departments create -->
     @include('admins.departments.create')
 
-
-    @if($departments->count()>0)
-        @foreach($departments as $department)
-            <ul>
-                <li>{{$department->name}}</li>
-            </ul>
-        @endforeach
-    @endif
 
 @endsection

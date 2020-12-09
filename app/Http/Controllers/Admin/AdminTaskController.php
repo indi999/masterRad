@@ -29,7 +29,7 @@ class AdminTaskController extends Controller
         if( Auth::user()->is_admin )  {
             // if manager
             $tasks = Task::where('finish', false)->get();
-            return view('admin.tasks.index', compact('tasks'));
+            return view('admins.tasks.index', compact('tasks'));
         }
     }
 
@@ -37,7 +37,7 @@ class AdminTaskController extends Controller
     {
         if( Auth::user()->is_admin )  {
             $tasks = Task::where('finish', true)->get();
-            return view('admin.tasks.index', compact('tasks'));
+            return view('admins.tasks.index', compact('tasks'));
         }
     }
 

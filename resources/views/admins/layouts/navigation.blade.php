@@ -7,13 +7,13 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Korisnici</a>
+                  <a class="nav-link" href="{{ route('admin.users.index') }}">Korisnici</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Sektori</a>
+                  <a class="nav-link" href="{{ route('admin.sektors.index') }}">Sektori</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="admin-list-job.html">Lista Poslova</a>
+                    <a class="nav-link" href="{{ route('admin.jobs.index') }}">Lista Poslova</a>
                 </li>
                 <li class="nav-item">
                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}
