@@ -61,6 +61,6 @@ class HomeController extends Controller
      */
     public function dashboard()
     {
-        return view('admins.dashboard');
+        return view('admins.tasks.show', compact('task'));
     }
 }
