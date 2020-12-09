@@ -41,7 +41,9 @@ class AdminDepartmentController extends Controller
      */
     public function create()
     {
-         return view('admins.deparments.create');
+        if(Auth::user()->is_admin == true){
+            return view('admins.deparments.create');
+        }
     }
 
     /**
@@ -90,7 +92,9 @@ class AdminDepartmentController extends Controller
      */
     public function edit(Department $deparment)
     {
-        return view('admins.deparments.edit', compact('deparment'));
+        if(Auth::user()->is_admin == true) {
+            return view('admins.deparments.edit', compact('deparment'));
+        }
     }
 
     /**
@@ -102,18 +106,20 @@ class AdminDepartmentController extends Controller
      */
     public function update(Request $request, Department $deparment)
     {
-        //dd(request()->all());
-        // VALIDACIJA
-        $attributes = request()->validate( [
-            'name' => ['required', 'string', 'max:50'],
-        ]);
+        if(Auth::user()->is_admin == true) {
+            //dd(request()->all());
+            // VALIDACIJA
+            $attributes = request()->validate([
+                'name' => ['required', 'string', 'max:50'],
+            ]);
 
-        $result = $deparment->update($attributes);
-        //dd($category, $result);
-        if($result){
-            return back()->with('message', 'Deparment is updated seccseful!');
+            $result = $deparment->update($attributes);
+            //dd($category, $result);
+            if ($result) {
+                return back()->with('message', 'Deparment is updated seccseful!');
+            }
+            return back()->with('message', 'Deparment not updated!');
         }
-        return back()->with('message', 'Deparment not updated!');
     }
 
     /**
@@ -124,6 +130,9 @@ class AdminDepartmentController extends Controller
      */
     public function destroy(Department $deparment)
     {
-        //
+        if(Auth::user()->is_admin == true) {
+
+        }
+
     }
 }
