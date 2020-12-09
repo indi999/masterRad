@@ -9,7 +9,6 @@ use Auth;
 
 class AdminTaskController extends Controller
 {
-
     /**
      * Create a new controller instance.
      *
@@ -27,8 +26,19 @@ class AdminTaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
-        return view('admins.tasks.index',compact('tasks'));
+        if( Auth::user()->is_admin )  {
+            // if manager
+            $tasks = Task::where('finish', false)->get();
+            return view('admin.tasks.index', compact('tasks'));
+        }
+    }
+
+    public function arhive()
+    {
+        if( Auth::user()->is_admin )  {
+            $tasks = Task::where('finish', true)->get();
+            return view('admin.tasks.index', compact('tasks'));
+        }
     }
 
     /**
@@ -38,7 +48,10 @@ class AdminTaskController extends Controller
      */
     public function create()
     {
-        return view('admins.deshboard');
+        if( Auth::user()->is_admin )  {
+            return view('admins.deshboard');
+        }
+
     }
 
     /**
@@ -49,7 +62,9 @@ class AdminTaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if( Auth::user()->is_admin )  {
+
+        }
     }
 
     /**
@@ -60,7 +75,9 @@ class AdminTaskController extends Controller
      */
     public function show(Task $task)
     {
-        return view('admins.tasks.show', compact('task'));
+        if( Auth::user()->is_admin )  {
+            return view('admins.tasks.show', compact('task'));
+        }
     }
 
     /**
@@ -71,7 +88,9 @@ class AdminTaskController extends Controller
      */
     public function edit(Task $task)
     {
-        return view('admins.tasks.edit', compact('task'));
+        if( Auth::user()->is_admin )  {
+            return view('admins.tasks.edit', compact('task'));
+        }
     }
 
     /**
@@ -83,7 +102,9 @@ class AdminTaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        if( Auth::user()->is_admin )  {
+
+        }
     }
 
     /**
@@ -94,6 +115,8 @@ class AdminTaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        if( Auth::user()->is_admin )  {
+
+        }
     }
 }
