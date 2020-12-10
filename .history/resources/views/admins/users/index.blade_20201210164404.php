@@ -24,35 +24,58 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-
-                <div class="add-btn">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Dodaj korisnika</button>
-                </div>
-
                 <div class="table-responsive  table-striped table-bordered">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">id</th>
+                                <th scope="col">Korisničko ime</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Sektor</th>
                                 <th scope="col">Rola</th>
                             </tr>
                         </thead>
                         <tbody>
+
+
+
                            @if($users->count()>0)
                             @foreach($users as $user)
-                                 <tr>
-                                    <th scope="row">{{$user->id}}</th>
-                                    <td>{{$user->email}}</td>
-                                    <td>{{$user->role}}</td>
-                                    <td>{{$user->status}}</td>
-                                    <td class="delete-user">
-                                        <a href="#">Obriši</a>
-                                    </td>
-                                </tr>
+                                <ul>
+                                    <li>{{$user->email}}</li>
+                                </ul>
                             @endforeach
                         @endif
+
+                        <h3>modal</h3>
+                        @include('admins.users.create')
+
+
+
+
+
+
+
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>mark@example.com</td>
+                                <td>Dizajn</td>
+                                <td>Korisnik</td>
+                                <td class="delete-user">
+                                    <a href="#">Obriši</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Jacob</td>
+                                <td>jacob@example.com</td>
+                                <td>Produkcija</td>
+                                <td>Korisnik</td>
+                                <td class="delete-user">
+                                    <a href="#">Obriši</a>
+                                </td>
+                            </tr>
 
                         </tbody>
                         </table>
@@ -62,5 +85,15 @@
         </div>
     </div>
 
-       @include('admins.users.create')
+
+
+
+
+
+
+
+
+
+
+
 @endsection

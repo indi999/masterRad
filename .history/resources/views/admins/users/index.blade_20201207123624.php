@@ -1,8 +1,12 @@
+
 @extends('admins.layouts.master')
 
 @section('content')
 
- <!-- Succes message -->
+
+    <h3>All User</h3>
+
+    <!-- Succes message -->
     @if(session('message'))
         <div class="alert alert-danger">
             {{session('message')}}
@@ -17,18 +21,15 @@
         @endforeach
     @endif
 
+    @if($users->count()>0)
+        @foreach($users as $user)
+            <ul>
+                <li>{{$user->email}}</li>
+            </ul>
+        @endforeach
+    @endif
 
-
-    <main>
-        <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="part-table admin-table">
-                    @include('admins.tasks.index')
-                </div>
-            </div>
-        </div>
-    </div>
-    </main>
+    <h3>modal</h3>
+    @include('admins.users.create')
 
 @endsection

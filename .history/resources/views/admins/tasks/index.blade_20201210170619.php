@@ -36,7 +36,7 @@
                                     <td scope="row">{{$task->sale}}</td>
                                     <td scope="row">{{$task->desc}}</td>
                                     <td scope="row">{{$task->date_end}} <i class="fa fa-calendar" aria-hidden="true"></i></td>
-                                    <td scope="row">{{$task->expected_date_end}} <i class="fa fa-calendar changeDate" aria-hidden="true" data-toggle="modal" data-target="#modalDate"></i></td>
+                                    <td scope="row">{{$task->expected_date_end}} <i class="fa fa-calendar" aria-hidden="true"></i></td>
                                     @foreach($task->departments as $department)
                                         @switch([$department->name, $department->pivot->is_active])
                                             @case(['DIZAJN/PRIPREMA',true])

@@ -24,11 +24,6 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-
-                <div class="add-btn">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Dodaj korisnika</button>
-                </div>
-
                 <div class="table-responsive  table-striped table-bordered">
                     <table class="table">
                         <thead>
@@ -54,6 +49,10 @@
                             @endforeach
                         @endif
 
+                        <h3>modal</h3>
+                        @include('admins.users.create')
+
+
                         </tbody>
                         </table>
                     </div>
@@ -62,5 +61,15 @@
         </div>
     </div>
 
-       @include('admins.users.create')
+
+
+
+
+
+
+
+
+
+
+
 @endsection

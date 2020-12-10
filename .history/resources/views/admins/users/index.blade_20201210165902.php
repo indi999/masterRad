@@ -61,6 +61,4 @@
             </div>
         </div>
     </div>
-
-       @include('admins.users.create')
 @endsection

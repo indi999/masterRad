@@ -408,9 +408,6 @@ main {
 .part-table table tr td .fa {
     margin: 0 5px;
     float: right;
-}
-
-.part-table table tr td .changeDate {
     cursor: pointer;
 }
 

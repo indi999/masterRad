@@ -24,11 +24,6 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-
-                <div class="add-btn">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Dodaj korisnika</button>
-                </div>
-
                 <div class="table-responsive  table-striped table-bordered">
                     <table class="table">
                         <thead>
@@ -40,19 +35,39 @@
                             </tr>
                         </thead>
                         <tbody>
+
+
+
                            @if($users->count()>0)
                             @foreach($users as $user)
+                                <ul>
+                                    <li>{{$user->email}}</li>
+                                </ul>
+
                                  <tr>
-                                    <th scope="row">{{$user->id}}</th>
+                                    <th scope="row">1</th>
                                     <td>{{$user->email}}</td>
-                                    <td>{{$user->role}}</td>
-                                    <td>{{$user->status}}</td>
+                                    <td>Dizajn</td>
+                                    <td>Korisnik</td>
                                     <td class="delete-user">
                                         <a href="#">Obriši</a>
                                     </td>
                                 </tr>
+
+
                             @endforeach
                         @endif
+
+                        <h3>modal</h3>
+                        @include('admins.users.create')
+
+
+
+
+
+
+
+
 
                         </tbody>
                         </table>
@@ -62,5 +77,15 @@
         </div>
     </div>
 
-       @include('admins.users.create')
+
+
+
+
+
+
+
+
+
+
+
 @endsection

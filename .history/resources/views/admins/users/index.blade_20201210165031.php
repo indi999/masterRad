@@ -54,6 +54,10 @@
                             @endforeach
                         @endif
 
+  <h3>modal</h3>
+                        @include('admins.users.create')
+
+
                         </tbody>
                         </table>
                     </div>
@@ -62,5 +66,15 @@
         </div>
     </div>
 
-       @include('admins.users.create')
+
+
+
+
+
+
+
+
+
+
+
 @endsection
