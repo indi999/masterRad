@@ -73,7 +73,38 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        dd(request()->all());
+        if( Auth::user()->role == 'manager')  {
+
+            $attributes = request()->validate( [
+                'number' => ['required', 'integer', 'max:15'],
+                'user_id' => ['required', 'integer', 'max:10'],
+                'brand' => ['required', 'string', 'max:50'],
+                'client' => ['required', 'string', 'max:50'],
+                'sale' => ['required', 'string', 'max:255'],
+                'desc' => ['required', 'string', 'max:1000'],
+                'date_end' => ['required', 'string', 'max:1000'],
+                'time_end' => ['required', 'string', 'max:1000'],
+                'expected_date_end' => ['required', 'string', 'max:255'],
+                'expected_time_end' => ['required', 'string', 'max:255'],
+            ]);
+            //dd($attributes);
+            $task = Task::create($attributes);
+
+            if($task){
+                // $user = User::where('id',$attributes['user_id'])->first();
+
+                // $name = "No: ".$attributes['number']." Manager:". $user->firstname. " ".$user->lastname;
+                // $title = "Novi Task br ". $attributes['number'];
+                // $message = "Message for new user"." ". " with ";
+                // $this->send($name, $attributes['email'], $title, $message);
+
+                return back()->with('message','New task is create!');
+            }
+            return back()->with('message', 'Task not created!');
+
+        }
     }
 
     /**

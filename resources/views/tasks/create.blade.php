@@ -16,70 +16,57 @@
                         </div>
 
                         <div class="job-details">
-                            <form action="" method="" class="">
+                            <form action="{{route('jobs.store')}}" method="post" class="">
+                                @csrf
+
                                 <div class="form-group row">
                                 <label for="inputJobId" class="col-sm-4 col-form-label">Br. Radnog naloga</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="job_id" id="inputJobId" required>
+                                    <input type="text" class="form-control" name="number" id="inputJobId" required>
                                 </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="inputBrand" class="col-sm-4 col-form-label">Brend</label>
                                     <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="job_brand" id="inputBrand" required>
+                                    <input type="text" class="form-control" name="brand" id="inputBrand" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="inputClient" class="col-sm-4 col-form-label">Klijent</label>
                                     <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="job_client" id="inputClient" required>
+                                    <input type="text" class="form-control" name="client" id="inputClient" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="inputProduct" class="col-sm-4 col-form-label">Prodaja</label>
                                     <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="job_product" id="inputProduct" required>
+                                    <input type="text" class="form-control" name="sale" id="inputProduct" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="inputDesc" class="col-sm-4 col-form-label">Opis posla</label>
                                     <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="job_desc" id="inputDesc" required>
+                                    <input type="text" class="form-control" name="desc" id="inputDesc" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row sectors">
                                     <label for="inputSectors" class="col-sm-4 col-form-label">Sektori</label>
                                     <div class="col-sm-8">
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="sec_design" type="checkbox" value="" id="inputSectorsD" >
-                                            <label class="form-check-label" for="inputSectorsD">
-                                            dizajn/priprema
-                                            </label>
-                                        </div>
 
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="sec_design" value="" id="inputSectorsP">
-                                            <label class="form-check-label" for="inputSectorsP">
-                                            produkcija
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="sec_design" value="" id="inputSectorsA">
-                                            <label class="form-check-label" for="inputSectorsA">
-                                            dorada
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="sec_design" value="" id="inputSectorsS">
-                                            <label class="form-check-label" for="inputSectorsS">
-                                            isporuka
-                                            </label>
-                                        </div>
+                                        @foreach($departments as $department)
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="department" type="checkbox" value="{{$department->id}}" id="inputSectorsD" >
+                                                <label class="form-check-label" for="inputSectorsD">
+                                                    {{$department->name}}
+                                                </label>
+                                            </div>
+                                       @endforeach
+
                                     </div>
                                 </div>
 

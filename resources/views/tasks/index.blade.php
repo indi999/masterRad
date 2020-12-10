@@ -35,16 +35,24 @@
                                         @foreach($task->departments as $department)
                                                 @switch([$department->name, $department->pivot->is_active])
                                                     @case(['DIZAJN/PRIPREMA',true])
-                                                        <td scope="row" class="active"><i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                                        <td scope="row" class="active">// potrebno je integrisati template koji prikazuje u slucaju da kasni ili je gotov task
+                                                            Late: {{$department->pivot->is_late}}, Finish: {{$department->pivot->is_finish}}
+                                                            <i class="fa fa-calendar" aria-hidden="true"></i></td>
                                                         @break
                                                     @case(['PRODUKCIJA',true])
-                                                        <td scope="row" class="active"><i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                                        <td scope="row" class="active">
+                                                            Late: {{$department->pivot->is_late}}, Finish: {{$department->pivot->is_finish}}
+                                                            <i class="fa fa-calendar" aria-hidden="true"></i></td>
                                                         @break
                                                     @case(['DORADA',true])
-                                                        <td scope="row" class="active"><i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                                        <td scope="row" class="active">
+                                                            Late: {{$department->pivot->is_late}}, Finish: {{$department->pivot->is_finish}}
+                                                            <i class="fa fa-calendar" aria-hidden="true"></i></td>
                                                         @break
                                                     @case(['ISPORUKA',true])
-                                                      <td scope="row" class="active"><i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                                      <td scope="row" class="active">
+                                                          Late: {{$department->pivot->is_late}}, Finish: {{$department->pivot->is_finish}}
+                                                          <i class="fa fa-calendar" aria-hidden="true"></i></td>
                                                         @break
                                                     @default
                                                          <td scope="row" class="inactive"></td>
