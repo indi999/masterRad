@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\UserRegistration;
 use Auth;
+use \Mail;
 use Illuminate\Http\Request;
 
 use App\Models\User;
@@ -59,20 +61,28 @@ class AdminUsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-
         $attributes = request()->validate( [
             'email' => ['required', 'string', 'max:255'],
-            'deparment_id' => ['required', 'integer', 'max:2'],
+            'department_id' => ['required', 'integer', 'max:10'],
+            'role' => ['required', 'string', 'max:50'],
             'firstname' => ['required', 'string', 'max:255'],
             'lastname' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'max:255'],
         ]);
-
+        //dd($attributes);
         $user = User::create($attributes);
-        return view('admins.users.index', compact('users'))->with('message','New user is create!');
 
+        if($user){
+            $name = $attributes['firstname']." ". $attributes['lastname'];
+            $title = "title for the email";
+            $message = "Message for new user"." ". " with "."  useremail:".$attributes['email']." "." , password: ".$attributes['password'];
+            $this->send($name, $attributes['email'], $title, $message);
+
+            return back()->with('message','New user is create!');
+        }
+        return back()->with('message', 'User not created!');
     }
 
     /**
@@ -130,6 +140,20 @@ class AdminUsersController extends Controller
         }else{
             return back()->with('warnings', 'The status of the User cannot be changed.');
         }
+    }
+
+    // Sending emails
+    public function send($name, $email, $title, $message)
+    {
+        //dd($name, $email, $title, $message);
+        $objSupport = new \stdClass();
+        // Sender data
+        $objSupport->senderName = $name;
+        $objSupport->senderEmail = $email;
+        $objSupport->senderTitle = $title;
+        $objSupport->senderMessage = $message;
+        // Sending email to Admin from contact form
+        Mail::to($objSupport->email)->send(new UserRegistration($objSupport));
     }
 
 }

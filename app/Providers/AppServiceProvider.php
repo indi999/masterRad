@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use App\Models\Department;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +25,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //Admin
+        view()->composer('admins.users.index', function($view){
+                $view->with('departments' , Department::sectors() );
+        });
+
+
     }
 }

@@ -27,5 +27,10 @@ class Department extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public static function sectors()
+    {
+        return static::all();
+    }
 }
 

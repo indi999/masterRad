@@ -26,29 +26,36 @@
                             <div class="form-header">
                                 <i class="fa fa-plus" aria-hidden="true"></i>Kreiraj korisnika
                             </div>
-                            <form action="" method="">
+                            <form action="{{route('admin.users.store')}}" method="post" >
+                                @csrf
+
                                 <div class="form-group">
-                                    <input type="email" class="form-control" name="user_email" placeholder="Email">
+                                    <input type="email" class="form-control" name="email" placeholder="Email">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control"  name="user_pass" placeholder="Šifra">
+                                    <input type="text" class="form-control" name="firstname" placeholder="Ime">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="lastname" placeholder="Prezime">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control"  name="password" placeholder="Šifra">
                                 </div>
 
                                 <div class="form-group">
-                                    <select class="custom-select custom-select-lg mb-3">
+                                    <select class="custom-select custom-select-lg mb-3" name="department_id">
                                         <option selected>Dodeli sektor</option>
-                                        <option value="3">Dizajn/Priprema</option>
-                                        <option value="2">Produkcija</option>
-                                        <option value="3">Dorada</option>
-                                        <option value="3">Isporuka</option>
+                                        @foreach($departments as $department)
+                                            <option value="{{$department->id}}">{{$department->name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <select class="custom-select custom-select-lg mb-3">
+                                    <select class="custom-select custom-select-lg mb-3" name="role">
                                         <option selected>Dodeli rolu</option>
-                                        <option value="1">Menadžer</option>
-                                        <option value="2">Korisnik</option>
-                                        <option value="3">Monitor</option>
+                                        <option value="manager">Menadžer</option>
+                                        <option value="user">Korisnik</option>
+                                        <option value="monitor">Monitor</option>
                                     </select>
                                 </div>
                                 <button type="submit" name="submit" class="btn btn-primary">Kreiraj korisnika</button>
