@@ -78,7 +78,7 @@ class AdminUsersController extends Controller
             $name = $attributes['firstname']." ". $attributes['lastname'];
             $title = "title for the email";
             $message = "Message for new user"." ". " with "."  useremail:".$attributes['email']." "." , password: ".$attributes['password'];
-            $this->send($name, $attributes['email'], $title, $message);
+            //$this->send($name, $attributes['email'], $title, $message);
 
             return back()->with('message','New user is create!');
         }
