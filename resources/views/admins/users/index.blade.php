@@ -45,6 +45,7 @@
                                  <tr>
                                     <th scope="row">{{$user->id}}</th>
                                     <td>{{$user->email}}</td>
+                                    <td>{{$user->department->name}}</td>
                                     <td>{{$user->role}}</td>
                                     <td>{{$user->status}}</td>
                                     <td class="delete-user">
