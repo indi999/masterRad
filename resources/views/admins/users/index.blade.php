@@ -37,21 +37,24 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Sektor</th>
                                 <th scope="col">Rola</th>
+                                <th scope="col">Status</th>
                             </tr>
                         </thead>
                         <tbody>
                            @if($users->count()>0)
                             @foreach($users as $user)
+                                @if(!$user->is_admin)
                                  <tr>
                                     <th scope="row">{{$user->id}}</th>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->department->name}}</td>
                                     <td>{{$user->role}}</td>
-                                    <td>{{$user->status}}</td>
+                                    <td>{{$user->status ? "Aktivan" : "Neaktivan"}}</td>
                                     <td class="delete-user">
                                         <a href="#">Obriši</a>
                                     </td>
                                 </tr>
+                                 @endif
                             @endforeach
                         @endif
 
