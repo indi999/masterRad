@@ -15,6 +15,7 @@ class CreateTaskSeeder extends Seeder
      */
     public function run()
     {
+        /*
         $faker = \Faker\Factory::create();
         $tasks = [
             [
@@ -90,6 +91,7 @@ class CreateTaskSeeder extends Seeder
         foreach ($tasks as $key => $value) {
             Task::create($value);
         }
+        */
 
 
     }
