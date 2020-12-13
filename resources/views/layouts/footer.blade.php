@@ -4,5 +4,4 @@
       <script type="text/javascript" src="{{ asset('assets/js/datePicker.js') }}"></script>
       <script type="text/javascript" src="{{ asset('assets/js/timePicker.js') }}"></script>
       <script type="text/javascript" src="{{ asset('assets/js/app.js') }}"></script>
-
-    </footer>
+</footer>

@@ -4,6 +4,22 @@
 
 <div class="container login">
     <div class="row">
+
+        <!-- Succes message -->
+        @if(session('message'))
+            <div class="alert alert-danger">
+                {{session('message')}}
+            </div>
+        @endif
+    <!-- Error message -->
+        @if(count($errors)>0)
+            @foreach($errors->all() as $error)
+                <div class="alert alert-danger">
+                    {{$error}}
+                </div>
+            @endforeach
+        @endif
+
         <div class="col-md-12">
             <form method="POST" action="{{ route('login') }}">
                 @csrf
@@ -32,6 +48,3 @@
 
 @endsection
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-<script src="{{ asset('js/app.js') }}"></script>
