@@ -23,15 +23,42 @@ $(document).ready(function(){
         $('.add-user').toggleClass('open-form');
     });
 
-    let hiddenValue = $(".job-details input[type='hidden'][name='sectorItems']")
-    $(".job-details input[type='checkbox']").click(function(){
-        var favorite = [];
-        $.each($("input:checked"), function(){
-            favorite.push($(this).val());
-        });
 
-        hiddenValue.val(JSON.stringify(favorite))
 
-        console.log(favorite)
+    $(".job-details input[type='checkbox']").on('change', function () {
+
+        let selected =[];
+        let itemValue= $(this).val();
+
+
+
+
+            if($(this).prop("checked")) {
+                selected.push(this.value);
+            }
+
+
+
+
+
+
+
+         /*selected.push(itemValue);
+
+
+            if (selected.length > 0) {
+              selected.join(",")
+            }*/
+
+
+
+        console.log(selected);
+
+
+
     });
+
+
+
+
 });

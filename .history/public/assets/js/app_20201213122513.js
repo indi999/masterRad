@@ -23,15 +23,33 @@ $(document).ready(function(){
         $('.add-user').toggleClass('open-form');
     });
 
-    let hiddenValue = $(".job-details input[type='hidden'][name='sectorItems']")
-    $(".job-details input[type='checkbox']").click(function(){
-        var favorite = [];
-        $.each($("input:checked"), function(){
-            favorite.push($(this).val());
-        });
 
-        hiddenValue.val(JSON.stringify(favorite))
 
-        console.log(favorite)
+
+
+    $(".job-details input[type='checkbox']").each(function () {
+
+        let item= $(this);
+        let selected =[];
+        let itemValue= $(this).val();
+
+        if(item.checked) {
+             let itemValue= item.val();
+             selected.push(itemValue);
+        }
+
+          console.log(item);
+
     });
+
+
+
+
+
+
+
+
+
+
+
 });

@@ -15,12 +15,9 @@
                             </ul>
                         </div>
 
-
                         <div class="job-details">
                             <form action="{{route('jobs.store')}}" method="post" class="">
                                 @csrf
-
-                                <input type="hidden" name="sectorItems" value="[]">
 
                                 <div class="form-group row">
                                 <label for="inputJobId" class="col-sm-4 col-form-label">Br. Radnog naloga</label>
@@ -71,26 +68,26 @@
                                        @endforeach--}}
 
                                         <div class="form-check">
-                                            <input class="form-check-input" name="department" type="checkbox" value="1" id="inputSectorsD" >
+                                            <input class="form-check-input" name="sec_design" type="checkbox" value="" id="inputSectorsD" >
                                             <label class="form-check-label" for="inputSectorsD">
                                                 dizajn/priprema
                                             </label>
                                         </div>
 
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="department" value="2" id="inputSectorsP">
+                                            <input class="form-check-input" type="checkbox" name="sec_design" value="" id="inputSectorsP">
                                             <label class="form-check-label" for="inputSectorsP">
                                                 produkcija
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="department" value="3" id="inputSectorsA">
+                                            <input class="form-check-input" type="checkbox" name="sec_design" value="" id="inputSectorsA">
                                             <label class="form-check-label" for="inputSectorsA">
                                                 dorada
                                             </label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="department" value="4" id="inputSectorsS">
+                                            <input class="form-check-input" type="checkbox" name="sec_design" value="" id="inputSectorsS">
                                             <label class="form-check-label" for="inputSectorsS">
                                                 isporuka
                                             </label>

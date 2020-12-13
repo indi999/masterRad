@@ -23,15 +23,21 @@ $(document).ready(function(){
         $('.add-user').toggleClass('open-form');
     });
 
-    let hiddenValue = $(".job-details input[type='hidden'][name='sectorItems']")
-    $(".job-details input[type='checkbox']").click(function(){
-        var favorite = [];
-        $.each($("input:checked"), function(){
-            favorite.push($(this).val());
-        });
 
-        hiddenValue.val(JSON.stringify(favorite))
 
-        console.log(favorite)
-    });
+
+
+    $('input[type="submit"]').on('click', function(e){
+        e.preventDefault();
+         let selected =[];
+          $.each($("input:checked"), function(){
+                selected.push($(this).val());
+            });
+
+            console.log(selected);
+    })
+
+
+
+
 });

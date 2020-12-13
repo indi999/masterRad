@@ -15,12 +15,11 @@
                             </ul>
                         </div>
 
-
                         <div class="job-details">
                             <form action="{{route('jobs.store')}}" method="post" class="">
                                 @csrf
 
-                                <input type="hidden" name="sectorItems" value="[]">
+                                <input type="hidden" value="[]">
 
                                 <div class="form-group row">
                                 <label for="inputJobId" class="col-sm-4 col-form-label">Br. Radnog naloga</label>

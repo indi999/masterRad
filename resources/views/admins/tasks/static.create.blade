@@ -1,0 +1,108 @@
+  
+  UBACI U CREATE TEMPLATES
+-----------------------------
+
+NAPOMENA
+----------------------
+
+U listi sektora imas dupliranja
+
+  
+  
+  <div class="job-details">
+                        <form action="" method="" class="">
+
+                          <input type="hidden" name="sectorItems" value="[]">
+
+                            <div class="form-group row">
+                              <label for="inputJobId" class="col-sm-4 col-form-label">Br. Radnog naloga</label>
+                              <div class="col-sm-8">
+                                <input type="text" class="form-control" name="job_id" id="inputJobId" required>
+                              </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="inputBrand" class="col-sm-4 col-form-label">Brend</label>
+                                <div class="col-sm-8">
+                                  <input type="text" class="form-control" name="job_brand" id="inputBrand" required> 
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="inputClient" class="col-sm-4 col-form-label">Klijent</label>
+                                <div class="col-sm-8">
+                                  <input type="text" class="form-control" name="job_client" id="inputClient" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="inputProduct" class="col-sm-4 col-form-label">Prodaja</label>
+                                <div class="col-sm-8">
+                                  <input type="text" class="form-control" name="job_product" id="inputProduct" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="inputDesc" class="col-sm-4 col-form-label">Opis posla</label>
+                                <div class="col-sm-8">
+                                  <input type="text" class="form-control" name="job_desc" id="inputDesc" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row sectors">
+                                <label for="inputSectors" class="col-sm-4 col-form-label">Sektori</label>
+                                <div class="col-sm-8">
+                                     <div class="form-check">
+                                        <input class="form-check-input" name="department" type="checkbox" value="" id="inputSectorsD" >
+                                        <label class="form-check-label" for="inputSectorsD">
+                                          dizajn/priprema
+                                        </label>
+                                      </div>
+                                      
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="department" value="" id="inputSectorsP">
+                                        <label class="form-check-label" for="inputSectorsP">
+                                          produkcija
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="department" value="" id="inputSectorsA">
+                                        <label class="form-check-label" for="inputSectorsA">
+                                          dorada
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="department" value="" id="inputSectorsS">
+                                        <label class="form-check-label" for="inputSectorsS">
+                                          isporuka
+                                        </label>
+                                      </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                              <label for="inputJobId" class="col-sm-4 col-form-label">Dodeli menadzera</label>
+                              <div class="col-sm-8">
+                                <select class="custom-select custom-select-lg mb-3 form-control">
+                                  <option value="1">Menadžer 1</option>
+                                  <option value="3">Menadžer 2</option>
+                                </select>
+                              </div>
+                            </div>
+
+
+                            <div class="form-group row dateTime">
+                                <label for="inputDesc" class="col-sm-4 col-form-label">Rok za završetak</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" name="datePicker" data-toggle="datepicker" placeholder="Datum" required>
+                                    <input type="text" id="timePicker" class="form-control" name="timePicker" data-toggle="datepicker" placeholder="Vreme" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-12">
+                                  <input type="submit" class="form-control" name="submit" value="Dodaj">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
