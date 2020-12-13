@@ -2,9 +2,6 @@
 
 @section('content')
 
-
-
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -25,7 +22,7 @@
                             </div>
                         @endforeach
                     @endif
-                    
+
                     <table class="table">
                         <thead>
                             <tr>
@@ -42,48 +39,49 @@
                             @if($tasks->count()>0)
                             @foreach($tasks as $task)
                                 @foreach($task->departments as $department)
-                                    @if($department->name == auth()->user()->department->name)
-                                        <!--<ul>
-                                            <li>{{$task->number}}</li>
-                                            <li>{{$department->name}}</li>
-                                            <li>{{$task->brand}}</li>
-                                            <li>{{$department->pivot->is_late}}</li>
-                                            <li>{{$department->pivot->is_finish}}</li>
-                                        </ul>-->
+                                    @if($department->name == auth()->user()->department->name && $department->pivot->is_active)
+                                    <!--<ul>
+                                        <li>{{$task->number}}</li>
+                                        <li>{{$department->name}}</li>
+                                        <li>{{$task->brand}}</li>
+                                        <li>{{$department->pivot->is_late}}</li>
+                                        <li>{{$department->pivot->is_finish}}</li>
+                                    </ul>-->
 
-                                        <tr>
-                                            <th scope="row">{{$task->number}}</th>
-                                            <td>{{$task->brand}}</td>
-                                            <td>{{$task->desc}}</td>
-                                            <td>{{$task->date_end}}</td>
-                                            <td>{{$task->expected_date_end}}</td>
-                                            <td class="status">
-                                                <form method="POST" action="/jobs/{{$department->pivot->id}}/finish">
-                                                    @method('PATCH')
-                                                    @csrf
+                                    <tr>
+                                        <th scope="row">{{$task->number}}</th>
+                                        <td>{{$task->brand}}</td>
+                                        <td>{{$task->desc}}</td>
+                                        <td>{{$task->date_end}}</td>
+                                        <td>{{$task->expected_date_end}}</td>
+                                        <td class="status">
+                                            <form method="POST" action="/jobs/{{$department->pivot->id}}/finish">
+                                                @method('PATCH')
+                                                @csrf
 
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" name="is_finish" type="checkbox"  id="defaultCheck1"
-                                                               onChange="this.form.submit()" {{ $department->pivot->is_finish ? 'checked' : '' }}>
-                                                        <label class="form-check-label" for="defaultCheck1">
-                                                        Završeno
-                                                        </label>
-                                                    </div>
-                                                </form>
-                                                <form method="POST" action="/jobs/{{$department->pivot->id}}/late">
-                                                    @method('PATCH')
-                                                    @csrf
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="is_finish" type="checkbox"  id="defaultCheck1"
+                                                           onChange="this.form.submit()" {{ $department->pivot->is_finish ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                    Završeno
+                                                    </label>
+                                                </div>
+                                            </form>
+                                            <form method="POST" action="/jobs/{{$department->pivot->id}}/late">
+                                                @method('PATCH')
+                                                @csrf
 
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" name="is_late" type="checkbox"  id="defaultCheck1"
-                                                               onChange="this.form.submit()" {{ $department->pivot->is_late ? 'checked' : '' }}>
-                                                        <label class="form-check-label" for="defaultCheck1">
-                                                        Kasni
-                                                        </label>
-                                                    </div>
-                                                </form>
-                                            </td>
-                                        </tr>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="is_late" type="checkbox"  id="defaultCheck1"
+                                                           onChange="this.form.submit()" {{ $department->pivot->is_late ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                    Kasni
+                                                    </label>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+
                                     @endif
                                 @endforeach
 
