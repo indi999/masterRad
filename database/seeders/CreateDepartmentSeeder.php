@@ -20,7 +20,6 @@ class CreateDepartmentSeeder extends Seeder
             ],
             [
                 'name'=>'PRODUKCIJA',
-
             ],
             [
                 'name'=>'DORADA',
