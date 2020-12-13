@@ -67,11 +67,13 @@ class AdminUsersController extends Controller
             'email' => ['required', 'string', 'max:255'],
             'department_id' => ['required', 'integer', 'max:10'],
             'role' => ['required', 'string', 'max:50'],
-            'firstname' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
+            //'firstname' => ['required', 'string', 'max:255'],
+            //'lastname' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'max:255'],
         ]);
         //dd($attributes);
+        $attributes['firstname'] = 'nema informacija';
+        $attributes['lastname'] = 'nema informacija';
         $user = User::create($attributes);
 
         if($user){
