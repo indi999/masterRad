@@ -10,6 +10,22 @@
         <div class="col-md-12">
             <div class="part-table admin-table">
                 <div class="table-responsive  table-striped table-bordered">
+
+                    <!-- Succes message -->
+                    @if(session('message'))
+                        <div class="alert alert-danger">
+                            {{session('message')}}
+                        </div>
+                    @endif
+                <!-- Error message -->
+                    @if(count($errors)>0)
+                        @foreach($errors->all() as $error)
+                            <div class="alert alert-danger">
+                                {{$error}}
+                            </div>
+                        @endforeach
+                    @endif
+                    
                     <table class="table">
                         <thead>
                             <tr>

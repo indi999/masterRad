@@ -5,6 +5,21 @@
             <div class="row">
                 <div class="col-7">
 
+                    <!-- Succes message -->
+                    @if(session('message'))
+                        <div class="alert alert-danger">
+                            {{session('message')}}
+                        </div>
+                    @endif
+                <!-- Error message -->
+                    @if(count($errors)>0)
+                        @foreach($errors->all() as $error)
+                            <div class="alert alert-danger">
+                                {{$error}}
+                            </div>
+                        @endforeach
+                    @endif
+
                     @if ( auth()->user()->role == 'manager')
 
                         <div class="menu-items">
