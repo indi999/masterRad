@@ -32,12 +32,7 @@
                                 <div class="form-group">
                                     <input type="email" class="form-control" name="email" placeholder="Email">
                                 </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="firstname" placeholder="Ime">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="lastname" placeholder="Prezime">
-                                </div>
+                               
                                 <div class="form-group">
                                     <input type="text" class="form-control"  name="password" placeholder="Šifra">
                                 </div>
@@ -48,6 +43,7 @@
                                         @foreach($departments as $department)
                                             <option value="{{$department->id}}">{{$department->name}}</option>
                                         @endforeach
+                                        <option value="0">Svi</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
