@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Task;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
+
+use App\Models\Task;
+use App\Models\User;
+use App\Models\DepartmentTask;
 
 class AdminTaskController extends Controller
 {
@@ -61,14 +63,13 @@ class AdminTaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        dd(request()->all());
-
+        //dd(request()->all());
         if( Auth::user()->is_admin )  {
 
             $attributes = request()->validate( [
-                'number' => ['required', 'integer', 'max:15'],
+                'number' => ['required', 'integer', 'unique:tasks'],
                 'user_id' => ['required', 'integer', 'max:10'],
                 'brand' => ['required', 'string', 'max:50'],
                 'client' => ['required', 'string', 'max:50'],
@@ -76,27 +77,28 @@ class AdminTaskController extends Controller
                 'desc' => ['required', 'string', 'max:1000'],
                 'date_end' => ['required', 'string', 'max:1000'],
                 //'time_end' => ['required', 'string', 'max:1000'],
-                'expected_date_end' => ['required', 'string', 'max:255'],
-                //'expected_time_end' => ['required', 'string', 'max:255'],
             ]);
-            
-            dd($attributes);
-            $task = Task::create($attributes);
+            $attributes['expected_date_end'] =  $attributes['date_end'];
+            //$attributes['expected_time_end'] =  $attributes['date_end'];
 
+            //dd($attributes,request()->sectorItems);
+            $task = Task::create($attributes);
+            DepartmentTask::addDepartments(request()->sectorItems,$task->id);
 
             if($task){
-               // $user = User::where('id',$attributes['user_id'])->first();
+                $sectorItems = request()->sectorItems;
+                // $user = User::where('id',$attributes['user_id'])->first();
 
-               // $name = "No: ".$attributes['number']." Manager:". $user->firstname. " ".$user->lastname;
-               // $title = "Novi Task br ". $attributes['number'];
-               // $message = "Message for new user"." ". " with ";
-               // $this->send($name, $attributes['email'], $title, $message);
+                // $name = "No: ".$attributes['number']." Manager:". $user->firstname. " ".$user->lastname;
+                // $title = "Novi Task br ". $attributes['number'];
+                // $message = "Message for new user"." ". " with ";
+                // $this->send($name, $attributes['email'], $title, $message);
 
-                return back()->with('message','New task is create!');
+                return redirect()->route('admin.dashboard')->with('message', 'Novi Posao je kreiran!');
             }
-            return back()->with('message', 'Task not created!');
-
+            return back()->with('message', 'Novi posao nije moguce kreirati');
         }
+        return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
     }
 
     /**

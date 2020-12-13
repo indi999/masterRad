@@ -22,9 +22,9 @@ class Task extends Model
         'sale',
         'desc',
         'date_end',
-        'time_end',
+        //'time_end',
         'expected_date_end',
-        'expected_time_end',
+        //'expected_time_end',
         'finish',
     ];
 
@@ -38,4 +38,15 @@ class Task extends Model
     {
         return $this->hasOne(User::class);
     }
+// date mutator
+    public function setDateEndTaskAttribute($date_end)
+    {
+        $this->attributes['date_end'] = strtotime($date_end);
+    }
+// expected date mutator
+    public function setExpectedDateEndTaskAttribute($expected_date_end)
+    {
+        $this->attributes['expected_date_end'] = strtotime($expected_date_end);
+    }
+
 }

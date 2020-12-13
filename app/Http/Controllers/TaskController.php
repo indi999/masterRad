@@ -71,28 +71,30 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-
-        dd(request()->all());
-        if( Auth::user()->role == 'manager')  {
+        if( Auth::user()->rola = 'manager' )  {
 
             $attributes = request()->validate( [
-                'number' => ['required', 'integer', 'max:15'],
-                'user_id' => ['required', 'integer', 'max:10'],
+                'number' => ['required', 'integer', 'unique:tasks'],
                 'brand' => ['required', 'string', 'max:50'],
                 'client' => ['required', 'string', 'max:50'],
                 'sale' => ['required', 'string', 'max:255'],
                 'desc' => ['required', 'string', 'max:1000'],
                 'date_end' => ['required', 'string', 'max:1000'],
-                'time_end' => ['required', 'string', 'max:1000'],
-                'expected_date_end' => ['required', 'string', 'max:255'],
-                'expected_time_end' => ['required', 'string', 'max:255'],
+                //'time_end' => ['required', 'string', 'max:1000'],
             ]);
-            //dd($attributes);
+            $attributes['user_id'] = auth()->user()->id;
+            $attributes['expected_date_end'] =  $attributes['date_end'];
+            //$attributes['expected_time_end'] =  $attributes['date_end'];
+
+            //dd($attributes,request()->sectorItems);
+
             $task = Task::create($attributes);
+            DepartmentTask::addDepartments(request()->sectorItems,$task->id);
 
             if($task){
+                $sectorItems = request()->sectorItems;
                 // $user = User::where('id',$attributes['user_id'])->first();
 
                 // $name = "No: ".$attributes['number']." Manager:". $user->firstname. " ".$user->lastname;
@@ -100,11 +102,11 @@ class TaskController extends Controller
                 // $message = "Message for new user"." ". " with ";
                 // $this->send($name, $attributes['email'], $title, $message);
 
-                return back()->with('message','New task is create!');
+                return redirect()->route('home')->with('message', 'Novi Posao je kreiran!');
             }
-            return back()->with('message', 'Task not created!');
-
+            return back()->with('message', 'Novi posao nije moguce kreirati');
         }
+        return back()->with('message', 'Nemate permisije za izabranu operaciju');
     }
 
     /**

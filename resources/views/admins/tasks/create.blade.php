@@ -7,12 +7,26 @@
 
                 @if ( auth()->user()->is_admin )
 
-                    <input type="hidden" name="sectorItems" value="[]">
+                    <!-- Succes message -->
+                    @if(session('message'))
+                        <div class="alert alert-danger">
+                            {{session('message')}}
+                        </div>
+                    @endif
+                    <!-- Error message -->
+                    @if(count($errors)>0)
+                        @foreach($errors->all() as $error)
+                            <div class="alert alert-danger">
+                                {{$error}}
+                            </div>
+                        @endforeach
+                    @endif
+
 
                     <div class="menu-items">
                         <ul>
                             <!--<li class="users"><a href="#"><i class="fa fa-users" aria-hidden="true"></i>Lista korisnika</a></li>-->
-                            <li><a href="{{ route('home') }}"><i class="fa fa-list" aria-hidden="true"></i>Lista poslova</a></li>
+                            <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-list" aria-hidden="true"></i>Lista poslova</a></li>
                             <li class="add-job"><a href="#"><i class="fa fa-plus" aria-hidden="true"></i>Dodaj posao</a></li>
                         </ul>
                     </div>
@@ -20,6 +34,8 @@
                     <div class="job-details">
                         <form action="{{route('admin.jobs.store')}}" method="post" class="">
                             @csrf
+
+                            <input type="hidden" name="sectorItems" value="[]">
 
                             <div class="form-group row">
                                 <label for="inputJobId" class="col-sm-4 col-form-label">Br. Radnog naloga</label>
@@ -61,7 +77,7 @@
                                 <div class="col-sm-8">
                                     @foreach($departments as $department)
                                         <div class="form-check">
-                                            <input class="form-check-input" name="department" type="checkbox" value="{{$department->id}}" id="inputSectorsD" >
+                                            <input class="form-check-input"  type="checkbox" value="{{$department->id}}" id="inputSectorsD" >
                                             <label class="form-check-label" for="inputSectorsD">
                                                 {{$department->name}}
                                             </label>
@@ -73,7 +89,7 @@
                             <div class="form-group row">
                                 <label for="inputJobId" class="col-sm-4 col-form-label">Dodeli menadzera</label>
                                 <div class="col-sm-8">
-                                    <select class="custom-select custom-select-lg mb-3 form-control">
+                                    <select class="custom-select custom-select-lg mb-3 form-control" name="user_id">
                                         @foreach($users as $user)
                                              <option value="{{$user->id}}">{{$user->firstname}} {{$user->lastname}}</option>
                                         @endforeach
@@ -85,7 +101,7 @@
                             <div class="form-group row dateTime">
                                 <label for="inputDesc" class="col-sm-4 col-form-label">Rok za završetak</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="datePicker" data-toggle="datepicker" placeholder="Datum" required>
+                                    <input type="text" class="form-control" name="date_end" data-toggle="datepicker" placeholder="Datum" required>
                                     <!--<input type="text" id="timePicker" class="form-control" name="timePicker" data-toggle="datepicker" placeholder="Vreme" required>-->
                                 </div>
                             </div>
@@ -124,6 +140,8 @@
                     </div>
                 </div>
                 @else
+
+
 
                 @endif
 

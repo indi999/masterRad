@@ -60,49 +60,22 @@
                                 <div class="form-group row sectors">
                                     <label for="inputSectors" class="col-sm-4 col-form-label">Sektori</label>
                                     <div class="col-sm-8">
-
-                                        {{--  @foreach($departments as $department)
+                                        @foreach($departments as $department)
                                             <div class="form-check">
-                                                <input class="form-check-input" name="department" type="checkbox" value="{{$department->id}}" id="inputSectorsD" >
+                                                <input class="form-check-input"  type="checkbox" value="{{$department->id}}" id="inputSectorsD" >
                                                 <label class="form-check-label" for="inputSectorsD">
                                                     {{$department->name}}
                                                 </label>
                                             </div>
-                                       @endforeach--}}
-
-                                        <div class="form-check">
-                                            <input class="form-check-input" name="department" type="checkbox" value="1" id="inputSectorsD" >
-                                            <label class="form-check-label" for="inputSectorsD">
-                                                dizajn/priprema
-                                            </label>
-                                        </div>
-
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="department" value="2" id="inputSectorsP">
-                                            <label class="form-check-label" for="inputSectorsP">
-                                                produkcija
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="department" value="3" id="inputSectorsA">
-                                            <label class="form-check-label" for="inputSectorsA">
-                                                dorada
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="department" value="4" id="inputSectorsS">
-                                            <label class="form-check-label" for="inputSectorsS">
-                                                isporuka
-                                            </label>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
 
                                 <div class="form-group row dateTime">
                                     <label for="inputDesc" class="col-sm-4 col-form-label">Rok za završetak</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" name="datePicker" data-toggle="datepicker" placeholder="Datum" required>
-                                        <input type="text" id="timePicker" class="form-control" name="timePicker" data-toggle="datepicker" placeholder="Vreme" required>
+                                        <input type="text" class="form-control" name="date_end" data-toggle="datepicker" placeholder="Datum" required>
+                                        <!--<input type="text" id="timePicker" class="form-control" name="timePicker" data-toggle="datepicker" placeholder="Vreme" required>-->
                                     </div>
                                 </div>
 
