@@ -57,6 +57,11 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Task::class);
     }
+
+    public static function managers()
+    {
+        return static::where('role','manager')->get();
+    }
 }
 
 

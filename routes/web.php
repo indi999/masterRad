@@ -61,7 +61,7 @@ Route::middleware('is_admin')->prefix('admin')->group(function(){
     //Tasks
     Route::resource('/jobs', 'App\Http\Controllers\Admin\AdminTaskController',[
         'as' => 'admin'
-    ])->except('create');
+    ]);
 
     //Deparments
     Route::resource('/sektors', 'App\Http\Controllers\Admin\AdminDepartmentController',[

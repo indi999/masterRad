@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 
 use App\Models\Department;
+use App\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,15 +26,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //Admin
+        //Admin panel
         view()->composer('admins.users.index', function($view){
-                $view->with('departments' , Department::sectors() );
+                $view->with('departments' , Department::sectors());
         });
         view()->composer('admins.tasks.create', function($view){
-            $view->with('departments' , Department::sectors() );
+            $view->with('departments' , Department::sectors())
+                 ->with('users' , User::managers());
         });
 
-        // Manager
+
+
+        // Manager panel
         view()->composer('tasks.create', function($view){
             $view->with('departments' , Department::sectors() );
         });

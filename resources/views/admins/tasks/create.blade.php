@@ -5,7 +5,9 @@
         <div class="row">
             <div class="col-7">
 
-                @if ( auth()->user()->role == 'manager')
+                @if ( auth()->user()->is_admin )
+
+                    <input type="hidden" name="sectorItems" value="[]">
 
                     <div class="menu-items">
                         <ul>
@@ -57,7 +59,6 @@
                             <div class="form-group row sectors">
                                 <label for="inputSectors" class="col-sm-4 col-form-label">Sektori</label>
                                 <div class="col-sm-8">
-
                                     @foreach($departments as $department)
                                         <div class="form-check">
                                             <input class="form-check-input" name="department" type="checkbox" value="{{$department->id}}" id="inputSectorsD" >
@@ -66,15 +67,26 @@
                                             </label>
                                         </div>
                                     @endforeach
-
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label for="inputJobId" class="col-sm-4 col-form-label">Dodeli menadzera</label>
+                                <div class="col-sm-8">
+                                    <select class="custom-select custom-select-lg mb-3 form-control">
+                                        @foreach($users as $user)
+                                             <option value="{{$user->id}}">{{$user->firstname}} {{$user->lastname}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
 
                             <div class="form-group row dateTime">
                                 <label for="inputDesc" class="col-sm-4 col-form-label">Rok za završetak</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" name="datePicker" data-toggle="datepicker" placeholder="Datum" required>
-                                    <input type="text" id="timePicker" class="form-control" name="timePicker" data-toggle="datepicker" placeholder="Vreme" required>
+                                    <!--<input type="text" id="timePicker" class="form-control" name="timePicker" data-toggle="datepicker" placeholder="Vreme" required>-->
                                 </div>
                             </div>
 
@@ -83,6 +95,7 @@
                                     <input type="submit" class="form-control" name="submit" value="Dodaj">
                                 </div>
                             </div>
+
                         </form>
                     </div>
             </div>

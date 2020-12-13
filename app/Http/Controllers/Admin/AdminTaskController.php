@@ -50,7 +50,7 @@ class AdminTaskController extends Controller
     public function create()
     {
         if( Auth::user()->is_admin )  {
-            return view('admins.deshboard');
+            return view('admins.tasks.create');
         }
 
     }
@@ -63,6 +63,7 @@ class AdminTaskController extends Controller
      */
     public function store(Request $request)
     {
+        dd(request()->all());
 
         if( Auth::user()->is_admin )  {
 
@@ -74,12 +75,14 @@ class AdminTaskController extends Controller
                 'sale' => ['required', 'string', 'max:255'],
                 'desc' => ['required', 'string', 'max:1000'],
                 'date_end' => ['required', 'string', 'max:1000'],
-                'time_end' => ['required', 'string', 'max:1000'],
+                //'time_end' => ['required', 'string', 'max:1000'],
                 'expected_date_end' => ['required', 'string', 'max:255'],
-                'expected_time_end' => ['required', 'string', 'max:255'],
+                //'expected_time_end' => ['required', 'string', 'max:255'],
             ]);
-            //dd($attributes);
+            
+            dd($attributes);
             $task = Task::create($attributes);
+
 
             if($task){
                // $user = User::where('id',$attributes['user_id'])->first();

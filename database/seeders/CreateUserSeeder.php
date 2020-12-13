@@ -28,9 +28,9 @@ class CreateUserSeeder extends Seeder
 
             ],
             [
-                'department_id'=>5,
-                'firstname'=>'UserManager1',
-                'lastname'=>'Userovic',
+                'department_id'=>0,
+                'firstname'=>'Manager1 ',
+                'lastname'=>'Managerovic',
                 'email'=>'manager1@test.com',
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
@@ -38,9 +38,9 @@ class CreateUserSeeder extends Seeder
 
             ],
             [
-                'department_id'=>5,
-                'firstname'=>'UserManager2',
-                'lastname'=>'Userovic',
+                'department_id'=>0,
+                'firstname'=>'Manager2',
+                'lastname'=>'Managerov',
                 'email'=>'manager2@test.com',
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
@@ -51,7 +51,7 @@ class CreateUserSeeder extends Seeder
                 'department_id'=>1,
                 'firstname'=>'User1',
                 'lastname'=>'Userovic1',
-                'email'=>'user1@test.com',
+                'email'=>'dizajn@test.com',
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
                 'role'=>'user',
@@ -61,17 +61,7 @@ class CreateUserSeeder extends Seeder
                 'department_id'=>2,
                 'firstname'=>'User2',
                 'lastname'=>'Userovic2',
-                'email'=>'user2@test.com',
-                'is_admin'=>false,
-                'password'=> bcrypt('123456'),
-                'role'=>'user',
-
-            ],
-            [
-                'department_id'=>2,
-                'firstname'=>'User3',
-                'lastname'=>'Userovic3',
-                'email'=>'user3@test.com',
+                'email'=>'dorada@test.com',
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
                 'role'=>'user',
@@ -79,9 +69,19 @@ class CreateUserSeeder extends Seeder
             ],
             [
                 'department_id'=>3,
+                'firstname'=>'User3',
+                'lastname'=>'Userovic3',
+                'email'=>'produkcija@test.com',
+                'is_admin'=>false,
+                'password'=> bcrypt('123456'),
+                'role'=>'user',
+
+            ],
+            [
+                'department_id'=>4,
                 'firstname'=>'User4',
                 'lastname'=>'Userovic4',
-                'email'=>'user4@test.com',
+                'email'=>'isporuka@test.com',
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
                 'role'=>'user',
@@ -89,10 +89,10 @@ class CreateUserSeeder extends Seeder
             ],
 
             [
-                'department_id'=>2,
+                'department_id'=>1,
                 'firstname'=>'User5',
                 'lastname'=>'Userovic5',
-                'email'=>'user5@test.com',
+                'email'=>'dizajn1@test.com',
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
                 'role'=>'user',

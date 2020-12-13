@@ -47,7 +47,7 @@
                                  <tr>
                                     <th scope="row">{{$user->id}}</th>
                                     <td>{{$user->email}}</td>
-                                    <td>{{$user->department->name}}</td>
+                                    <td>{{$user->role != 'manager' ? $user->department->name : "SVI"}} </td>
                                     <td>{{$user->role}}</td>
                                     <td>{{$user->status ? "Aktivan" : "Neaktivan"}}</td>
                                     <td class="delete-user">
