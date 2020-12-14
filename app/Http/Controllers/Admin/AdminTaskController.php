@@ -136,7 +136,7 @@ class AdminTaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        if( Auth::user()->is_admin )  {
+        if( Auth::user()->is_admin ) {
 
         }
     }
@@ -147,10 +147,15 @@ class AdminTaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy(Task $job)
     {
-        if( Auth::user()->is_admin )  {
-
+        if( Auth::user()->is_admin ) {
+            DepartmentTask::where('task_id',$job->id)->delete();
+            $result = $job->delete();
+            if($result){
+                return back()->with('message', 'The Job has been deleted.');
+            }
+            return back()->with('warnings', 'Can not Job delete!');
         }
     }
 

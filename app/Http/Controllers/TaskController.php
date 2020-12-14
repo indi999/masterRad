@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Task;
-use App\Models\DepartmentTask;
 use Illuminate\Http\Request;
 use Auth;
+
+use App\Models\Task;
+use App\Models\DepartmentTask;
 
 class TaskController extends Controller
 {
@@ -151,7 +152,14 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        if( Auth::user()->role == 'manager' ) {
+            $pivot = DepartmentTask::where('task_id',$task->id)->delete();
+            $result = $task->delete();
+            if($result){
+                return back()->with('message', 'The Job has been deleted.');
+            }
+            return back()->with('warnings', 'Can not Job delete.');
+        }
     }
 
 

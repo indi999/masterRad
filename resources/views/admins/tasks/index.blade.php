@@ -72,7 +72,36 @@
                                     @endforeach
                                     <td class="delete-user">
                                         <a href="#">Obriši</a>
+                                        <button type="submit" class="btn btn-danger btn-del btn-alert" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
+                                            {{ __('Obriši') }}
+                                            <i class="fas fa-trash"></i>
+                                        </button>
                                     </td>
+                                    // Delete modal
+                                    <div class="modal fade" id="exampleModal-{{ $task->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Are You sure you want to delete?--{{$task->id}}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('admin.jobs.destroy', ['job' => $task->id] )}}" method="post">
+                                                        @method('delete')
+                                                        @csrf
+
+                                                        <button type="submit" class="btn btn-danger"> {{ __('Obriši') }}</button>
+                                                        <button type="submit" class="btn btn-primary close" data-dismiss="modal" aria-label="Close">
+                                                            {{ __('Ne') }}
+                                                        </button>
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </tr>
                             @endforeach
                         @endif

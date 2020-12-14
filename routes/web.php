@@ -40,10 +40,11 @@ Route::get('/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks')
     Route::post('/jobs/store', 'App\Http\Controllers\TaskController@store')->name('jobs.store');
     // task update
     Route::patch('/jobs/{jobs} ', 'App\Http\Controllers\TaskController@update')->name('jobs.update');
-    // task chackbox
+//    // task chackbox
     Route::patch('/jobs/{departmentTask}/late', 'App\Http\Controllers\TaskController@isLate')->name('jobs.late');
     Route::patch('/jobs/{departmentTask}/finish', 'App\Http\Controllers\TaskController@isFinish')->name('jobs.finish');
     // task delete
+    Route::delete('/jobs/{task}', 'App\Http\Controllers\TaskController@destroy')->name('jobs.destroy');
 
     // all users
     Route::get('/employees', 'App\Http\Controllers\UserController@employees')->name('users.employees');
