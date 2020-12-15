@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Carbon\Carbon;
 
 use App\Models\Task;
 use App\Models\DepartmentTask;
@@ -86,8 +87,8 @@ class TaskController extends Controller
                 //'time_end' => ['required', 'string', 'max:1000'],
             ]);
             $attributes['user_id'] = auth()->user()->id;
+            //$attributes['date_end'] =  Carbon::createFromFormat('m/d/Y', request()->date_end)->format('Y-m-d');
             $attributes['expected_date_end'] =  $attributes['date_end'];
-            //$attributes['expected_time_end'] =  $attributes['date_end'];
 
             //dd($attributes,request()->sectorItems);
 
@@ -118,7 +119,9 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        return view('tasks.show', compact('task'));
+        if( Auth::user()->role == 'manager' ) {
+            return view('tasks.show', compact('task'));
+        }
     }
 
     /**
@@ -129,7 +132,9 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        return view('tasks.edit', compact('task'));
+        if( Auth::user()->role == 'manager' ) {
+            return view('tasks.edit', compact('task'));
+        }
     }
 
     /**
@@ -141,7 +146,17 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        if( Auth::user()->role == 'manager' ) {
+            request()->validate(['expected_date_end' => 'required', 'string', 'max:1000']);
+            if (request()->expected_date_end) {
+                $attributes['expected_date_end'] = request()->expected_date_end;
+                // pivot table
+                DepartmentTask::where('task_id',$task->id)->update(['is_late' => false]);
+             }
+            //dd($attributes,request()->expected_date_end,request()->all(),$departmentTask );
+            $task->update($attributes);
+            return back()->with('message','Expected date je promenjen.');
+        }
     }
 
     /**
@@ -153,7 +168,7 @@ class TaskController extends Controller
     public function destroy(Task $task)
     {
         if( Auth::user()->role == 'manager' ) {
-            $pivot = DepartmentTask::where('task_id',$task->id)->delete();
+            DepartmentTask::where('task_id',$task->id)->delete();
             $result = $task->delete();
             if($result){
                 return back()->with('message', 'The Job has been deleted.');

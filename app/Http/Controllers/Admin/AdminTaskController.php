@@ -138,8 +138,19 @@ class AdminTaskController extends Controller
     {
         if( Auth::user()->is_admin ) {
 
+            request()->validate(['expected_date_end' => 'required', 'string', 'max:1000']);
+            if (request()->expected_date_end) {
+                $attributes['expected_date_end'] = request()->expected_date_end;
+                // pivot table
+                DepartmentTask::where('task_id',$task->id)->update(['is_late' => false]);
+            }
+            //dd($attributes,request()->expected_date_end,request()->all(),$departmentTask );
+            $task->update($attributes);
+            return back()->with('message','Expected date je promenjen.');
         }
     }
+
+
 
     /**
      * Remove the specified resource from storage.
