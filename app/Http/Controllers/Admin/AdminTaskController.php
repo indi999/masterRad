@@ -134,7 +134,7 @@ class AdminTaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, Task $job)
     {
         if( Auth::user()->is_admin ) {
 
@@ -142,10 +142,10 @@ class AdminTaskController extends Controller
             if (request()->expected_date_end) {
                 $attributes['expected_date_end'] = request()->expected_date_end;
                 // pivot table
-                DepartmentTask::where('task_id',$task->id)->update(['is_late' => false]);
+                DepartmentTask::where('task_id',$job->id)->update(['is_late' => false]);
             }
             //dd($attributes,request()->expected_date_end,request()->all(),$departmentTask );
-            $task->update($attributes);
+            $job->update($attributes);
             return back()->with('message','Expected date je promenjen.');
         }
     }

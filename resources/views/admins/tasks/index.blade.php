@@ -67,7 +67,7 @@
                                                             <div class="form-header">
                                                                 <i class="fa fa-plus" aria-hidden="true"></i>Dodeli novo vreme - {{ $task->id }}
                                                             </div>
-                                                            <form action="{{ route('jobs.update', ['task' => $task->id]) }}" method="POST" class="new-date">
+                                                            <form action="{{ route('admin.jobs.update', ['job' => $task->id]) }}" method="POST" class="new-date">
                                                                 @method('PATCH')
                                                                 @csrf
 
@@ -85,19 +85,35 @@
                                     @foreach($task->departments as $department)
                                         @switch([$department->name, $department->pivot->is_active])
                                             @case(['DIZAJN/PRIPREMA',true])
-                                                 <td scope="row" class="active"><i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                            <td scope="row" class="active">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                @php echo $department->pivot->is_finish ? "<i class='fa fa-check' aria-hidden='true'></i>" : "" @endphp
+                                                @php echo $department->pivot->is_late ? "<i class='fa fa-close' aria-hidden='true'></i>" : "" @endphp
+                                            </td>
                                             @break
                                             @case(['PRODUKCIJA',true])
-                                                <td scope="row" class="active"><i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                            <td scope="row" class="active">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                @php echo $department->pivot->is_finish ? "<i class='fa fa-check' aria-hidden='true'></i>" : "" @endphp
+                                                @php echo $department->pivot->is_late ? "<i class='fa fa-close' aria-hidden='true'></i>" : "" @endphp
+                                            </td>
                                             @break
                                             @case(['DORADA',true])
-                                                <td scope="row" class="active"><i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                            <td scope="row" class="active">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                @php echo $department->pivot->is_finish ? "<i class='fa fa-check' aria-hidden='true'></i>" : "" @endphp
+                                                @php echo $department->pivot->is_late ? "<i class='fa fa-close' aria-hidden='true'></i>" : "" @endphp
+                                            </td>
                                             @break
                                             @case(['ISPORUKA',true])
-                                                <td scope="row" class="active"><i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                            <td scope="row" class="active">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                @php echo $department->pivot->is_finish ? "<i class='fa fa-check' aria-hidden='true'></i>" : "" @endphp
+                                                @php echo $department->pivot->is_late ? "<i class='fa fa-close' aria-hidden='true'></i>" : "" @endphp
+                                            </td>
                                             @break
                                             @default
-                                                <td scope="row" class="inactive"></td>
+                                            <td scope="row" class="inactive"></td>
                                         @endswitch
                                     @endforeach
                                     <td class="delete-user">
