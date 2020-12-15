@@ -72,6 +72,7 @@
                                     @endforeach
                                     <td class="delete-user">
                                         <button type="submit" class="btn del-job" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
+                                            {{ __('Obriši') }}
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </td>
@@ -93,7 +94,7 @@
                                                                     @csrf
 
                                                                     <button type="submit" class="btn btn-danger"> {{ __('Obriši') }}</button>
-                                                                    <button type="submit" class="btn btn-primary" data-dismiss="modal" aria-label="Close">
+                                                                    <button type="submit" class="btn btn-primary " data-dismiss="modal" aria-label="">
                                                                         {{ __('Ne') }}
                                                                     </button>
                                                                 </form>

@@ -83,7 +83,7 @@
                                                 @endswitch
                                         @endforeach
                                         <td class="delete-user">
-                                            <button type="submit" class="btn del-job" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
+                                            <button type="submit" class="btn btn-danger btn-del btn-alert" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
                                                  <i class="fa fa-trash"></i>
                                             </button>
                                         </td>
@@ -91,25 +91,22 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                         <h5 class="modal-title" id="exampleModalLabel">Da li si siguran da želiš da obrišeš posao?</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Are You sure you want to delete?--{{$task->id}}</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <div class="container deleteUser createUser">
-                                                          <div class="wrap-form">
-                                                                <form action="{{ route('jobs.destroy', ['task' => $task->id] )}}" method="post">
-                                                                    @method('delete')
-                                                                    @csrf
+                                                        <form action="{{ route('jobs.destroy', ['task' => $task->id] )}}" method="post">
+                                                            @method('delete')
+                                                            @csrf
 
-                                                                    <button type="submit" class="btn btn-danger"> {{ __('Obriši') }}</button>
-                                                                    <button type="submit" class="btn btn-primary" data-dismiss="modal" aria-label="Close">
-                                                                        {{ __('Ne') }}
-                                                                    </button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
+                                                            <button type="submit" class="btn btn-danger"> {{ __('Obriši') }}</button>
+                                                            <button type="submit" class="btn btn-primary close" data-dismiss="modal" aria-label="Close">
+                                                                {{ __('Ne') }}
+                                                            </button>
+                                                        </form>
+
                                                     </div>
                                                 </div>
                                             </div>

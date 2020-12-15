@@ -21,20 +21,8 @@ body {
     padding-bottom: 20px;
 }
 
-@media (max-width: 1366px) {
-    .navbar {
-        display: block;
-    }
-}
-
 .navbar .navbar-nav {
     padding-left: 30px;
-}
-
-@media (max-width: 1366px) {
-    .navbar .navbar-nav {
-        padding-left: 0px;
-    }
 }
 
 .navbar-brand {
@@ -43,18 +31,6 @@ body {
     line-height: 1.2;
     font-weight: 700;
     text-transform: uppercase;
-}
-
-@media (max-width: 768px) {
-    .navbar-brand {
-        font-size: 30px;
-    }
-}
-
-@media (max-width: 767px) {
-    .navbar-brand {
-        font-size: 16px;
-    }
 }
 
 .navbar-brand:hover {
@@ -331,33 +307,8 @@ main {
     right: 25px;
 }
 
-@media (max-width: 767px) {
-    .logo {
-        width: 60px;
-        right: 12px;
-    }
-}
-
 .admin .logo {
     top: 25px;
-}
-
-@media (max-width: 768px) {
-    .admin .logo {
-        top: 5px;
-    }
-}
-
-@media (max-width: 767px) {
-    .admin .logo {
-        top: 25px;
-    }
-
-    .col-7 {
-        -ms-flex: 0 0 100%;
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
 }
 
 .add-manager,
@@ -574,21 +525,4 @@ main {
 .deleteUser .wrap-form {
     max-width: 100%;
     text-align: center;
-}
-
-.modal-header {
-    justify-content: center;
-}
-
-.del-job,
-.del-job .fa {
-    color: #fff;
-    font-size: 30px;
-}
-
-.navbar-toggler:before {
-    content: "\f0c9";
-    font-family: "FontAwesome";
-    font-size: 27px;
-    color: #fff;
 }

@@ -51,12 +51,6 @@ body {
     }
 }
 
-@media (max-width: 767px) {
-    .navbar-brand {
-        font-size: 16px;
-    }
-}
-
 .navbar-brand:hover {
     color: #fff;
 }
@@ -331,13 +325,6 @@ main {
     right: 25px;
 }
 
-@media (max-width: 767px) {
-    .logo {
-        width: 60px;
-        right: 12px;
-    }
-}
-
 .admin .logo {
     top: 25px;
 }
@@ -345,18 +332,6 @@ main {
 @media (max-width: 768px) {
     .admin .logo {
         top: 5px;
-    }
-}
-
-@media (max-width: 767px) {
-    .admin .logo {
-        top: 25px;
-    }
-
-    .col-7 {
-        -ms-flex: 0 0 100%;
-        flex: 0 0 100%;
-        max-width: 100%;
     }
 }
 
@@ -584,11 +559,4 @@ main {
 .del-job .fa {
     color: #fff;
     font-size: 30px;
-}
-
-.navbar-toggler:before {
-    content: "\f0c9";
-    font-family: "FontAwesome";
-    font-size: 27px;
-    color: #fff;
 }

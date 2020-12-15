@@ -21,20 +21,8 @@ body {
     padding-bottom: 20px;
 }
 
-@media (max-width: 1366px) {
-    .navbar {
-        display: block;
-    }
-}
-
 .navbar .navbar-nav {
     padding-left: 30px;
-}
-
-@media (max-width: 1366px) {
-    .navbar .navbar-nav {
-        padding-left: 0px;
-    }
 }
 
 .navbar-brand {
@@ -45,15 +33,9 @@ body {
     text-transform: uppercase;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .navbar-brand {
-        font-size: 30px;
-    }
-}
-
-@media (max-width: 767px) {
-    .navbar-brand {
-        font-size: 16px;
+        font-size: 32px;
     }
 }
 
@@ -331,33 +313,8 @@ main {
     right: 25px;
 }
 
-@media (max-width: 767px) {
-    .logo {
-        width: 60px;
-        right: 12px;
-    }
-}
-
 .admin .logo {
     top: 25px;
-}
-
-@media (max-width: 768px) {
-    .admin .logo {
-        top: 5px;
-    }
-}
-
-@media (max-width: 767px) {
-    .admin .logo {
-        top: 25px;
-    }
-
-    .col-7 {
-        -ms-flex: 0 0 100%;
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
 }
 
 .add-manager,
@@ -584,11 +541,4 @@ main {
 .del-job .fa {
     color: #fff;
     font-size: 30px;
-}
-
-.navbar-toggler:before {
-    content: "\f0c9";
-    font-family: "FontAwesome";
-    font-size: 27px;
-    color: #fff;
 }

@@ -352,12 +352,6 @@ main {
     .admin .logo {
         top: 25px;
     }
-
-    .col-7 {
-        -ms-flex: 0 0 100%;
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
 }
 
 .add-manager,

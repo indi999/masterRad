@@ -93,7 +93,7 @@
                                                                     @csrf
 
                                                                     <button type="submit" class="btn btn-danger"> {{ __('Obriši') }}</button>
-                                                                    <button type="submit" class="btn btn-primary" data-dismiss="modal" aria-label="Close">
+                                                                    <button type="submit" class="btn btn-primary close" data-dismiss="modal" aria-label="Close">
                                                                         {{ __('Ne') }}
                                                                     </button>
                                                                 </form>

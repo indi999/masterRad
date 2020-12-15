@@ -71,10 +71,13 @@
                                         @endswitch
                                     @endforeach
                                     <td class="delete-user">
-                                        <button type="submit" class="btn del-job" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
-                                            <i class="fa fa-trash"></i>
+                                        <a href="#">Obriši</a>
+                                        <button type="submit" class="btn btn-danger btn-del btn-alert" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
+                                            {{ __('Obriši') }}
+                                            <i class="fas fa-trash"></i>
                                         </button>
                                     </td>
+                                    // Delete modal
                                     <div class="modal fade" id="exampleModal-{{ $task->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -85,7 +88,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                     <div class="container deleteUser createUser">
+                                                     <div class="container  createUser">
                                                           <div class="wrap-form">
 
                                                                 <form action="{{ route('admin.jobs.destroy', ['job' => $task->id] )}}" method="post">
@@ -93,7 +96,7 @@
                                                                     @csrf
 
                                                                     <button type="submit" class="btn btn-danger"> {{ __('Obriši') }}</button>
-                                                                    <button type="submit" class="btn btn-primary" data-dismiss="modal" aria-label="Close">
+                                                                    <button type="submit" class="btn btn-primary close" data-dismiss="modal" aria-label="">
                                                                         {{ __('Ne') }}
                                                                     </button>
                                                                 </form>

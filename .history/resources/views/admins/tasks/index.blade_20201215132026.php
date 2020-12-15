@@ -70,11 +70,7 @@
                                                 <td scope="row" class="inactive"></td>
                                         @endswitch
                                     @endforeach
-                                    <td class="delete-user">
-                                        <button type="submit" class="btn del-job" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </td>
+
                                     <div class="modal fade" id="exampleModal-{{ $task->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -93,7 +89,7 @@
                                                                     @csrf
 
                                                                     <button type="submit" class="btn btn-danger"> {{ __('Obriši') }}</button>
-                                                                    <button type="submit" class="btn btn-primary" data-dismiss="modal" aria-label="Close">
+                                                                    <button type="submit" class="btn btn-primary " data-dismiss="modal" aria-label="">
                                                                         {{ __('Ne') }}
                                                                     </button>
                                                                 </form>
