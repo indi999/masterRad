@@ -133,17 +133,23 @@ class AdminUsersController extends Controller
         //dd($user);
         if( Auth::user()->is_admin ) {
 
-            if( Auth::user()->role == 'manager' ) {
-                DepartmentTask::where('task_id', $job->id)->delete();
-                $tasks = Task::where('user_id',$user->id)->delete();
+            if($user->role == 'manager') {
+                //DepartmentTask::where('task_id', $job->id)->delete();
+                //$tasks = Task::where('user_id',$user->id)->delete();
+                $result = $user->update([
+                    'status' => false
+                ]);
+                if($result){
+                    return back()->with('message', 'The Manager has been blocked.');
+                }
+                return back()->with('message', 'Can not blocked.');
             }
-
-            dd($user,$tasks);
             $result = $user->delete();
             if($result){
                 return back()->with('message', 'The user has been deleted.');
             }
             return back()->with('warnings', 'Can not user delete!');
+
         }
     }
 
