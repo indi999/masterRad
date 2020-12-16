@@ -131,11 +131,6 @@
                                                  <i class="fa fa-trash"></i>
                                             </button>
                                         </td>
-                                        <td class="complete-task">
-                                            <form action="" method="">
-                                                <input type="checkbox" name="complete_task" id=""> završeno
-                                            </form>
-                                        </td>
                                         <!-- delete modal -->
                                         <div class="modal fade" id="exampleModal-{{ $task->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">

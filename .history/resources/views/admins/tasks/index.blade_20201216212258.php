@@ -61,8 +61,10 @@
                                     @endforeach
 
                                     @if(in_array(true, $late))
+                                        {{ "RED" }}
                                         <td scope="row" class="alert-job">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
                                     @elseif(!in_array(false, $finish))
+                                        {{ "GREEEN" }}
                                          <td scope="row" class="complete">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
                                     @else
                                          <td scope="row">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
@@ -140,7 +142,7 @@
                                     </td>
                                     <td class="complete-task">
                                         <form action="" method="">
-                                            <input type="checkbox" name="complete_task" id=""> završeno
+                                            <input type="checkbox" name="complete_task" id=""> Potvrdi da je projekat završen
                                         </form>
                                     </td>
                                     <div class="modal fade" id="exampleModal-{{ $task->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

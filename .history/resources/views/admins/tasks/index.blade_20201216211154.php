@@ -37,8 +37,6 @@
                                 <th class="poduction" scope="col">Produkcija</th>
                                 <th class="add" scope="col">Dorada</th>
                                 <th class="delivery" scope="col">Isporuka</th>
-                                <th style="color#0d1e31" scope="col"></th>
-                                <th class="" scope="col">Status projekta</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -54,18 +52,18 @@
                                     <td scope="row">{{$task->sale}}</td>
                                     <td scope="row">{{$task->desc}}</td>
                                     <td scope="row">{{ date('d M,Y', strtotime($task->date_end)) }} <i class="fa fa-calendar" aria-hidden="true"></i></td>
-
+                                    <td scope="row">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
                                     @foreach($task->departments as $department)
                                         @php  $late[] = $department->pivot->is_late @endphp
                                         @php  $finish[] = $department->pivot->is_finish @endphp
                                     @endforeach
 
                                     @if(in_array(true, $late))
-                                        <td scope="row" class="alert-job">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
+                                        {{ "RED" }}
                                     @elseif(!in_array(false, $finish))
-                                         <td scope="row" class="complete">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
+                                        {{ "GREEEN" }}
                                     @else
-                                         <td scope="row">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
+
                                     @endif
                                         <i class="fa fa-calendar changeDate" aria-hidden="true" id="{{$task->id}}" data-toggle="modal" data-target="#modalDate-{{$task->id}}"></i>
                                     </td>
@@ -137,11 +135,6 @@
                                         <button type="submit" class="btn del-job" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
                                             <i class="fa fa-trash"></i>
                                         </button>
-                                    </td>
-                                    <td class="complete-task">
-                                        <form action="" method="">
-                                            <input type="checkbox" name="complete_task" id=""> završeno
-                                        </form>
                                     </td>
                                     <div class="modal fade" id="exampleModal-{{ $task->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">

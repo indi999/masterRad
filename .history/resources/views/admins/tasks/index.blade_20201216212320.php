@@ -61,8 +61,10 @@
                                     @endforeach
 
                                     @if(in_array(true, $late))
+                                        {{ "RED" }}
                                         <td scope="row" class="alert-job">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
                                     @elseif(!in_array(false, $finish))
+                                        {{ "GREEEN" }}
                                          <td scope="row" class="complete">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
                                     @else
                                          <td scope="row">{{ date('d M,Y', strtotime($task->expected_date_end)) }}

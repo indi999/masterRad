@@ -33,8 +33,6 @@
                                 <th class="poduction" scope="col">Produkcija</th>
                                 <th class="add" scope="col">Dorada</th>
                                 <th class="delivery" scope="col">Isporuka</th>
-                                <th style="color#0d1e31" scope="col"></th>
-                                <th class="" scope="col">Status projekta</th>
                             </tr>
                         </thead>
 
@@ -130,11 +128,6 @@
                                             <button type="submit" class="btn del-job" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
                                                  <i class="fa fa-trash"></i>
                                             </button>
-                                        </td>
-                                        <td class="complete-task">
-                                            <form action="" method="">
-                                                <input type="checkbox" name="complete_task" id=""> završeno
-                                            </form>
                                         </td>
                                         <!-- delete modal -->
                                         <div class="modal fade" id="exampleModal-{{ $task->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
