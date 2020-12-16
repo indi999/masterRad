@@ -54,20 +54,19 @@
                                     <td scope="row">{{$task->sale}}</td>
                                     <td scope="row">{{$task->desc}}</td>
                                     <td scope="row">{{ date('d M,Y', strtotime($task->date_end)) }} <i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                @foreach($task->departments as $department)
+                                    @php  $late[] = $department->pivot->is_late @endphp
+                                    @php  $finish[] = $department->pivot->is_finish @endphp
+                                @endforeach
 
-                                    @foreach($task->departments as $department)
-                                        @php  $late[] = $department->pivot->is_late @endphp
-                                        @php  $finish[] = $department->pivot->is_finish @endphp
-                                    @endforeach
-
-                                    @if(in_array(true, $late))
-                                        <td scope="row" class="alert-job">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
-                                    @elseif(!in_array(false, $finish))
-                                         <td scope="row" class="complete">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
-                                    @else
-                                         <td scope="row">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
-                                    @endif
-                                        <i class="fa fa-calendar changeDate" aria-hidden="true" id="{{$task->id}}" data-toggle="modal" data-target="#modalDate-{{$task->id}}"></i>
+                                @if(in_array(true, $late))
+                                    <td scope="row" class="alert-job">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
+                                @elseif(!in_array(false, $finish))
+                                    <td scope="row" class="complete">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
+                                @else
+                                    <td scope="row">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
+                                @endif
+                                         <i class="fa fa-calendar changeDate" aria-hidden="true" id="{{$task->id}}" data-toggle="modal" data-target="#modalDate-{{$task->id}}"></i>
                                     </td>
                                     <!-- expected_date_end modal -->
                                     <div class="modal fade addNewDate" id="modalDate-{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -97,7 +96,6 @@
                                         </div>
                                     </div>
                                     @foreach($task->departments as $department)
-
                                         @switch([$department->name, $department->pivot->is_active])
                                             @case(['DIZAJN/PRIPREMA',true])
                                             <td scope="row" class="active">
@@ -131,18 +129,26 @@
                                             @default
                                             <td scope="row" class="inactive"></td>
                                         @endswitch
-
                                     @endforeach
                                     <td class="delete-user">
                                         <button type="submit" class="btn del-job" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </td>
-                                    <td class="complete-task">
-                                        <form action="" method="">
-                                            <input type="checkbox" name="complete_task" id=""> završeno
-                                        </form>
-                                    </td>
+                                        <td class="complete-task">
+                                            <form method="POST" action="admin/jobs/{{$task->id}}/finishJob">
+                                                @method('PATCH')
+                                                @csrf
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="finish" type="checkbox"  id="defaultCheck1"
+                                                           onChange="this.form.submit()" {{ $task->finish ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                        Završeno
+                                                    </label>
+                                                </div>
+                                            </form>
+                                        </td>
                                     <div class="modal fade" id="exampleModal-{{ $task->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">

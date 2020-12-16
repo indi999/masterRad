@@ -183,4 +183,20 @@ class AdminTaskController extends Controller
         // Sending email to Admin from contact form
         Mail::to($objSupport->email)->send(new TaskEmail($objSupport));
     }
+
+    public function finishJob(Task $job)
+    {
+        //dd($job, request()->has('finish'));
+        if( Auth::user()->is_admin ) {
+            $result = $job->update([
+                'finish' => request()->has('finish')
+            ]);
+            dd($result);
+            if ($result) {
+                return back()->with('message', 'Task is Finish.');
+            }
+            return back()->with('message', 'The Task status  cannot be changed.');
+
+        }
+    }
 }

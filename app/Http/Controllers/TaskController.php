@@ -76,7 +76,6 @@ class TaskController extends Controller
     public function store()
     {
         if( Auth::user()->rola = 'manager' )  {
-
             $attributes = request()->validate( [
                 'number' => ['required', 'integer', 'unique:tasks'],
                 'brand' => ['required', 'string', 'max:50'],
@@ -87,11 +86,10 @@ class TaskController extends Controller
                 //'time_end' => ['required', 'string', 'max:1000'],
             ]);
             $attributes['user_id'] = auth()->user()->id;
-            //$attributes['date_end'] =  Carbon::createFromFormat('m/d/Y', request()->date_end)->format('Y-m-d');
             $attributes['expected_date_end'] =  $attributes['date_end'];
+            //$attributes['expected_time_end'] =  $attributes['date_end'];
 
             //dd($attributes,request()->sectorItems);
-
             $task = Task::create($attributes);
             DepartmentTask::addDepartments(request()->sectorItems,$task->id);
 
@@ -194,5 +192,19 @@ class TaskController extends Controller
             'is_finish' => request()->has('is_finish')
         ]);
         return back();
+    }
+
+    public function finishJob(Task $task)
+    {
+        if( Auth::user()->role == 'manager' ) {
+            $result = $task->update([
+                'finish' => request()->has('finish')
+            ]);
+            if ($result) {
+                return back()->with('message', 'Task is Finish.');
+            }
+            return back()->with('message', 'The Task status  cannot be changed.');
+
+        }
     }
 }

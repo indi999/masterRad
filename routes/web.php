@@ -43,6 +43,7 @@ Route::get('/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks')
     // task chackbox
     Route::patch('/jobs/{departmentTask}/late', 'App\Http\Controllers\TaskController@isLate')->name('jobs.late');
     Route::patch('/jobs/{departmentTask}/finish', 'App\Http\Controllers\TaskController@isFinish')->name('jobs.finish');
+    Route::patch('/jobs/{task}/finishJob', 'App\Http\Controllers\TaskController@finishJob')->name('jobs.finishJob');
     // task delete
     Route::delete('/jobs/{task}', 'App\Http\Controllers\TaskController@destroy')->name('jobs.destroy');
 
@@ -61,6 +62,7 @@ Route::middleware('is_admin')->prefix('admin')->group(function(){
     Route::get('/', 'App\Http\Controllers\HomeController@dashboard')->name('admin.dashboard');
 
     //Tasks
+    Route::patch('/jobs/{job}/finishJob', 'App\Http\Controllers\Admin\AdminTaskController@finishJob')->name('admin.jobs.finishJob');
     Route::resource('/jobs', 'App\Http\Controllers\Admin\AdminTaskController',[
         'as' => 'admin'
     ]);
