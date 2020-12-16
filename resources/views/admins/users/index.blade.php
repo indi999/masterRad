@@ -50,9 +50,39 @@
                                     <td>{{$user->role != 'manager' ? $user->department->name : "SVI"}} </td>
                                     <td>{{$user->role}}</td>
                                     <td>{{$user->status ? "Aktivan" : "Neaktivan"}}</td>
-                                    <td class="delete-user">
-                                        <a href="#">Obriši</a>
-                                    </td>
+                                     <td class="delete-user">
+                                         <button type="submit" class="btn del-job" id="{{ $user->id }}" data-toggle="modal" data-target="#exampleModal-{{ $user->id }}">
+                                             <i class="fa fa-trash"></i>
+                                         </button>
+                                     </td>
+                                     <div class="modal fade" id="exampleModal-{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                         <div class="modal-dialog" role="document">
+                                             <div class="modal-content">
+                                                 <div class="modal-header">
+                                                     <h5 class="modal-title" id="exampleModalLabel">Da li si siguran da želiš da obrišeš korisnika?</h5>
+                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                         <span aria-hidden="true">&times;</span>
+                                                     </button>
+                                                 </div>
+                                                 <div class="modal-body">
+                                                     <div class="container deleteUser createUser">
+                                                         <div class="wrap-form">
+
+                                                             <form action="{{ route('admin.users.destroy', ['user' => $user->id] )}}" method="post">
+                                                                 @method('delete')
+                                                                 @csrf
+
+                                                                 <button type="submit" class="btn btn-danger"> {{ __('Obriši') }}</button>
+                                                                 <button type="submit" class="btn btn-primary" data-dismiss="modal" aria-label="Close">
+                                                                     {{ __('Ne') }}
+                                                                 </button>
+                                                             </form>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
                                 </tr>
                                  @endif
                             @endforeach

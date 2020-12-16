@@ -9,6 +9,7 @@ use \Mail;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Models\Task;
 
 class AdminUsersController extends Controller
 {
@@ -127,9 +128,23 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        //dd($user);
+        if( Auth::user()->is_admin ) {
+
+            if( Auth::user()->role == 'manager' ) {
+                DepartmentTask::where('task_id', $job->id)->delete();
+                $tasks = Task::where('user_id',$user->id)->delete();
+            }
+
+            dd($user,$tasks);
+            $result = $user->delete();
+            if($result){
+                return back()->with('message', 'The user has been deleted.');
+            }
+            return back()->with('warnings', 'Can not user delete!');
+        }
     }
 
     public function status(User $user)
