@@ -191,7 +191,6 @@ class AdminTaskController extends Controller
             $result = $job->update([
                 'finish' => request()->has('finish')
             ]);
-            dd($result);
             if ($result) {
                 return back()->with('message', 'Task is Finish.');
             }
