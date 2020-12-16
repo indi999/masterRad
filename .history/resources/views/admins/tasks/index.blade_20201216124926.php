@@ -63,7 +63,7 @@
                                                 </button>
                                                  <div class="modal-body">
                                                     <div class="form-header">
-                                                        <i class="fa fa-plus" aria-hidden="true"></i> Dodeli novo vreme
+                                                        <i class="fa fa-plus" aria-hidden="true"></i>Dodeli novo vreme
                                                     </div>
 
                                                     <div class="container deleteUser createUser">

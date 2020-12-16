@@ -55,26 +55,30 @@
                                         <i class="fa fa-calendar changeDate" aria-hidden="true" id="{{$task->id}}" data-toggle="modal" data-target="#modalDate-{{$task->id}}"></i>
                                     </td>
                                     <!-- expected_date_end modal -->
-                                    <div class="modal fade addNewDate" id="modalDate-{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="modalDate-{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
-                                                 <div class="modal-body">
-                                                    <div class="form-header">
-                                                        <i class="fa fa-plus" aria-hidden="true"></i> Dodeli novo vreme
-                                                    </div>
-
-                                                    <div class="container deleteUser createUser">
+                                                <div class="modal-body">
+                                                    <div class="container login createUser">
                                                         <div class="wrap-form">
-                                                            <form action="{{ route('admin.jobs.update', ['job' => $task->id]) }}" method="POST" class="new-date">
-                                                                @method('PATCH')
-                                                                @csrf
+                                                            <div class="form-header">
+                                                                <i class="fa fa-plus" aria-hidden="true"></i>Dodeli novo vreme
+                                                            </div>
 
-                                                                <input type="text" class="form-control" name="expected_date_end" data-toggle="datepicker" placeholder="31.12.2020">
-                                                                <button type="submit" name="submit" class="btn btn-primary">Dodeli</button>
-                                                            </form>
+                                                            <div class="container deleteUser createUser">
+                                                                <div class="wrap-form">
+                                                                    <form action="{{ route('admin.jobs.update', ['job' => $task->id]) }}" method="POST" class="new-date">
+                                                                        @method('PATCH')
+                                                                        @csrf
+
+                                                                        <input type="text" class="form-control" name="expected_date_end" data-toggle="datepicker" placeholder="31.12.2020">
+                                                                        <button type="submit" name="submit" class="btn btn-primary">Dodeli</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

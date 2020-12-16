@@ -60,7 +60,7 @@
                                                     <div class="modal-body">
 
                                                         <div class="form-header">
-                                                            <i class="fa fa-plus" aria-hidden="true"></i> Dodeli novo vreme
+                                                            <i class="fa fa-plus" aria-hidden="true"></i>Dodeli novo vreme - {{ $task->id }}
                                                         </div>
                                                         <div class="container deleteUser createUser">
                                                             <div class="wrap-form">
