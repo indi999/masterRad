@@ -32,6 +32,9 @@
                         <a class="nav-link" href="{{ route('jobs.create') }}">Dodaj posao</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('jobs.arhive') }}">Arhiva</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -83,6 +86,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('jobs.arhive') }}">Arhiva</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}
                             </a>
