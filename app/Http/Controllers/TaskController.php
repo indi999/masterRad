@@ -180,7 +180,8 @@ class TaskController extends Controller
     public function isLate(DepartmentTask $departmentTask)
     {
         $departmentTask->update([
-            'is_late' => request()->has('is_late')
+            'is_late' => request()->has('is_late'),
+            'is_finish' => false
         ]);
         return back();
     }
@@ -189,7 +190,8 @@ class TaskController extends Controller
     {
         //dd('yes12', $book);
         $departmentTask->update([
-            'is_finish' => request()->has('is_finish')
+            'is_finish' => request()->has('is_finish'),
+            'is_late' => false
         ]);
         return back();
     }
