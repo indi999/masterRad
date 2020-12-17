@@ -199,10 +199,10 @@ class TaskController extends Controller
     public function finishJob(Task $task)
     {
         if( Auth::user()->role == 'manager' ) {
-            $result = $task->update([
-                'finish' => request()->has('finish')
-            ]);
+            $result = $task->update(['finish' => request()->has('finish')]);
             if ($result) {
+                DepartmentTask::where('task_id',$task->id)->update(['is_late' => false]);
+                DepartmentTask::where('task_id',$task->id)->update(['is_finish' => true]);
                 return back()->with('message', 'Task is Finish.');
             }
             return back()->with('message', 'The Task status  cannot be changed.');
