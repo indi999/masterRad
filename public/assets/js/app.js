@@ -34,4 +34,12 @@ $(document).ready(function(){
 
         console.log(favorite)
     });
+
+
+    $('.table tr .form-check input.unique').each(function() {
+            $(this).on('touchstart click', function() {
+            $('input.unique').not(this).removeAttr('checked');
+        });
+    });
+
 });

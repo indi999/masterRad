@@ -60,9 +60,9 @@
                                                 @csrf
 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="is_finish" type="radio"  id="defaultCheck1"
+                                                    <input class="form-check-input unique" name="is_finish" type="checkbox" id="group1"
                                                            onChange="this.form.submit()" {{ $department->pivot->is_finish ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="defaultCheck1">
+                                                    <label class="form-check-label" for="group1">
                                                     Završeno
                                                     </label>
                                                 </div>
@@ -72,7 +72,7 @@
                                                 @csrf
 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" name="is_late" type="radio"  id="defaultCheck1"
+                                                    <input class="form-check-input unique" name="is_late" type="checkbox"  id="defaultCheck1"
                                                            onChange="this.form.submit()" {{ $department->pivot->is_late ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="defaultCheck1">
                                                     Kasni

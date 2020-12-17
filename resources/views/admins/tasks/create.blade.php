@@ -102,7 +102,7 @@
                                 <label for="inputDesc" class="col-sm-4 col-form-label">Rok za završetak</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" name="date_end" data-toggle="datepicker" placeholder="Datum" required>
-                                    <!--<input type="text" id="timePicker" class="form-control" name="timePicker" data-toggle="datepicker" placeholder="Vreme" required>-->
+                                    <input type="text" id="timePicker" class="form-control" name="timePicker" data-toggle="timePicker" placeholder="Vreme" required>
                                 </div>
                             </div>
 
