@@ -1,3 +1,6 @@
+@guest
+<!-- guest template -->
+@else
 <nav class="navbar navbar-expand-lg admin">
     <a class="navbar-brand" href="#">Administrator / Lista poslova</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,3 +36,4 @@
     <img src="{{asset('assets/img/white-fps.png')}}" class="logo" alt="">
     </div>
 </nav>
+@endguest

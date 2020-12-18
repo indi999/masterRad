@@ -14,7 +14,7 @@
                             {{session('message')}}
                         </div>
                     @endif
-                <!-- Error message -->
+                    <!-- Error message -->
                     @if(count($errors)>0)
                         @foreach($errors->all() as $error)
                             <div class="alert alert-danger">

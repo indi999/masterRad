@@ -14,7 +14,7 @@
                             {{session('message')}}
                         </div>
                     @endif
-                <!-- Error message -->
+                    <!-- Error message -->
                     @if(count($errors)>0)
                         @foreach($errors->all() as $error)
                             <div class="alert alert-danger">
@@ -131,39 +131,40 @@
                                                     <td scope="row" class="inactive"></td>
                                                 @endswitch
                                         @endforeach
-                                        <td class="delete-user">
-                                            <button type="submit" class="btn del-job" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
-                                                 <i class="fa fa-trash"></i>
-                                            </button>
-                                            <!-- Delete modal -->
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Da li si siguran da želiš da obrišeš posao?</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="container deleteUser createUser">
-                                                            <div class="wrap-form">
+                                            <td class="delete-user">
+                                                <button type="submit" class="btn del-job" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                                <!-- delete modal -->
+                                                <div class="modal fade" id="exampleModal-{{ $task->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Da li si siguran da želiš da obrišeš posao?</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="container deleteUser createUser">
+                                                                    <div class="wrap-form">
 
-                                                                <form action="{{ route('jobs.destroy', ['task' => $task->id] )}}" method="post">
-                                                                    @method('delete')
-                                                                    @csrf
+                                                                        <form action="{{ route('jobs.destroy', ['task' => $task->id] )}}" method="post">
+                                                                            @method('delete')
+                                                                            @csrf
 
-                                                                    <button type="submit" class="btn btn-danger"> {{ __('Obriši') }}</button>
-                                                                    <button type="submit" class="btn btn-primary" data-dismiss="modal" aria-label="Close">
-                                                                        {{ __('Ne') }}
-                                                                    </button>
-                                                                </form>
+                                                                            <button type="submit" class="btn btn-danger"> {{ __('Obriši') }}</button>
+                                                                            <button type="submit" class="btn btn-primary" data-dismiss="modal" aria-label="Close">
+                                                                                {{ __('Ne') }}
+                                                                            </button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td>
-
+                                            </td>
                                         <td class="complete-task">
                                             <form method="POST" action="/jobs/{{$task->id}}/finishJob">
                                                 @method('PATCH')

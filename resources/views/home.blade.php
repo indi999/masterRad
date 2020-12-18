@@ -1,11 +1,7 @@
-@extends('layouts.app')
+@if(auth()->user()->role == 'manager')
+   @include('tasks.index')
+@else
+   @include('tasks.sectorJobs')
+@endif
 
-@section('content')
 
-    @if(auth()->user()->role == 'manager')
-        @include('tasks.index')
-    @else
-        @include('tasks.sectorJobs')
-    @endif
-
-@endsection
