@@ -11,7 +11,6 @@
              @yield('content')
         </main>
 
-
     @include('admins.layouts.footer')
 
 @endguest

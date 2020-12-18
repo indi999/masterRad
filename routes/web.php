@@ -62,6 +62,7 @@ Route::middleware('is_admin')->prefix('admin')->group(function(){
     Route::get('/', 'App\Http\Controllers\HomeController@dashboard')->name('admin.dashboard');
 
     //Tasks
+    Route::get('/jobs/arhive', 'App\Http\Controllers\Admin\AdminTaskController@arhive')->name('admin.jobs.arhive'); // arhive tasks
     Route::patch('/jobs/{job}/finishJob', 'App\Http\Controllers\Admin\AdminTaskController@finishJob')->name('admin.jobs.finishJob');
     Route::resource('/jobs', 'App\Http\Controllers\Admin\AdminTaskController',[
         'as' => 'admin'

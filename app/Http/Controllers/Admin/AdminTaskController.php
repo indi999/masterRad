@@ -34,6 +34,7 @@ class AdminTaskController extends Controller
             $tasks = Task::where('finish', false)->get();
             return view('admins.tasks.index', compact('tasks'));
         }
+        return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
     }
 
     public function arhive()
@@ -42,6 +43,7 @@ class AdminTaskController extends Controller
             $tasks = Task::where('finish', true)->get();
             return view('admins.tasks.index', compact('tasks'));
         }
+        return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
     }
 
     /**
@@ -54,6 +56,7 @@ class AdminTaskController extends Controller
         if( Auth::user()->is_admin )  {
             return view('admins.tasks.create');
         }
+        return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
 
     }
 
@@ -112,6 +115,7 @@ class AdminTaskController extends Controller
         if( Auth::user()->is_admin )  {
             return view('admins.tasks.show', compact('task'));
         }
+        return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
     }
 
     /**
@@ -125,6 +129,7 @@ class AdminTaskController extends Controller
         if( Auth::user()->is_admin )  {
             return view('admins.tasks.edit', compact('task'));
         }
+        return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
     }
 
     /**
@@ -148,9 +153,8 @@ class AdminTaskController extends Controller
             $job->update($attributes);
             return back()->with('message','Expected date je promenjen.');
         }
+        return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
     }
-
-
 
     /**
      * Remove the specified resource from storage.
@@ -168,6 +172,7 @@ class AdminTaskController extends Controller
             }
             return back()->with('warnings', 'Can not Job delete!');
         }
+        return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
     }
 
     // Sending emails
@@ -186,16 +191,16 @@ class AdminTaskController extends Controller
 
     public function finishJob(Task $job)
     {
-        //dd($job, request()->has('finish'));
-        if( Auth::user()->is_admin ) {
-            $result = $job->update([
-                'finish' => request()->has('finish')
-            ]);
-            if ($result) {
-                return back()->with('message', 'Task is Finish.');
-            }
-            return back()->with('message', 'The Task status  cannot be changed.');
 
+        if( Auth::user()->is_admin ) {
+            $result = $job->update(['finish' => request()->has('finish')]);
+            if ($result) {
+                DepartmentTask::where('task_id',$job->id)->update(['is_late' => false]);
+                DepartmentTask::where('task_id',$job->id)->update(['is_finish' => true]);
+                return back()->with('message', 'Task status changed.');
+            }
+            return back()->with('message', 'The Task status cannot be changed.');
         }
+        return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
     }
 }
