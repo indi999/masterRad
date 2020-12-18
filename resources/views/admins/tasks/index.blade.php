@@ -134,33 +134,19 @@
                                         <button type="submit" class="btn del-job" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
                                             <i class="fa fa-trash"></i>
                                         </button>
-                                    </td>
-                                    <td class="complete-task">
-                                        <form method="POST" action="{{ route('admin.jobs.finishJob', ['job' => $task->id] )}}">
-                                            @method('PATCH')
-                                            @csrf
-
-                                            <div class="form-check">
-                                                <input class="form-check-input" name="finish" type="checkbox"  id="defaultCheck1"
-                                                       onChange="this.form.submit()" {{ $task->finish ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="defaultCheck1">
-                                                    Završeno
-                                                </label>
-                                            </div>
-                                        </form>
-                                    </td>
-                                    <div class="modal fade" id="exampleModal-{{ $task->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Da li si siguran da želiš da obrišeš posao?</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                     <div class="container deleteUser createUser">
-                                                          <div class="wrap-form">
+                                        <!-- delete modal -->
+                                        <div class="modal fade" id="exampleModal-{{ $task->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Da li si siguran da želiš da obrišeš posao?</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="container deleteUser createUser">
+                                                            <div class="wrap-form">
 
                                                                 <form action="{{ route('admin.jobs.destroy', ['job' => $task->id] )}}" method="post">
                                                                     @method('delete')
@@ -177,37 +163,30 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </tr>
+                                    </td>
+
+                                    <td class="complete-task">
+                                        <form method="POST" action="{{ route('admin.jobs.finishJob', ['job' => $task->id] )}}">
+                                            @method('PATCH')
+                                            @csrf
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" name="finish" type="checkbox"  id="defaultCheck1"
+                                                       onChange="this.form.submit()" {{ $task->finish ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="defaultCheck1">
+                                                    Završeno
+                                                </label>
+                                            </div>
+                                        </form>
+                                    </td>
+
+                                </tr>
                             @endforeach
                         @endif
                         </tr>
                         </tbody>
 
                     </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="modalDate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <div class="modal-body">
-                <div class="container login createUser">
-                    <div class="wrap-form">
-                        <div class="form-header">
-                            <i class="fa fa-plus" aria-hidden="true"></i>Dodeli novo vreme
-                        </div>
-                        <form action="" method="POST" class="new-date">
-                            <input type="text" class="form-control" name="datePicker" data-toggle="datepicker" placeholder="31.12.2020">
-                            <button type="submit" name="submit" class="btn btn-primary">Dodeli</button>
-                        </form>
-
-                    </div>
                 </div>
             </div>
         </div>

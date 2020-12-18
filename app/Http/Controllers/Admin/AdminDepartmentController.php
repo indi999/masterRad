@@ -27,7 +27,7 @@ class AdminDepartmentController extends Controller
      */
     public function index()
     {
-        if(Auth::user()->is_admin == true){
+        if(Auth::user()->is_admin){
             $departments = Department::all();
             return view('admins.departments.index',compact('departments'));
         }
@@ -41,7 +41,7 @@ class AdminDepartmentController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->is_admin == true){
+        if(Auth::user()->is_admin){
             return view('admins.deparments.create');
         }
     }
@@ -54,7 +54,7 @@ class AdminDepartmentController extends Controller
      */
     public function store()
     {
-        if(Auth::user()->is_admin == true){
+        if(Auth::user()->is_admin){
             $attributes = request()->validate( [
                 'name' => ['required', 'string', 'max:50'],
             ]);
@@ -78,7 +78,7 @@ class AdminDepartmentController extends Controller
      */
     public function show(Department $deparment)
     {
-        if(Auth::user()->is_admin == true){
+        if(Auth::user()->is_admin){
             return view('admins.deparments.show', compact('deparment'));
         }
         return back()->with('message', 'you have not permition!');
@@ -92,7 +92,7 @@ class AdminDepartmentController extends Controller
      */
     public function edit(Department $deparment)
     {
-        if(Auth::user()->is_admin == true) {
+        if(Auth::user()->is_admin) {
             return view('admins.deparments.edit', compact('deparment'));
         }
     }
@@ -106,7 +106,7 @@ class AdminDepartmentController extends Controller
      */
     public function update(Request $request, Department $deparment)
     {
-        if(Auth::user()->is_admin == true) {
+        if(Auth::user()->is_admin) {
             //dd(request()->all());
             // VALIDACIJA
             $attributes = request()->validate([
@@ -128,11 +128,17 @@ class AdminDepartmentController extends Controller
      * @param  \App\Models\Department  $deparment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Department $deparment)
+    public function destroy(Department $sektor)
     {
-        if(Auth::user()->is_admin == true) {
-
+        if( Auth::user()->is_admin ) {
+            $result = $sektor->delete();
+            if($result){
+                return back()->with('message', 'Sektor je obrisan.');
+            }
+            return back()->with('warnings', 'Sektor nije moguce obrisati');
         }
+        return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
 
     }
+
 }

@@ -135,34 +135,19 @@
                                             <button type="submit" class="btn del-job" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
                                                  <i class="fa fa-trash"></i>
                                             </button>
-                                        </td>
-                                        <td class="complete-task">
-                                            <form method="POST" action="/jobs/{{$task->id}}/finishJob">
-                                                @method('PATCH')
-                                                @csrf
-
-                                                <div class="form-check">
-                                                    <input class="form-check-input" name="finish" type="checkbox"  id="defaultCheck1"
-                                                           onChange="this.form.submit()" {{ $task->finish ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="defaultCheck1">
-                                                        Završeno
-                                                    </label>
-                                                </div>
-                                            </form>
-                                        </td>
-                                        <!-- delete modal -->
-                                        <div class="modal fade" id="exampleModal-{{ $task->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <!-- Delete modal -->
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                         <h5 class="modal-title" id="exampleModalLabel">Da li si siguran da želiš da obrišeš posao?</h5>
+                                                        <h5 class="modal-title" id="exampleModalLabel">Da li si siguran da želiš da obrišeš posao?</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="container deleteUser createUser">
-                                                          <div class="wrap-form">
+                                                            <div class="wrap-form">
+
                                                                 <form action="{{ route('jobs.destroy', ['task' => $task->id] )}}" method="post">
                                                                     @method('delete')
                                                                     @csrf
@@ -177,7 +162,23 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </td>
+
+                                        <td class="complete-task">
+                                            <form method="POST" action="/jobs/{{$task->id}}/finishJob">
+                                                @method('PATCH')
+                                                @csrf
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input" name="finish" type="checkbox"  id="defaultCheck1"
+                                                           onChange="this.form.submit()" {{ $task->finish ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                        Završeno
+                                                    </label>
+                                                </div>
+                                            </form>
+                                        </td>
+
                                     </tr>
                                 @endforeach
                             @endif

@@ -42,7 +42,38 @@
                                     <th scope="row">{{$department->id}}</th>
                                         <td>{{$department->name}}</td>
                                         <td class="delete-user">
-                                            <a href="#">Obriši</a>
+                                            <button type="submit" class="btn del-job" id="{{ $department->id }}" data-toggle="modal" data-target="#exampleModal-{{ $department->id }}">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                            <!-- delete modal -->
+                                            <div class="modal fade" id="exampleModal-{{ $department->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Da li si siguran da želiš da obrišeš posao?</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="container deleteUser createUser">
+                                                                <div class="wrap-form">
+
+                                                                    <form action="{{ route('admin.sektors.destroy', ['sektor' => $department->id]) }}" method="post">
+                                                                        @method('delete')
+                                                                        @csrf
+
+                                                                        <button type="submit" class="btn btn-danger"> {{ __('Obriši') }}</button>
+                                                                        <button type="submit" class="btn btn-primary" data-dismiss="modal" aria-label="Close">
+                                                                            {{ __('Ne') }}
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                     @endforeach
