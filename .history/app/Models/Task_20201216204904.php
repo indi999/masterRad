@@ -23,7 +23,7 @@ class Task extends Model
         'sale',
         'desc',
         'date_end',
-        'time_end',
+        //'time_end',
         'expected_date_end',
         //'expected_time_end',
         'finish',

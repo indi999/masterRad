@@ -73,7 +73,7 @@
                                                         <td scope="row">{{$task->client}}</td>
                                                         <td scope="row">{{$task->sale}}</td>
                                                         <td scope="row">{{$task->desc}}</td>
-                                                        <td scope="row">{{ date('Y-m-d', strtotime($task->date_end)) }} - {{ date('H:i:s', strtotime($task->time_end)) }}  <i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                                        <td scope="row">{{ date('Y-m-d', strtotime($task->date_end)) }} <i class="fa fa-calendar" aria-hidden="true"></i></td>
                                                         @foreach($task->departments as $department)
                                                             @php  $late[] = $department->pivot->is_late @endphp
                                                             @php  $finish[] = $department->pivot->is_finish @endphp

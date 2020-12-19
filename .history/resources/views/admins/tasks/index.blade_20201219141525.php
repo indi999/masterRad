@@ -42,7 +42,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <tr>
+                        <tr>scsc
                         <!-- JOBS -->
                         @if($tasks->count()>0)
                             @foreach($tasks as $task)

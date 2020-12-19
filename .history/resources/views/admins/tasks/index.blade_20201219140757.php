@@ -53,15 +53,15 @@
                                     <td scope="row">{{$task->client}}</td>
                                     <td scope="row">{{$task->sale}}</td>
                                     <td scope="row">{{$task->desc}}</td>
-                                    <td scope="row">{{ date('Y-m-d', strtotime($task->date_end)) }} - {{ date('H:i:s', strtotime($task->time_end)) }} <i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                    <td scope="row">{{ date('Y-m-d', strtotime($task->date_end)) }} <i class="fa fa-calendar" aria-hidden="true"></i></td>
                                 @foreach($task->departments as $department)
                                     @php  $late[] = $department->pivot->is_late @endphp
                                     @php  $finish[] = $department->pivot->is_finish @endphp
                                 @endforeach
 
                                 <?php
-                                    $endDate = date('Y-m-d', strtotime($task->date_end));
-                                    $eDate = date('Y-m-d', strtotime($task->expected_date_end));
+                                    $endDate = date('d M,Y', strtotime($task->date_end));
+                                    $eDate = date('d M,Y', strtotime($task->expected_date_end));
                                 ?>
 
                                 @if(in_array(true, $late))

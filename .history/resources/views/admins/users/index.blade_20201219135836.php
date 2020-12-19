@@ -46,7 +46,6 @@
                            @if($users->count()>0)
                             @foreach($users as $user)
                                 @if(!$user->is_admin)
-
                                  <tr>
                                     <th scope="row">{{$user->id}}</th>
                                     <th scope="row">{{$user->firstname}}</th>

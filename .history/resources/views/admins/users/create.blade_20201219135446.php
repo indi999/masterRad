@@ -29,26 +29,6 @@
                             <form action="{{route('admin.users.store')}}" method="post" >
                                 @csrf
 
-
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="firstname" placeholder="Ime">
-                                     @error('firstname')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="text" class="form-control" name="lastname" placeholder="Prezime">
-                                     @error('lastname')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-
                                 <div class="form-group">
                                     <input type="email" class="form-control" name="email" placeholder="Email">
                                     @error('email')

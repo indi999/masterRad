@@ -66,7 +66,9 @@
 
                                 @if(in_array(true, $late))
                                     <td scope="row" class="alert-job">{{ date('Y-m-d', strtotime($task->expected_date_end)) }}
-                                @elseif(!in_array(false, $finish))
+                                 @elseif($eDate > $endDate)
+                                     <td scope="row" class="alert-job">{{ date('Y-m-d', strtotime($task->expected_date_end)) }}
+                                @elseif(!in_array(false, $finish) && $eDate > $endDate)
                                     <td scope="row" class="complete">{{ date('Y-m-d', strtotime($task->expected_date_end)) }}
                                 @else
                                     <td scope="row">{{ date('Y-m-d', strtotime($task->expected_date_end)) }}
