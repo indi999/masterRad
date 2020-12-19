@@ -31,10 +31,26 @@
 
                                 <div class="form-group">
                                     <input type="email" class="form-control" name="email" placeholder="Email">
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                
                                 <div class="form-group">
-                                    <input type="text" class="form-control"  name="password" placeholder="Šifra">
+                                    <div class="form-group ">
+                                        <input type="text" class="form-control"  name="password" placeholder="Šifra" class="form-control @error('password') is-invalid @enderror" required autocomplete="new-password">
+                                        @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                             <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <input id="password-confirm" type="text" class="form-control"  name="password_confirmation" placeholder="Potvrda Šifre" name="password_confirmation" required autocomplete="new-password">
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -45,6 +61,11 @@
                                         @endforeach
                                         <option value="0">Svi</option>
                                     </select>
+                                    @error('department_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <select class="custom-select custom-select-lg mb-3" name="role">
@@ -53,6 +74,11 @@
                                         <option value="user">Korisnik</option>
                                         <option value="monitor">Monitor</option>
                                     </select>
+                                    @error('role')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <button type="submit" name="submit" class="btn btn-primary">Kreiraj korisnika</button>
                             </form>

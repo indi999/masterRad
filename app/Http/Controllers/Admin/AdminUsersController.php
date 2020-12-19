@@ -8,6 +8,11 @@ use Auth;
 use \Mail;
 use Illuminate\Http\Request;
 
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+
 use App\Models\User;
 use App\Models\Task;
 
@@ -64,17 +69,21 @@ class AdminUsersController extends Controller
      */
     public function store()
     {
+        //dd(request()->all());
         $attributes = request()->validate( [
-            'email' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'department_id' => ['required', 'integer', 'max:10'],
             'role' => ['required', 'string', 'max:50'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
             //'firstname' => ['required', 'string', 'max:255'],
             //'lastname' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'max:255'],
         ]);
-        //dd($attributes);
         $attributes['firstname'] = 'nema informacija';
         $attributes['lastname'] = 'nema informacija';
+        //Password
+        $attributes['password'] = Hash::make($attributes['password']);
+
+        //dd($attributes);
         $user = User::create($attributes);
 
         if($user){
