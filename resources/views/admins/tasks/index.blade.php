@@ -46,7 +46,6 @@
                         <!-- JOBS -->
                         @if($tasks->count()>0)
                             @foreach($tasks as $task)
-                                @php  $late=[]; $late=[]; @endphp
                                 <tr>
                                     <th scope="row">{{$task->number}}</th>
                                     <td scope="row">{{$task->brand}}</td>
@@ -54,11 +53,17 @@
                                     <td scope="row">{{$task->sale}}</td>
                                     <td scope="row">{{$task->desc}}</td>
                                     <td scope="row">{{ date('Y-m-d', strtotime($task->date_end)) }} - {{ date('H:i:s', strtotime($task->time_end)) }} <i class="fa fa-calendar" aria-hidden="true"></i></td>
-                                @foreach($task->departments as $department)
-                                    @php  $late[] = $department->pivot->is_late @endphp
-                                    @php  $finish[] = $department->pivot->is_finish @endphp
-                                @endforeach
 
+                                    <!-- late, finish if array -->
+                                    @php  $late=[]; $finish=[]; @endphp
+                                    @foreach($task->departments as $department)
+                                        @if($department->pivot->is_active)
+                                            @php  $late[] = $department->pivot->is_late @endphp
+                                            @php  $finish[] = $department->pivot->is_finish @endphp
+                                        @endif
+                                    @endforeach
+
+                                <!-- proveriti ulogu koda -->
                                 <?php
                                     $endDate = date('Y-m-d', strtotime($task->date_end));
                                     $eDate = date('Y-m-d', strtotime($task->expected_date_end));

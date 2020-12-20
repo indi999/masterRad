@@ -45,19 +45,23 @@ class Task extends Model
         //$this->attributes['date_end'] = strtotime($date_end);
         $this->attributes['date_end'] = Carbon::createFromFormat('m/d/Y', $date_end)->format('Y-m-d');
     }
+
     public function getDateEndAttribute($date_end)
     {
         return Carbon::parse($date_end)->format('m/d/Y');
     }
+
 // expected date mutator
     public function setExpectedDateEndAttribute($expected_date_end)
     {
         //$this->attributes['expected_date_end'] = strtotime($expected_date_end);
         $this->attributes['expected_date_end'] = Carbon::createFromFormat('m/d/Y', $expected_date_end)->format('Y-m-d');
     }
+
     public function getExpectedDateEndAttribute($expected_date_end)
     {
         return Carbon::parse($expected_date_end)->format('m/d/Y');
     }
+
 
 }

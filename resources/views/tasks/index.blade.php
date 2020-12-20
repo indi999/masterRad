@@ -46,7 +46,6 @@
                             <!-- ARHIVA JOBS -->
                             @if($tasks->count()>0)
                                 @foreach($tasks as $task)
-                                    @php  $late=[]; $late=[]; @endphp
                                     <tr>
                                         <th scope="row">{{$task->number}}</th>
                                         <td scope="row">{{$task->brand}}</td>
@@ -54,12 +53,17 @@
                                         <td scope="row">{{$task->sale}}</td>
                                         <td scope="row">{{$task->desc}}</td>
                                         <td scope="row">{{ date('d M,Y', strtotime($task->date_end)) }}- {{ date('H:i:s', strtotime($task->time_end)) }}  <i class="fa fa-calendar" aria-hidden="true"></i></td>
+
+                                        <!-- late, finish if array -->
+                                        @php  $late=[]; $finish=[]; @endphp
                                         @foreach($task->departments as $department)
-                                            @php  $late[] = $department->pivot->is_late @endphp
-                                            @php  $finish[] = $department->pivot->is_finish @endphp
+                                            @if($department->pivot->is_active)
+                                                @php  $late[] = $department->pivot->is_late @endphp
+                                                @php  $finish[] = $department->pivot->is_finish @endphp
+                                            @endif
                                         @endforeach
 
-                                        @if(in_array(true, $late))
+                                        @if(in_array(true, $late) || $task->expected_date_end > date('Y/m/d H:i:s'))
                                             <td scope="row" class="alert-job">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
                                         @elseif(!in_array(false, $finish))
                                             <td scope="row" class="complete">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
