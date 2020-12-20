@@ -40,35 +40,35 @@
                             <div class="form-group row">
                                 <label for="inputJobId" class="col-sm-4 col-form-label">Br. Radnog naloga</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="number" id="inputJobId" required>
+                                    <input type="text" class="form-control" name="number" id="inputJobId" required autocomplete="off">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="inputBrand" class="col-sm-4 col-form-label">Brend</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="brand" id="inputBrand" required>
+                                    <input type="text" class="form-control" name="brand" id="inputBrand" required autocomplete="off">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="inputClient" class="col-sm-4 col-form-label">Klijent</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="client" id="inputClient" required>
+                                    <input type="text" class="form-control" name="client" id="inputClient" required autocomplete="off">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="inputProduct" class="col-sm-4 col-form-label">Prodaja</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="sale" id="inputProduct" required>
+                                    <input type="text" class="form-control" name="sale" id="inputProduct" required autocomplete="off">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label for="inputDesc" class="col-sm-4 col-form-label">Opis posla</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="desc" id="inputDesc" required>
+                                    <input type="text" class="form-control" name="desc" id="inputDesc" required autocomplete="off">
                                 </div>
                             </div>
 

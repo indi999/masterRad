@@ -27,7 +27,9 @@
 
                 <div class="add-btn">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Dodaj korisnika</button>
+                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalMonitor">Dodaj monitor</button>
                 </div>
+
 
                 <div class="table-responsive  table-striped table-bordered">
                     <table class="table">

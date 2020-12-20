@@ -19,6 +19,10 @@ Route::get('/', function () {
 });
 */
 
+Route::get('/monitor', function () {
+    return view('monitor');
+});
+
 
 Auth::routes();
 
