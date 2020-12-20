@@ -18,8 +18,6 @@
         @endforeach
     @endif
 
-
-
  <div class="part-table">
     <div class="container-fluid">
         <div class="row">

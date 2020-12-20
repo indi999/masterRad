@@ -195,8 +195,8 @@ class AdminTaskController extends Controller
         if( Auth::user()->is_admin ) {
             $result = $job->update(['finish' => request()->has('finish')]);
             if ($result) {
-                DepartmentTask::where('task_id',$job->id)->update(['is_late' => false]);
-                DepartmentTask::where('task_id',$job->id)->update(['is_finish' => true]);
+                //DepartmentTask::where('task_id',$job->id)->update(['is_late' => false]);
+                //DepartmentTask::where('task_id',$job->id)->update(['is_finish' => true]);
                 return back()->with('message', 'Task status changed.');
             }
             return back()->with('message', 'The Task status cannot be changed.');
