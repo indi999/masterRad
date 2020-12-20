@@ -69,7 +69,7 @@
                                     $eDate = date('Y-m-d', strtotime($task->expected_date_end));
                                 ?>
 
-                                @if(in_array(true, $late))
+                                    @if(in_array(true, $late) || $task->expected_date_end > $task->date_end)
                                     <td scope="row" class="alert-job">{{ date('Y-m-d', strtotime($task->expected_date_end)) }}
                                 @elseif(!in_array(false, $finish))
                                     <td scope="row" class="complete">{{ date('Y-m-d', strtotime($task->expected_date_end)) }}

@@ -56,6 +56,13 @@ class TaskController extends Controller
         return view('tasks.sectorJobs', compact('tasks'));
     }
 
+    public function monitor()
+    {
+        // if manager
+        $tasks = Task::where('finish', true)->get();
+        return view('tasks.monitor', compact('tasks'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

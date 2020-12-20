@@ -51,6 +51,13 @@ class AdminUsersController extends Controller
         return view('admins.users.managers',compact('users'));
     }
 
+    public function monitor()
+    {
+        $users = User::where('role','=','monitor')->get();
+        return view('admins.users.managers',compact('users'));
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -69,7 +76,7 @@ class AdminUsersController extends Controller
      */
     public function store()
     {
-        //dd(request()->all());
+        //dd(request()->all(),request('firstname'),request('lastname'));
         $attributes = request()->validate( [
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'department_id' => ['required', 'integer', 'max:10'],
@@ -78,8 +85,21 @@ class AdminUsersController extends Controller
             //'firstname' => ['required', 'string', 'max:255'],
             //'lastname' => ['required', 'string', 'max:255'],
         ]);
-        $attributes['firstname'] = 'nema informacija';
-        $attributes['lastname'] = 'nema informacija';
+
+        if(request('firstname')!= null){
+            request()->validate(['firstname' => 'required|string|max:255']);
+            $attributes['firstname'] = request('firstname');
+        }else{
+            $attributes['firstname'] = 'nema informacija';
+        }
+
+        if(request('lastname')!= null){
+            request()->validate(['lastname' => 'required|string|max:255']);
+            $attributes['lastname'] = 'nema informacija';
+        }else{
+            $attributes['lastname'] = request('lastname');
+        }
+
         //Password
         $attributes['password'] = Hash::make($attributes['password']);
 

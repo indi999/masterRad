@@ -62,6 +62,11 @@ class User extends Authenticatable
     {
         return static::where('role','manager')->get();
     }
+
+    public static function monitor()
+    {
+        return static::where('role','monitor')->get();
+    }
 }
 
 

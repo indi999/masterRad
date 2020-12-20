@@ -18,10 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 */
-
+/*
 Route::get('/monitor', function () {
     return view('monitor');
 });
+*/
 
 
 Auth::routes();
@@ -52,6 +53,7 @@ Route::get('/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks')
 
     // all users
     Route::get('/employees', 'App\Http\Controllers\UserController@employees')->name('users.employees');
+    Route::get('/monitor','App\Http\Controllers\UsersController@monitor')->name('users.monitor');
 
     // show sektors
     Route::get('/sektors/{sektor}', 'App\Http\Controllers\DepartmentController@show')->name('sektors.show');
@@ -77,8 +79,9 @@ Route::middleware('is_admin')->prefix('admin')->group(function(){
     ])->except('create');
 
     // Users
-    Route::get('/users/employees','App\Http\Controllers\Admin\AdminUsersController@employees')->name('admin.users.employees');
     Route::get('/users/managers','App\Http\Controllers\Admin\AdminUsersController@managers')->name('admin.users.managers');
+    Route::get('/users/employees','App\Http\Controllers\Admin\AdminUsersController@employees')->name('admin.users.employees');
+    Route::get('/users/monitor','App\Http\Controllers\Admin\AdminUsersController@monitor')->name('admin.users.monitor');
     Route::patch('/users/{user}/status', 'App\Http\Controllers\Admin\AdminUsersController@status')->name('admin.users.status'); // blocked
     Route::resource('/users', 'App\Http\Controllers\Admin\AdminUsersController',[
         'as' => 'admin'

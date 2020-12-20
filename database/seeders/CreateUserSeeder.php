@@ -98,6 +98,17 @@ class CreateUserSeeder extends Seeder
                 'role'=>'user',
 
             ],
+
+            [
+                'department_id'=>0,
+                'email'=>'monitor@fps.rs',
+                'firstname'=>'nema',
+                'lastname'=>'Nema',
+                'is_admin'=>false,
+                'password'=> bcrypt('123456'),
+                'role'=>'monitor',
+
+            ],
         ];
 
         foreach ($user as $key => $value) {
