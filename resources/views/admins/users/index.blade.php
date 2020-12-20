@@ -52,7 +52,13 @@
                                     <th scope="row">{{$user->firstname}}</th>
                                     <th scope="row">{{$user->lastname}}</th>
                                     <td>{{$user->email}}</td>
-                                    <td>{{$user->role != 'manager' ? $user->department->name : "SVI"}} </td>
+                                    <td>
+                                        @if($user->role == 'manager' || $user->role =='monitor')
+                                            {{"SVI"}}
+                                        @else
+                                            {{$user->department->name}}
+                                        @endif
+                                    </td>
                                     <td>{{$user->role}}</td>
                                     <td>{{$user->status ? "Aktivan" : "Neaktivan"}}</td>
                                      <td class="delete-user">
