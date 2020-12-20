@@ -1,4 +1,13 @@
 
+ var swiper = new Swiper('.swiper-container',{
+    autoplay: {
+        delay: 10000,
+        disableOnInteraction: false,
+    },
+});
+
+
+
 $(document).ready(function(){
     let now = Date.now();
     $('[data-toggle="datepicker"]').datepicker({
@@ -45,7 +54,7 @@ $(document).ready(function(){
 
 
     /* screen 1 */
-     $(".screen-1 .dropdown-menu li a").on('click', function(){
+     $(".screen-1 .dropdown-menu li a").on('click', function() {
         $(this).parents(".dropdown").find('.btn').html($(this).text());
         $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
 
@@ -71,7 +80,6 @@ $(document).ready(function(){
 
     
         if(itemValue == 'Isporuka') {
-
             localStorage.setItem("isporuka-sc-1", 'active');
             localStorage.removeItem("dorada-sc-1", 'active');
             localStorage.removeItem("dizajn-sc-1", 'active');
@@ -84,7 +92,6 @@ $(document).ready(function(){
         }
 
         if(itemValue == 'Dizajn/Priprema') {
-
             localStorage.setItem("dizajn-sc-1", 'active');
             localStorage.removeItem("isporuka-sc-1", 'active');
             localStorage.removeItem("dorada-sc-1", 'active');
@@ -98,7 +105,7 @@ $(document).ready(function(){
 
 
         if(itemValue == 'Produkcija') {
-            
+        
             localStorage.setItem("produkcija-sc-1", 'active');
             localStorage.removeItem("isporuka-sc-1", 'active');
             localStorage.removeItem("dorada-sc-1", 'active');
@@ -271,21 +278,14 @@ if (localStorage.getItem("dizajn-sc-1")) {
             $(this).parent().find('.dropdown-menu').toggleClass('show');
         });
 
-    
-        var swiper = new Swiper('.swiper-container',{
-            autoplay: {
-                delay: 10000,
-                disableOnInteraction: false,
-            },
-        });
-
 
         if (window.location.href.indexOf("monitor") != -1) {
-            setInterval(function() {
-                window.location.reload();
-            }, 30000); 
-        
-*/
+        setInterval(function() {
+            window.location.reload();
+        }, 30000); 
+    }
 
 });
+   
+
    
