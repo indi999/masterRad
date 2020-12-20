@@ -69,7 +69,7 @@
                                             <td scope="row" class="complete">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
                                         @else
                                             <td scope="row">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
-                                                @endif
+                                        @endif
                                                 <i class="fa fa-calendar changeDate" aria-hidden="true" id="{{$task->id}}" data-toggle="modal" data-target="#modalDate-{{$task->id}}"></i>
                                             </td>
                                         <!-- expected_date_end modal -->
