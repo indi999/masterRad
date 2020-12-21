@@ -69,13 +69,13 @@
                                     $eDate = date('Y-m-d', strtotime($task->expected_date_end));
                                 ?>
 
-                                    @if(in_array(true, $late) || $task->expected_date_end > $task->date_end)
-                                    <td scope="row" class="alert-job">{{ date('Y-m-d', strtotime($task->expected_date_end)) }}
-                                @elseif(!in_array(false, $finish))
-                                    <td scope="row" class="complete">{{ date('Y-m-d', strtotime($task->expected_date_end)) }}
-                                @else
-                                    <td scope="row">{{ date('Y-m-d', strtotime($task->expected_date_end)) }}
-                                @endif
+                                    @if(!in_array(false, $finish))
+                                        <td scope="row" class="complete">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
+                                    @elseif(in_array(true, $late) || $task->expected_date_end > $task->date_end)
+                                        <td scope="row" class="alert-job">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
+                                    @else
+                                        <td scope="row">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
+                                    @endif
                                          <i class="fa fa-calendar changeDate" aria-hidden="true" id="{{$task->id}}" data-toggle="modal" data-target="#modalDate-{{$task->id}}"></i>
                                     </td>
                                     <!-- expected_date_end modal -->
