@@ -86,17 +86,17 @@ class AdminUsersController extends Controller
             //'lastname' => ['required', 'string', 'max:255'],
         ]);
 
-        if(request('firstname')!= null){
+        if( empty(request('firstname')) ) {
+            $attributes['firstname'] = 'nema informacija';
+        }else{
             request()->validate(['firstname' => 'required|string|max:255']);
             $attributes['firstname'] = request('firstname');
-        }else{
-            $attributes['firstname'] = 'nema informacija';
         }
 
-        if(request('lastname')!= null){
-            request()->validate(['lastname' => 'required|string|max:255']);
+        if( empty(request('lastname')) ) {
             $attributes['lastname'] = 'nema informacija';
         }else{
+            request()->validate(['lastname' => 'required|string|max:255']);
             $attributes['lastname'] = request('lastname');
         }
 
@@ -107,11 +107,10 @@ class AdminUsersController extends Controller
         $user = User::create($attributes);
 
         if($user){
-            $name = $attributes['firstname']." ". $attributes['lastname'];
-            $title = "title for the email";
-            $message = "Message for new user"." ". " with "."  useremail:".$attributes['email']." "." , password: ".$attributes['password'];
+            //$name = $attributes['firstname']." ". $attributes['lastname'];
+           // $title = "title for the email";
+            //$message = "Message for new user"." ". " with "."  useremail:".$attributes['email']." "." , password: ".$attributes['password'];
             //$this->send($name, $attributes['email'], $title, $message);
-
             return back()->with('message','New user is create!');
         }
         return back()->with('message', 'User not created!');

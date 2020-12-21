@@ -63,10 +63,10 @@
                                             @endif
                                         @endforeach
 
-                                        @if(in_array(true, $late) || $task->expected_date_end > $task->date_end)
-                                            <td scope="row" class="alert-job">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
-                                        @elseif(!in_array(false, $finish))
+                                        @if(!in_array(false, $finish))
                                             <td scope="row" class="complete">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
+                                        @elseif(in_array(true, $late) || $task->expected_date_end > $task->date_end)
+                                            <td scope="row" class="alert-job">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
                                         @else
                                             <td scope="row">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
                                         @endif

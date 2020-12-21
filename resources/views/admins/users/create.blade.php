@@ -28,10 +28,9 @@
                             <form action="{{route('admin.users.store')}}" method="post" >
                                 @csrf
 
-
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="firstname" placeholder="Ime" autocomplete="off">
-                                     @error('firstname')
+                                    @error('firstname')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
