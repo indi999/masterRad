@@ -22,7 +22,7 @@
                 </li>
 
                  <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">Lista poslova</a>
+                    <a class="nav-link" href="{{ route('jobs.create') }}">Lista poslova</a>
                 </li>
 
                 <li class="nav-item">

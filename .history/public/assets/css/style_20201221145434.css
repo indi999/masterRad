@@ -420,12 +420,6 @@ main {
     font-size: 21px;
 }
 
-@media (max-width: 576px) {
-    .navbar-nav li a {
-        font-size: 18px;
-    }
-}
-
 .add-btn {
     padding: 30px 0;
 }
@@ -719,8 +713,7 @@ table tbody.hide {
     top: -2px;
 }
 
-.navbar-toggler,
 .navbar-toggler:focus,
 .navbar-toggler:hover {
-    display: none !important;
+    display: nonel;
 }

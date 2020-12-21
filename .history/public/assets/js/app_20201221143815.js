@@ -269,6 +269,13 @@ if (localStorage.getItem("dizajn-sc-1")) {
             nameSector2.text('Dizajn');
         }
 
+
+        $(".screen-1  .dropdown .fa, .screen-2 .dropdown .fa").on('click', function(e) {
+            e.preventDefault();
+            $(this).trigger('click.bs.dropdown');
+        });
+
+
         if (window.location.href.indexOf("monitor") != -1) {
         setInterval(function() {
             window.location.reload();

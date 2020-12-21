@@ -1,4 +1,5 @@
-var swiper = new Swiper('.swiper-container',{
+
+ var swiper = new Swiper('.swiper-container',{
     autoplay: {
         delay: 10000,
         disableOnInteraction: false,
@@ -268,6 +269,13 @@ if (localStorage.getItem("dizajn-sc-1")) {
             production2.addClass('hide');
             nameSector2.text('Dizajn');
         }
+
+
+        $(".screen-1 .dropdown .fa, .screen-2 .dropdown .fa").on('click', function(e) {
+            e.preventDefault();
+            $(this).parent().find('.dropdown-menu').toggleClass('show');
+        });
+
 
         if (window.location.href.indexOf("monitor") != -1) {
         setInterval(function() {

@@ -331,12 +331,6 @@ main {
     right: 25px;
 }
 
-@media (max-width: 1366px) {
-    .logo {
-        top: 35px;
-    }
-}
-
 @media (max-width: 767px) {
     .logo {
         width: 60px;
@@ -418,12 +412,6 @@ main {
 .navbar-nav li a {
     color: #fff;
     font-size: 21px;
-}
-
-@media (max-width: 576px) {
-    .navbar-nav li a {
-        font-size: 18px;
-    }
 }
 
 .add-btn {
@@ -647,7 +635,7 @@ main {
 .monitor-table .dropdown .fa {
     border: 1px solid #fff;
     border-radius: 100%;
-    padding: 6px;
+    padding: 5px;
     width: 33px;
     height: 35px;
     cursor: pointer;
@@ -670,7 +658,7 @@ main {
 .monitor-table .dropdown .btn:visited,
 .monitor-table .dropdown .btn:active {
     outline: none;
-    box-shadow: none !important;
+    box-shadow: none;
     background: none;
     border: none;
 }
@@ -717,10 +705,4 @@ table tbody.hide {
     padding: 6px 12px;
     position: relative;
     top: -2px;
-}
-
-.navbar-toggler,
-.navbar-toggler:focus,
-.navbar-toggler:hover {
-    display: none !important;
 }

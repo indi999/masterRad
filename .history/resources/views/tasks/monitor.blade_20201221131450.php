@@ -17,11 +17,16 @@
                                                 <tr>
                                                     <th scope="col" colspan="12" class="d-header">
                                                         <div class="dropdown">
-                                                            <i class="fa fa-angle-down" aria-hidden="true" data-bs-toggle="dropdown" aria-expanded="false"></i>
                                                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
+                                                                aria-expanded="false"> 
+                                                                <i class="fa fa-angle-down" aria-hidden="true"></i>
                                                             </a>
-
+                                                              <a class="link-logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}
+                                                                </a>
+                                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                                    @csrf
+                                                                </form>
+                                                        
                                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                                 <li><a class="dropdown-item btn-design" href="#">Dizajn/Priprema</a></li>
                                                                 <li><a class="dropdown-item btn-prod" href="#">Produkcija</a></li>
@@ -37,10 +42,9 @@
                                                     <th scope="col">Klijent</th>
                                                     <th scope="col">Prodaja</th>
                                                     <th scope="col">Opis posla</th>
-                                                    <th scope="col">Planirani završetak</th>
+                                                    <th scope="col">Planirani završetak</th>     
                                                 </tr>
                                             </thead>
-
                                             <tbody class="dizajn open">
                                                 <tr>
                                                     <td>123</td>
@@ -93,8 +97,8 @@
                                                     <td>Counter Display</td>
                                                     <td>31.12.2020 </td>
                                                 </tr>
-
-
+                                            
+                                            
                                             </tbody>
 
                                             <tbody class="dorada">
@@ -149,7 +153,7 @@
                                                     <td>31.12.2020 </td>
                                                 </tr>
                                             </tbody>
-                                        </table>
+                                        </table>        
                                     </div>
                                 </div>
                             </div>
@@ -162,10 +166,17 @@
                                                 <tr>
                                                     <th scope="col" colspan="12" class="d-header">
                                                         <div class="dropdown">
-                                                            <i class="fa fa-angle-down" aria-hidden="true" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                            
                                                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                                                                aria-expanded="false">
+                                                                aria-expanded="false"> 
+                                                                <i class="fa fa-angle-down" aria-hidden="true"></i>
                                                             </a>
+                                                             <a class="link-logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}
+                                                                </a>
+                                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                                    @csrf
+                                                                </form>
+                                                        
                                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                                 <li><a class="dropdown-item btn-design" href="#">Dizajn/Priprema</a></li>
                                                                 <li><a class="dropdown-item btn-prod" href="#">Produkcija</a></li>
@@ -181,7 +192,7 @@
                                                     <th scope="col">Klijent</th>
                                                     <th scope="col">Prodaja</th>
                                                     <th scope="col">Opis posla</th>
-                                                    <th scope="col">Planirani završetak</th>
+                                                    <th scope="col">Planirani završetak</th>     
                                                 </tr>
                                             </thead>
                                             <tbody class="dizajn open">
@@ -236,8 +247,8 @@
                                                     <td>Counter Display</td>
                                                     <td>31.12.2020 </td>
                                                 </tr>
-
-
+                                            
+                                            
                                             </tbody>
 
                                             <tbody class="dorada">
@@ -292,14 +303,14 @@
                                                     <td>31.12.2020 </td>
                                                 </tr>
                                             </tbody>
-                                        </table>
+                                        </table>        
                                     </div>
                                 </div>
 
                             </div>
                         </div>
                     </div>
-
+                
                 </div>
             </div>
         </div>

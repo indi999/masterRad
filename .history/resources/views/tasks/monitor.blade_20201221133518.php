@@ -17,10 +17,16 @@
                                                 <tr>
                                                     <th scope="col" colspan="12" class="d-header">
                                                         <div class="dropdown">
-                                                            <i class="fa fa-angle-down" aria-hidden="true" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                            <i class="fa fa-angle-down" aria-hidden="true"></i>
                                                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
                                                                 aria-expanded="false">
+                                                                <i class="fa fa-angle-down" aria-hidden="true"></i>
                                                             </a>
+                                                              <a class="link-logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}
+                                                                </a>
+                                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                                    @csrf
+                                                                </form>
 
                                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                                 <li><a class="dropdown-item btn-design" href="#">Dizajn/Priprema</a></li>
@@ -40,7 +46,6 @@
                                                     <th scope="col">Planirani završetak</th>
                                                 </tr>
                                             </thead>
-
                                             <tbody class="dizajn open">
                                                 <tr>
                                                     <td>123</td>
@@ -162,10 +167,17 @@
                                                 <tr>
                                                     <th scope="col" colspan="12" class="d-header">
                                                         <div class="dropdown">
-                                                            <i class="fa fa-angle-down" aria-hidden="true" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                                            <i class="fa fa-angle-down" aria-hidden="true"></i>
                                                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
                                                                 aria-expanded="false">
+
                                                             </a>
+                                                             <a class="link-logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}
+                                                                </a>
+                                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                                    @csrf
+                                                                </form>
+
                                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                                 <li><a class="dropdown-item btn-design" href="#">Dizajn/Priprema</a></li>
                                                                 <li><a class="dropdown-item btn-prod" href="#">Produkcija</a></li>
