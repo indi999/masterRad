@@ -87,7 +87,8 @@
                 <img src="{{asset('assets/img/white-fps.png')}}" class="logo" alt="">
             </nav>
     @elseif( auth()->user()->role == 'monitor')
-
+            src="{{asset('assets/img/white-fps.png')}}" class="logo" alt="">
+            </nav>
     @elseif( auth()->user()->role == 'customer')
 
     @else

@@ -735,10 +735,6 @@ table tbody.hide {
     top: -3px;
 }
 
-.monitor-table .nav-logout:hover {
-    text-decoration: none;
-}
-
 .monitor-table {
     background: none;
 }

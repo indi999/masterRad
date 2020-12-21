@@ -16,11 +16,9 @@
     <link href="{{ asset('assets/css/datePicker.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/timePicker.css') }}" rel="stylesheet">
 </head>
+<body @if(Request::path() == "monitor") class="black-bg"  @endif>
 
     @if(Auth::guest())
         <body>
     @elseif(auth()->user()->role == 'monitor')
-        <body class="black-bg">
-    @else
-        <body>
-    @endif
+       <body class="black-bg">

@@ -174,11 +174,10 @@
                                                             </a>
 
                                                             <a class="nav-logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}
-                                                            </a>
-                                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                                @csrf
-                                                            </form>
-
+                                                                </a>
+                                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                                    @csrf
+                                                                </form>
                                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                                 <li><a class="dropdown-item btn-design" href="#">Dizajn/Priprema</a></li>
                                                                 <li><a class="dropdown-item btn-prod" href="#">Produkcija</a></li>

@@ -731,12 +731,6 @@ table tbody.hide {
 
 .monitor-table .nav-logout {
     color: #fff;
-    position: relative;
-    top: -3px;
-}
-
-.monitor-table .nav-logout:hover {
-    text-decoration: none;
 }
 
 .monitor-table {

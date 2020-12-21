@@ -29,7 +29,7 @@
                                                                 <li><a class="dropdown-item btn-delivery" href="#">Isporuka</a></li>
                                                             </ul>
 
-                                                             <a class="nav-logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}
+                                                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}
                                                                 </a>
                                                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                                                     @csrf
@@ -172,13 +172,6 @@
                                                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
                                                                 aria-expanded="false">
                                                             </a>
-
-                                                            <a class="nav-logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}
-                                                            </a>
-                                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                                                @csrf
-                                                            </form>
-
                                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                                 <li><a class="dropdown-item btn-design" href="#">Dizajn/Priprema</a></li>
                                                                 <li><a class="dropdown-item btn-prod" href="#">Produkcija</a></li>
