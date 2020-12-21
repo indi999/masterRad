@@ -58,9 +58,12 @@ class TaskController extends Controller
 
     public function monitor()
     {
-        // if manager
-        $tasks = Task::where('finish', true)->get();
-        return view('tasks.monitor', compact('tasks'));
+        if($user->role == 'monitor'){
+            // if monitor
+            $tasks = Task::where('finish', false)->get();
+            dd($tasks);
+            return view('tasks.monitor', compact('tasks'));
+        }
     }
 
 

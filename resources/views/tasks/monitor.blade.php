@@ -10,6 +10,7 @@
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <!-- Screen 1 -->
+
                                 <div class="part-table admin-table monitor-table screen-1">
                                     <div class="table-responsive  table-striped table-bordered">
                                         <table class="table">
@@ -48,118 +49,86 @@
                                             </thead>
 
                                             <tbody class="dizajn open">
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Dizajn</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Dizajn</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Dizajn</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
+                                            @if($tasks->count()>0)
+                                                @foreach($tasks as $task)
+                                                    @foreach($task->departments as $department)
+                                                        @if($department->name == "DIZAJN/PRIPREMA") <!--&& $department->pivot->is_active)-->
+                                                        <tr>
+                                                            <td>{{$task->number}} </td>
+                                                            <td>{{$task->brand}} </td>
+                                                            <td>{{$task->client}} </td>
+                                                            <td>{{$task->sale}} </td>
+                                                            <td>{{$task->desc}} </td>
+                                                            <td>{{ date('d M,Y', strtotime($task->date_end)) }}- {{ date('H:i:s', strtotime($task->time_end)) }} </td>
+                                                        </tr>
+                                                        @endif
+                                                    @endforeach
+                                                @endforeach
+                                            @endif
                                             </tbody>
 
                                             <tbody class="produkcija">
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Produkcija</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Produkcija</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Produkcija</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
-
-
+                                            @if($tasks->count()>0)
+                                                @foreach($tasks as $task)
+                                                    @foreach($task->departments as $department)
+                                                        @if($department->name == "PRODUKCIJA" && $department->pivot->is_active)
+                                                            <tr>
+                                                                <td>{{$task->number}} </td>
+                                                                <td>{{$task->brand}} </td>
+                                                                <td>{{$task->client}} </td>
+                                                                <td>{{$task->sale}} </td>
+                                                                <td>{{$task->desc}} </td>
+                                                                <td>{{ date('d M,Y', strtotime($task->date_end)) }}- {{ date('H:i:s', strtotime($task->time_end)) }}  </td>
+                                                            </tr>
+                                                        @endif
+                                                    @endforeach
+                                                @endforeach
+                                            @endif
                                             </tbody>
 
                                             <tbody class="dorada">
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Dorada</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Dorada</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Dorada</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
+                                            @if($tasks->count()>0)
+                                                @foreach($tasks as $task)
+                                                    @foreach($task->departments as $department)
+                                                        @if($department->name == "DORADA" && $department->pivot->is_active)
+                                                            <tr>
+                                                                <td>{{$task->number}} </td>
+                                                                <td>{{$task->brand}} </td>
+                                                                <td>{{$task->client}} </td>
+                                                                <td>{{$task->sale}} </td>
+                                                                <td>{{$task->desc}} </td>
+                                                                <td>{{ date('d M,Y', strtotime($task->date_end)) }}- {{ date('H:i:s', strtotime($task->time_end)) }} </td>
+                                                            </tr>
+                                                        @endif
+                                                    @endforeach
+                                                @endforeach
+                                            @endif
                                             </tbody>
                                             <tbody class="isporuka">
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Isporuka</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Isporuka</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Isporuka</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
+                                            @if($tasks->count()>0)
+                                                @foreach($tasks as $task)
+                                                    @foreach($task->departments as $department)
+                                                        @if($department->name == "ISPORUKA" && $department->pivot->is_active)
+                                                            <tr>
+                                                                <td>{{$task->number}} </td>
+                                                                <td>{{$task->brand}} </td>
+                                                                <td>{{$task->client}} </td>
+                                                                <td>{{$task->sale}} </td>
+                                                                <td>{{$task->desc}} </td>
+                                                                <td>{{ date('d M,Y', strtotime($task->date_end)) }}- {{ date('H:i:s', strtotime($task->time_end)) }} </td>
+                                                            </tr>
+                                                        @endif
+                                                    @endforeach
+                                                @endforeach
+                                            @endif
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                             <div class="swiper-slide">
+
+
                                 <!-- Screen 2-->
                                 <div class="part-table admin-table monitor-table screen-2">
                                     <div class="table-responsive  table-striped table-bordered">
@@ -198,112 +167,80 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="dizajn open">
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Dizajn</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Dizajn</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Dizajn</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
+
+                                            @if($tasks->count()>0)
+                                                @foreach($tasks as $task)
+                                                    @foreach($task->departments as $department)
+                                                        @if($department->name == "DIZAJN/PRIPREMA" && $department->pivot->is_active)
+                                                            <tr>
+                                                                <td>{{$task->number}} </td>
+                                                                <td>{{$task->brand}} </td>
+                                                                <td>{{$task->client}} </td>
+                                                                <td>{{$task->sale}} </td>
+                                                                <td>{{$task->desc}} </td>
+                                                                <td>{{ date('d M,Y', strtotime($task->date_end)) }}- {{ date('H:i:s', strtotime($task->time_end)) }}  </td>
+                                                            </tr>
+                                                        @endif
+                                                    @endforeach
+
+                                                @endforeach
+                                            @endif
                                             </tbody>
 
                                             <tbody class="produkcija">
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Produkcija</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Produkcija</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Produkcija</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
-
-
+                                                @if($tasks->count()>0)
+                                                    @foreach($tasks as $task)
+                                                        @foreach($task->departments as $department)
+                                                            @if($department->name == "PRODUKCIJA" && $department->pivot->is_active)
+                                                                <tr>
+                                                                    <td>{{$task->number}} </td>
+                                                                    <td>{{$task->brand}} </td>
+                                                                    <td>{{$task->client}} </td>
+                                                                    <td>{{$task->sale}} </td>
+                                                                    <td>{{$task->desc}} </td>
+                                                                    <td>{{ date('d M,Y', strtotime($task->date_end)) }}- {{ date('H:i:s', strtotime($task->time_end)) }}  </td>
+                                                                </tr>
+                                                            @endif
+                                                        @endforeach
+                                                    @endforeach
+                                                @endif
                                             </tbody>
 
                                             <tbody class="dorada">
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Dorada</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Dorada</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Dorada</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
+                                                @if($tasks->count()>0)
+                                                    @foreach($tasks as $task)
+                                                        @foreach($task->departments as $department)
+                                                            @if($department->name == "DORADA" && $department->pivot->is_active)
+                                                                <tr>
+                                                                    <td>{{$task->number}} </td>
+                                                                    <td>{{$task->brand}} </td>
+                                                                    <td>{{$task->client}} </td>
+                                                                    <td>{{$task->sale}} </td>
+                                                                    <td>{{$task->desc}} </td>
+                                                                    <td>{{ date('d M,Y', strtotime($task->date_end)) }}- {{ date('H:i:s', strtotime($task->time_end)) }}  </td>
+                                                                </tr>
+                                                            @endif
+                                                        @endforeach
+                                                    @endforeach
+                                                @endif
                                             </tbody>
                                             <tbody class="isporuka">
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Isporuka</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Isporuka</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>123</td>
-                                                    <td>Isporuka</td>
-                                                    <td>joe@gmail.com</td>
-                                                    <td>Marjan S.</td>
-                                                    <td>Counter Display</td>
-                                                    <td>31.12.2020 </td>
-                                                </tr>
+                                                @if($tasks->count()>0)
+                                                    @foreach($tasks as $task)
+                                                        @foreach($task->departments as $department)
+                                                            @if($department->name == "ISPORUKA" && $department->pivot->is_active)
+                                                                <tr>
+                                                                    <td>{{$task->number}} </td>
+                                                                    <td>{{$task->brand}} </td>
+                                                                    <td>{{$task->client}} </td>
+                                                                    <td>{{$task->sale}} </td>
+                                                                    <td>{{$task->desc}} </td>
+                                                                    <td>{{ date('d M,Y', strtotime($task->date_end)) }}- {{ date('H:i:s', strtotime($task->time_end)) }}  </td>
+                                                                </tr>
+                                                            @endif
+                                                        @endforeach
+                                                    @endforeach
+                                                @endif
                                             </tbody>
                                         </table>
                                     </div>

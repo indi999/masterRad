@@ -53,7 +53,7 @@ class HomeController extends Controller
         }
         if($user->role == 'monitor'){
             // if manager
-            $tasks = Task::where('finish', true)->get();
+            $tasks = Task::where('finish', false)->get();
             return view('tasks.monitor', compact('tasks'));
         }
       // if employees
