@@ -25,7 +25,7 @@ class Task extends Model
         'date_end',
         'time_end',
         'expected_date_end',
-        //'expected_time_end',
+        'expected_time_end',
         'finish',
     ];
 
@@ -42,10 +42,14 @@ class Task extends Model
 // date mutator
     public function setDateEndAttribute($date_end)
     {
-        //$this->attributes['date_end'] = strtotime($date_end);
-        $this->attributes['date_end'] = Carbon::createFromFormat('m/d/Y', $date_end)->format('Y-m-d');
+        $this->attributes['date_end'] = Carbon::createFromFormat('m/d/Y', $date_end)->format('Y-m-d\TH:i');
     }
-
+    /*
+    public function setTimeEndAttribute($time_end)
+    {
+        $this->attributes['time_end'] = Carbon::parse($time_end)->format('H:i');
+    }
+    */
     public function getDateEndAttribute($date_end)
     {
         return Carbon::parse($date_end)->format('m/d/Y');
@@ -54,10 +58,14 @@ class Task extends Model
 // expected date mutator
     public function setExpectedDateEndAttribute($expected_date_end)
     {
-        //$this->attributes['expected_date_end'] = strtotime($expected_date_end);
-        $this->attributes['expected_date_end'] = Carbon::createFromFormat('m/d/Y', $expected_date_end)->format('Y-m-d');
+        $this->attributes['expected_date_end'] = Carbon::createFromFormat('m/d/Y', $expected_date_end)->format('Y-m-d\TH:i');
     }
-
+    /*
+    public function setExpectedTimeEndAttribute($expected_time_end)
+    {
+        $this->attributes['expected_time_end'] = Carbon::parse($expected_time_end)->format('H:i');
+    }
+    */
     public function getExpectedDateEndAttribute($expected_date_end)
     {
         return Carbon::parse($expected_date_end)->format('m/d/Y');

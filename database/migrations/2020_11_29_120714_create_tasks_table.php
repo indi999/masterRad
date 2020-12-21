@@ -24,10 +24,9 @@ class CreateTasksTable extends Migration
 
             // Date end
             $table->date('date_end');
-            //$table->string('time_end')->default(new \DateTime());;
+            //$table->date('time_end');
             $table->date('expected_date_end');
-            //$table->string('expected_time_end')->default(new \DateTime());;
-
+            //$table->date('expected_time_end');
             $table->boolean('finish')->default(false);
 
             $table->timestamps();

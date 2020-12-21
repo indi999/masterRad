@@ -68,9 +68,7 @@ class AdminTaskController extends Controller
      */
     public function store()
     {
-        //dd(request()->all());
-        if( Auth::user()->is_admin )  {
-
+        if( Auth::user()->is_admin) {
             $attributes = request()->validate( [
                 'number' => ['required', 'integer', 'unique:tasks'],
                 'user_id' => ['required', 'integer', 'max:10'],
@@ -78,13 +76,14 @@ class AdminTaskController extends Controller
                 'client' => ['required', 'string', 'max:50'],
                 'sale' => ['required', 'string', 'max:255'],
                 'desc' => ['required', 'string', 'max:1000'],
-                'date_end' => ['required', 'string', 'max:1000'],
-                //'time_end' => ['required', 'string', 'max:1000'],
+                'date_end' => ['required', 'string', 'max:50'],
+                //'time_end' => ['required', 'string', 'max:50'],
             ]);
+            //$attributes['date_end'] =  $attributes['date_end']." ". $attributes['time_end'];
             $attributes['expected_date_end'] =  $attributes['date_end'];
-            //$attributes['expected_time_end'] =  $attributes['date_end'];
+            //$attributes['expected_time_end'] =  $attributes['time_end'];
 
-            //dd($attributes,request()->sectorItems);
+            //dd($attributes);
             $task = Task::create($attributes);
             DepartmentTask::addDepartments(request()->sectorItems,$task->id);
 
@@ -96,7 +95,6 @@ class AdminTaskController extends Controller
                 // $title = "Novi Task br ". $attributes['number'];
                 // $message = "Message for new user"." ". " with ";
                 // $this->send($name, $attributes['email'], $title, $message);
-
                 return redirect()->route('admin.dashboard')->with('message', 'Novi Posao je kreiran!');
             }
             return back()->with('message', 'Novi posao nije moguce kreirati');
