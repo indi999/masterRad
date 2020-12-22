@@ -1,9 +1,18 @@
-var swiper = new Swiper('.swiper-container',{
+var swiper = new Swiper('.slider-screen-1',{
     autoplay: {
         delay: 10000,
         disableOnInteraction: false,
     },
 });
+
+
+var swiper = new Swiper('.slider-screen-2',{
+    autoplay: {
+        delay: 10000,
+        disableOnInteraction: false,
+    },
+});
+
 
 $(document).ready(function(){
     let now = Date.now();
@@ -57,11 +66,15 @@ $(document).ready(function(){
 
         let itemValue = $(this).parents(".dropdown").find('.btn').text();
 
-        let itemNameI = $(this).parent().parent().parent().parent().parent().parent().parent().find('tbody.isporuka');
-        let itemNameDP = $(this).parent().parent().parent().parent().parent().parent().parent().find('tbody.dizajn');
+        /*let itemNameI = $(this).parent().parent().parent().parent().parent().parent().parent().find('tbody.isporuka');
         let itemNameAdd = $(this).parent().parent().parent().parent().parent().parent().parent().find('tbody.dorada');
-        let itemNameP = $(this).parent().parent().parent().parent().parent().parent().parent().find('tbody.produkcija');
+        let itemNameP = $(this).parent().parent().parent().parent().parent().parent().parent().find('tbody.produkcija');*/
 
+
+        let itemNameDP = $(this).parent().parent().parent().parent().parent().find('.part-table .swiper-slide .dizajn');
+        let itemNameI = $(this).parent().parent().parent().parent().parent().find('.part-table .swiper-slide .isporuka');
+        let itemNameAdd = $(this).parent().parent().parent().parent().parent().find('.part-table .swiper-slide .dorada');
+        let itemNameP = $(this).parent().parent().parent().parent().parent().find('.part-table .swiper-slide .produkcija');
 
         if(itemValue == 'Dorada') {
             localStorage.setItem("dorada-sc-1", 'active');
@@ -70,7 +83,7 @@ $(document).ready(function(){
             localStorage.removeItem("produkcija-sc-1", 'active');
 
             itemNameAdd.removeClass('hide').addClass('open');
-            itemNameDP.addClass('hide');
+            itemNameDP.removeClass('open').addClass('hide');
             itemNameP.addClass('hide');
             itemNameI.addClass('hide');
         }
@@ -83,7 +96,7 @@ $(document).ready(function(){
             localStorage.removeItem("produkcija-sc-1", 'active');
 
              itemNameI.removeClass('hide').addClass('open');
-             itemNameDP.addClass('hide');
+             itemNameDP.removeClass('open').addClass('hide');
              itemNameP.addClass('hide');
              itemNameAdd.addClass('hide');
         }
@@ -102,7 +115,6 @@ $(document).ready(function(){
 
 
         if(itemValue == 'Produkcija') {
-
             localStorage.setItem("produkcija-sc-1", 'active');
             localStorage.removeItem("isporuka-sc-1", 'active');
             localStorage.removeItem("dorada-sc-1", 'active');
@@ -110,7 +122,7 @@ $(document).ready(function(){
 
              itemNameP.removeClass('hide').addClass('open');
              itemNameI.addClass('hide');
-             itemNameDP.addClass('hide');
+             itemNameDP.removeClass('open').addClass('hide');
              itemNameAdd.addClass('hide');
         }
 
@@ -166,10 +178,17 @@ if (localStorage.getItem("dizajn-sc-1")) {
 
         let itemValue = $(this).parents(".dropdown").find('.btn').text();
 
-        let itemNameI = $(this).parent().parent().parent().parent().parent().parent().parent().find('tbody.isporuka');
+        /*let itemNameI = $(this).parent().parent().parent().parent().parent().parent().parent().find('tbody.isporuka');
         let itemNameDP = $(this).parent().parent().parent().parent().parent().parent().parent().find('tbody.dizajn');
         let itemNameAdd = $(this).parent().parent().parent().parent().parent().parent().parent().find('tbody.dorada');
-        let itemNameP = $(this).parent().parent().parent().parent().parent().parent().parent().find('tbody.produkcija');
+        let itemNameP = $(this).parent().parent().parent().parent().parent().parent().parent().find('tbody.produkcija');*/
+
+
+
+        let itemNameDP = $(this).parent().parent().parent().parent().parent().find('.part-table .swiper-slide .dizajn');
+        let itemNameI = $(this).parent().parent().parent().parent().parent().find('.part-table .swiper-slide .isporuka');
+        let itemNameAdd = $(this).parent().parent().parent().parent().parent().find('.part-table .swiper-slide .dorada');
+        let itemNameP = $(this).parent().parent().parent().parent().parent().find('.part-table .swiper-slide .produkcija');
 
 
         if(itemValue == 'Dorada') {
@@ -179,7 +198,7 @@ if (localStorage.getItem("dizajn-sc-1")) {
             localStorage.removeItem("produkcija-sc-2", 'active');
 
             itemNameAdd.removeClass('hide').addClass('open');
-            itemNameDP.addClass('hide');
+            itemNameDP.removeClass('open').addClass('hide');
             itemNameP.addClass('hide');
             itemNameI.addClass('hide');
         }
@@ -193,7 +212,7 @@ if (localStorage.getItem("dizajn-sc-1")) {
             localStorage.removeItem("produkcija-sc-2", 'active');
 
              itemNameI.removeClass('hide').addClass('open');
-             itemNameDP.addClass('hide');
+             itemNameDP.removeClass('open').addClass('hide');
              itemNameP.addClass('hide');
              itemNameAdd.addClass('hide');
         }
@@ -221,17 +240,17 @@ if (localStorage.getItem("dizajn-sc-1")) {
 
              itemNameP.removeClass('hide').addClass('open');
              itemNameI.addClass('hide');
-             itemNameDP.addClass('hide');
+             itemNameDP.removeClass('open').addClass('hide');
              itemNameAdd.addClass('hide');
         }
 
     });
 
         /* check local storage */
-        let delivery2 = $('.screen-2 table tbody.isporuka');
-        let design2 = $('.screen-2 table tbody.dizajn');
-        let addition2 = $('.screen-2 table tbody.dorada');
-        let production2 = $('.screen-2 table tbody.produkcija');
+        let delivery2 = $('.screen-2 .part-table .isporuka');
+        let design2 = $('.screen-2 .part-table .dizajn');
+        let addition2 = $('.screen-2 .part-table .dorada');
+        let production2 = $('.screen-2 .part-table .produkcija');
         let nameSector2 = $('.screen-2 .dropdown .btn');
 
 
