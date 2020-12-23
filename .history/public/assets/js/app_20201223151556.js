@@ -1,80 +1,17 @@
-var swiper = new Swiper('#slider-screen-1',{
-    loop:true,
+
+var swiper = new Swiper('.slider-screen-1',{
     autoplay: {
-        
-        disableOnInteraction: false
+        delay: 10000,
+        disableOnInteraction: false,
     },
-    allowTouchMove:false,  
 });
 
 
-var swiper2 = new Swiper('#slider-screen-2',{
-    loop:true,
+var swiper = new Swiper('.slider-screen-2',{
     autoplay: {
-        
-        disableOnInteraction: false
+        delay: 10000,
+        disableOnInteraction: false,
     },
-    allowTouchMove:false
-});
-
-
-var swiper2 = new Swiper('#slider-screen-3',{
-    loop:true,
-    autoplay: {
-        
-        disableOnInteraction: false
-    },
-    allowTouchMove:false
-});
-
-
-var swiper2 = new Swiper('#slider-screen-4',{
-    loop:true,
-    autoplay: {
-        
-        disableOnInteraction: false
-    },
-    allowTouchMove:false
-});
-
-
-var swiper2 = new Swiper('#slider-screen-5',{
-    loop:true,
-    autoplay: {
-        
-        disableOnInteraction: false
-    },
-    allowTouchMove:false
-});
-
-
-var swiper2 = new Swiper('#slider-screen-6',{
-    loop:true,
-    autoplay: {
-        
-        disableOnInteraction: false
-    },
-    allowTouchMove:false
-});
-
-
-var swiper2 = new Swiper('#slider-screen-7',{
-    loop:true,
-    autoplay: {
-        
-        disableOnInteraction: false
-    },
-    allowTouchMove:false
-});
-
-
-var swiper2 = new Swiper('#slider-screen-8',{
-    loop:true,
-    autoplay: {
-        
-        disableOnInteraction: false
-    },
-    allowTouchMove:false
 });
 
 
@@ -128,7 +65,6 @@ $(document).ready(function(){
         $(this).parents(".dropdown").find('.btn').html($(this).text());
         $(this).parents(".dropdown").find('.btn').val($(this).data('value'));
 
-    
         let itemValue = $(this).parents(".dropdown").find('.btn').text();
 
         /*let itemNameI = $(this).parent().parent().parent().parent().parent().parent().parent().find('tbody.isporuka');
@@ -136,16 +72,10 @@ $(document).ready(function(){
         let itemNameP = $(this).parent().parent().parent().parent().parent().parent().parent().find('tbody.produkcija');*/
 
 
-       /* let itemNameDP = $(this).parent().parent().parent().parent().parent().find('.screen-1 .screen-dizajn');
-        let itemNameI = $(this).parent().parent().parent().parent().parent().find('.screen-1 .screen-isporuka');
-        let itemNameAdd = $(this).parent().parent().parent().parent().parent().find('.screen-1 .screen-dorada');
-        let itemNameP = $(this).parent().parent().parent().parent().parent().find('.screen-1 .screen-produkcija');
-*/
-        let itemNameDP = $('.slider-screen-1.screen-dizajn');
-        let itemNameI = $('.slider-screen-1.screen-isporuka');
-        let itemNameAdd = $('.slider-screen-1.screen-dorada');
-        let itemNameP = $('.slider-screen-1.screen-produkcija');
-
+        let itemNameDP = $(this).parent().parent().parent().parent().parent().find('.part-table .swiper-slide .dizajn');
+        let itemNameI = $(this).parent().parent().parent().parent().parent().find('.part-table .swiper-slide .isporuka');
+        let itemNameAdd = $(this).parent().parent().parent().parent().parent().find('.part-table .swiper-slide .dorada');
+        let itemNameP = $(this).parent().parent().parent().parent().parent().find('.part-table .swiper-slide .produkcija');
 
         if(itemValue == 'Dorada') {
             localStorage.setItem("dorada-sc-1", 'active');
@@ -201,10 +131,10 @@ $(document).ready(function(){
 
 
     /* check local storage screen 1*/
-    let delivery = $('.screen-1 .part-table .isporuka, .screen-1 .screen-isporuka');
-    let design = $('.screen-1 .part-table .dizajn, .screen-1 .screen-dizajn');
-    let addition = $('.screen-1 .part-table .dorada, .screen-1 .screen-dorada');
-    let production = $('.screen-1 .part-table .produkcija, .screen-1 .screen-produkcija');
+    let delivery = $('.screen-1 .part-table .isporuka');
+    let design = $('.screen-1 .part-table .dizajn');
+    let addition = $('.screen-1 .part-table .dorada');
+    let production = $('.screen-1 .part-table .produkcija');
     let nameSector = $('.screen-1 .dropdown .btn');
 
 
@@ -256,20 +186,10 @@ if (localStorage.getItem("dizajn-sc-1")) {
 
 
 
-        /*let itemNameDP = $(this).parent().parent().parent().parent().parent().find('.part-table .swiper-slide .dizajn');
+        let itemNameDP = $(this).parent().parent().parent().parent().parent().find('.part-table .swiper-slide .dizajn');
         let itemNameI = $(this).parent().parent().parent().parent().parent().find('.part-table .swiper-slide .isporuka');
         let itemNameAdd = $(this).parent().parent().parent().parent().parent().find('.part-table .swiper-slide .dorada');
-        let itemNameP = $(this).parent().parent().parent().parent().parent().find('.part-table .swiper-slide .produkcija');*/
-
-
-        let itemNameDP = $('.slider-screen-2.screen-dizajn');
-        let itemNameI = $('.slider-screen-2.screen-isporuka');
-        let itemNameAdd = $('.slider-screen-2.screen-dorada');
-        let itemNameP = $('.slider-screen-2.screen-produkcija');
-
-
-
-
+        let itemNameP = $(this).parent().parent().parent().parent().parent().find('.part-table .swiper-slide .produkcija');
 
 
         if(itemValue == 'Dorada') {
@@ -328,11 +248,12 @@ if (localStorage.getItem("dizajn-sc-1")) {
     });
 
         /* check local storage */
-        let delivery2 = $('.screen-2 .screen-isporuka');
-        let design2 = $('.screen-2 .screen-dizajn');
-        let addition2 = $('.screen-2 .screen-dorada');
-        let production2 = $('.screen-2 .screen-produkcija');
+        let delivery2 = $('.screen-2 .part-table .isporuka');
+        let design2 = $('.screen-2 .part-table .dizajn');
+        let addition2 = $('.screen-2 .part-table .dorada');
+        let production2 = $('.screen-2 .part-table .produkcija');
         let nameSector2 = $('.screen-2 .dropdown .btn');
+
 
 
         if (localStorage.getItem("dorada-sc-2")) {
@@ -368,12 +289,15 @@ if (localStorage.getItem("dizajn-sc-1")) {
             nameSector2.text('Dizajn');
         }
 
-        
+        if (window.location.href.indexOf("monitor") != -1) {
+        setInterval(function() {
+            window.location.reload();
+        }, 30000);
+    }
 
-    /*$('.swiper-container .swiper-slide:last-child').each(function(){
-        $(this).last().attr('data-swiper-autoplay', 300)
-    
-    });*/
+
+
+
 });
 
 

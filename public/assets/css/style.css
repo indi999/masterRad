@@ -686,7 +686,9 @@ table tbody.isporuka,
 .screen-2 .part-table .isporuka,
 .screen-2 .part-table .produkcija,
 .screen-2 .part-table .dorada,
-.screen-2 .part-table .dizajn  {
+.screen-2 .part-table .dizajn,
+.screen-1 .screen-dizajn, .screen-1 .screen-produkcija , .screen-1 .screen-dorada , .screen-1 .screen-isporuka,
+.screen-2 .screen-dizajn, .screen-2 .screen-produkcija , .screen-2 .screen-dorada , .screen-2 .screen-isporuka   {
     display: none;
 }
 
@@ -759,9 +761,9 @@ table tbody.hide, .screen-1 .part-table .hide, .screen-2 .part-table .hide {
 
 /* monitor ver2 */
 .d-grid {
-  display:-ms-grid;
-  display:grid;
-   grid-template-columns: 1fr 1fr 1fr 1fr;
+    display:-ms-grid;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .monitor-table .d-header {
@@ -794,4 +796,8 @@ table tbody.hide, .screen-1 .part-table .hide, .screen-2 .part-table .hide {
 
 .screen-2 {
     margin-top:100px;
+}
+
+.swiper-container.open {
+    display:block;
 }
