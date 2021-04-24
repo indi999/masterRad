@@ -59,7 +59,7 @@ class HomeController extends Controller
         if($user->role == 'prodavac'){
             // if manager
             $tasks = Task::where('finish', false)->where('saller_id','=', $user->id)->get();
-            return view('tasks.sellers', compact('tasks'));
+            return view('home', compact('tasks'));
         }
 
       // if employees

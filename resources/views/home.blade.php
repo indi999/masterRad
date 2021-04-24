@@ -1,4 +1,4 @@
-@if(auth()->user()->role == 'manager')
+@if(auth()->user()->role == 'manager' || auth()->user()->role == 'prodavac')
    @include('tasks.index')
 @elseif(auth()->user()->role == 'user')
     @include('tasks.sectorJobs')

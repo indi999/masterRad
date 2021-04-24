@@ -28,7 +28,7 @@
                             <tr>
                                 <th scope="col">Broj naloga</th>
                                 <th scope="col">Brend</th>
-                                <th scope="col">Klijent</th>
+                                <th scope="col">Klijent2</th>
                                 <th scope="col">Prodaja</th>
                                 <th scope="col">Opis posla</th>
                                 <th scope="col">Planirani završetak</th>
@@ -37,13 +37,15 @@
                                 <th class="poduction" scope="col">Produkcija</th>
                                 <th class="add" scope="col">Dorada</th>
                                 <th class="delivery" scope="col">Isporuka</th>
-                                <th style="color#0d1e31" scope="col"></th>
+                                @if(auth()->user()->role == 'manager')
+                                    <th style="color#0d1e31" scope="col"></th>
+                                @endif
                                 <th class="" scope="col">Status projekta</th>
                             </tr>
                         </thead>
 
                          <tbody>
-                            <!-- ARHIVA JOBS -->
+                            <!-- JOBS -->
                             @if($tasks->count()>0)
                                 @foreach($tasks as $task)
                                     <tr>
@@ -137,6 +139,9 @@
                                                     <td scope="row" class="inactive"></td>
                                                 @endswitch
                                         @endforeach
+
+                                        @if(auth()->user()->role == 'manager')
+                                                {{auth()->user()->role}} ,  {{auth()->user()->id}}
                                             <td class="delete-user">
                                                 <button type="submit" class="btn del-job" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
                                                     <i class="fa fa-trash"></i>
@@ -171,7 +176,10 @@
                                                     </div>
                                                 </div>
                                             </td>
+                                        @endif
+
                                         <td class="complete-task">
+                                            @if(auth()->user()->role == 'manager')
                                             <form method="POST" action="/jobs/{{$task->id}}/finishJob">
                                                 @method('PATCH')
                                                 @csrf
@@ -184,6 +192,11 @@
                                                     </label>
                                                 </div>
                                             </form>
+                                            @else
+                                                @if($task->finish == 'checked')
+                                                  Završeno
+                                                @endif
+                                            @endif
                                         </td>
 
                                     </tr>
