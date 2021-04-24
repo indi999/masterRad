@@ -59,14 +59,13 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="inputProduct" class="col-sm-4 col-form-label">Prodaja</label>
+                                    <label for="inputJobId" class="col-sm-4 col-form-label">Prodaja</label>
                                     <div class="col-sm-8">
-                                    <!--<input type="text" class="form-control" name="sale" id="inputProduct" autocomplete="off" required>-->
-                                    <select name="" id="" required>
-                                        <option value="">Prodavac 1</option>
-                                        <option value="">Prodavac 2</option>
-                                        <option value="">Prodavac 3</option>
-                                    </select>
+                                        <select class="custom-select custom-select-lg mb-3 form-control" name="saller_id">
+                                        @foreach($sellers as $seller) <!--$users-->
+                                            <option value="{{$seller->id}}">{{$seller->firstname}} {{$seller->lastname}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
 

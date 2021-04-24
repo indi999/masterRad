@@ -50,7 +50,9 @@
                                     <th scope="row">{{$task->number}}</th>
                                     <td scope="row">{{$task->brand}}</td>
                                     <td scope="row">{{$task->client}}</td>
-                                    <td scope="row">{{$task->sale}}</td>
+                                    <td scope="row">
+                                        {{$task->saller->firstname}} {{$task->saller->lastname}}
+                                    </td>
                                     <td scope="row">{{$task->desc}}</td>
                                     <td scope="row">{{ date('Y-m-d', strtotime($task->date_end)) }} - {{ date('H:i:s', strtotime($task->time_end)) }} <i class="fa fa-calendar" aria-hidden="true"></i></td>
 

@@ -54,7 +54,7 @@
                                     <th scope="row">{{$user->lastname}}</th>
                                     <td>{{$user->email}}</td>
                                     <td>
-                                        @if($user->role == 'manager' || $user->role =='monitor')
+                                        @if($user->role == 'manager' || $user->role =='monitor' || $user->role =='prodavac')
                                             {{"SVI"}}
                                         @else
                                             {{$user->department->name}}

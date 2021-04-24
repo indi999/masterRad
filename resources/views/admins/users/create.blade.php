@@ -13,6 +13,7 @@
     @endforeach
 @endif
 
+<!-- modal Korisnik -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -58,7 +59,7 @@
 
                                 <div class="form-group">
                                     <div class="form-group ">
-                                        <input type="text" class="form-control"  name="password" placeholder="Šifra" class="form-control @error('password') is-invalid @enderror" required autocomplete="new-password">
+                                        <input type="password" class="form-control"  name="password" placeholder="Šifra" class="form-control @error('password') is-invalid @enderror" required autocomplete="new-password">
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">
                                              <strong>{{ $message }}</strong>
@@ -67,7 +68,7 @@
                                     </div>
 
                                     <div class="form-group ">
-                                        <input id="password-confirm" type="text" class="form-control"  name="password_confirmation" placeholder="Potvrda Šifre" name="password_confirmation" required autocomplete="new-password">
+                                        <input id="password-confirm" type="password" class="form-control"  name="password_confirmation" placeholder="Potvrda Šifre" name="password_confirmation" required autocomplete="new-password">
                                     </div>
                                 </div>
 
@@ -108,7 +109,7 @@
             </div>
         </div>
 
-    <!-- modal monitor -->
+<!-- modal monitor -->
     <div class="modal fade" id="exampleModalMonitor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -135,7 +136,7 @@
 
                                  <div class="form-group">
                                      <div class="form-group ">
-                                         <input type="text" class="form-control"  name="password" placeholder="Šifra" class="form-control @error('password') is-invalid @enderror" required autocomplete="new-password">
+                                         <input type="password" class="form-control"  name="password" placeholder="Šifra" class="form-control @error('password') is-invalid @enderror" required autocomplete="new-password">
                                          @error('password')
                                          <span class="invalid-feedback" role="alert">
                                              <strong>{{ $message }}</strong>
@@ -144,7 +145,7 @@
                                      </div>
 
                                      <div class="form-group ">
-                                         <input id="password-confirm" type="text" class="form-control"  name="password_confirmation" placeholder="Potvrda Šifre" name="password_confirmation" required autocomplete="new-password">
+                                         <input id="password-confirm" type="password" class="form-control"  name="password_confirmation" placeholder="Potvrda Šifre" name="password_confirmation" required autocomplete="new-password">
                                      </div>
                                  </div>
 
@@ -179,6 +180,7 @@
         </div>
     </div>
 
+<!-- Modal sellers -->
     <div class="modal fade" id="exampleModalProdavac" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -193,7 +195,6 @@
                             </div>
                              <form action="{{route('admin.users.store')}}" method="post" >
                                  @csrf
-
 
                                   <div class="form-group">
                                     <input type="text" class="form-control" name="firstname" placeholder="Ime" autocomplete="off">
@@ -224,7 +225,7 @@
 
                                  <div class="form-group">
                                      <div class="form-group ">
-                                         <input type="text" class="form-control"  name="password" placeholder="Šifra" class="form-control @error('password') is-invalid @enderror" required autocomplete="new-password">
+                                         <input type="password" class="form-control"  name="password" placeholder="Šifra" class="form-control @error('password') is-invalid @enderror" required autocomplete="new-password">
                                          @error('password')
                                          <span class="invalid-feedback" role="alert">
                                              <strong>{{ $message }}</strong>
@@ -233,7 +234,7 @@
                                      </div>
 
                                      <div class="form-group ">
-                                         <input id="password-confirm" type="text" class="form-control"  name="password_confirmation" placeholder="Potvrda Šifre" name="password_confirmation" required autocomplete="new-password">
+                                         <input id="password-confirm" type="password" class="form-control"  name="password_confirmation" placeholder="Potvrda Šifre" name="password_confirmation" required autocomplete="new-password">
                                      </div>
                                  </div>
 
@@ -250,7 +251,7 @@
 
                                  <div class="form-group">
                                      <select class="custom-select custom-select-lg mb-3" name="role">
-                                         <option value="monitor" selected>Prodavac</option>
+                                         <option value="prodavac" selected>Prodavac</option>
                                      </select>
                                      @error('role')
                                      <span class="invalid-feedback" role="alert">

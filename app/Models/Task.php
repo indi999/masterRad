@@ -20,7 +20,7 @@ class Task extends Model
         'user_id', // manager
         'brand',
         'client',
-        'sale',
+        'saller_id', // saller
         'desc',
         'date_end',
         'time_end',
@@ -33,12 +33,16 @@ class Task extends Model
     {
         return $this->belongsToMany(Department::class)->withPivot('id','is_active','is_late','is_finish','updated_at'); //, 'task_departments', 'department_id','task_id' updated_at , updated_at}}
     }
-
-
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
+    public function saller()
+    {
+        return $this->belongsTo(User::class, 'saller_id'); // select user use saller_id
+    }
+
+
 // date mutator
     public function setDateEndAttribute($date_end)
     {

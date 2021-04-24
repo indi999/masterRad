@@ -32,15 +32,18 @@ class AppServiceProvider extends ServiceProvider
         });
         view()->composer('admins.tasks.create', function($view){
             $view->with('departments' , Department::sectors())
-                 ->with('users' , User::managers());
+                 ->with('managers' , User::managers())
+                 ->with('sellers' , User::sellers());
         });
 
 
 
         // Manager panel
         view()->composer('tasks.create', function($view){
-            $view->with('departments' , Department::sectors() );
+            $view->with('departments' , Department::sectors())
+                 ->with('sellers' , User::sellers());
         });
+
 
 
     }

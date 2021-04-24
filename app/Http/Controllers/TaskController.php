@@ -34,7 +34,11 @@ class TaskController extends Controller
           // if manager
           $tasks = Task::where('finish', false)->where('user_id','=', $user->id)->get();
           return view('tasks.index', compact('tasks'));
-      }
+
+        }elseif($user->role == 'prodavac'){  // if sallers
+            $tasks = Task::where('finish', false)->where('user_id','=', $user->id)->get();
+            return view('tasks.index', compact('tasks'));
+        }
       // if employees
       //$tasks = Task::where('finish', false)->departments()->where('name','=',$user->department->name)->get();
       $tasks = Task::where('finish', false)->get();
@@ -47,6 +51,10 @@ class TaskController extends Controller
         $user = Auth::user();
         if($user->role == 'manager')  {
             // if manager
+            $tasks = Task::where('finish', true)->where('user_id','=', $user->id)->get();
+            return view('tasks.index', compact('tasks'));
+
+        }elseif($user->role == 'prodavac'){  // if sallers
             $tasks = Task::where('finish', true)->where('user_id','=', $user->id)->get();
             return view('tasks.index', compact('tasks'));
         }
@@ -90,9 +98,9 @@ class TaskController extends Controller
                 'number' => ['required', 'integer', 'unique:tasks'],
                 'brand' => ['required', 'string', 'max:50'],
                 'client' => ['required', 'string', 'max:50'],
-                'sale' => ['required', 'string', 'max:255'],
+                'saller_id' => ['required', 'integer'],
                 'desc' => ['required', 'string', 'max:1000'],
-                'date_end' => ['required', 'string', 'max:1000'],
+                'date_end' => ['required', 'string', 'max:50'],
                 //'time_end' => ['required', 'string', 'max:1000'],
             ]);
             $attributes['user_id'] = auth()->user()->id;

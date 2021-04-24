@@ -59,9 +59,13 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="inputProduct" class="col-sm-4 col-form-label">Prodaja</label>
+                                <label for="inputJobId" class="col-sm-4 col-form-label">Prodaja</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="sale" id="inputProduct" required autocomplete="off">
+                                    <select class="custom-select custom-select-lg mb-3 form-control" name="saller_id">
+                                        @foreach($sellers as $seller) <!--$users-->
+                                            <option value="{{$seller->id}}">{{$seller->firstname}} {{$seller->lastname}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
@@ -90,8 +94,8 @@
                                 <label for="inputJobId" class="col-sm-4 col-form-label">Dodeli menadzera</label>
                                 <div class="col-sm-8">
                                     <select class="custom-select custom-select-lg mb-3 form-control" name="user_id">
-                                        @foreach($users as $user)
-                                             <option value="{{$user->id}}">{{$user->firstname}} {{$user->lastname}}</option>
+                                        @foreach($managers as $manager) <!--$users-->
+                                             <option value="{{$manager->id}}">{{$manager->firstname}} {{$manager->lastname}}</option>
                                         @endforeach
                                     </select>
                                 </div>

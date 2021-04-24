@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('firstname');
             $table->string('lastname');
-            $table->boolean('is_admin')->default(false);
-            $table->string('role');
+            $table->boolean('is_admin')->default(false); // Administrator
+            $table->string('role');   // Admin/Manager/Korisnik/Prodavac
             $table->boolean('status')->default(true); //true/false
             $table->string('image')->default("none");
 

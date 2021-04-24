@@ -52,12 +52,12 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Department::class);
     }
-
     public function task()
     {
-        return $this->belongsTo(Task::class);
+        return $this->hasOne(Task::class);
     }
 
+//
     public static function managers()
     {
         return static::where('role','manager')->get();
@@ -66,6 +66,11 @@ class User extends Authenticatable
     public static function monitor()
     {
         return static::where('role','monitor')->get();
+    }
+
+    public static function sellers()
+    {
+        return static::where('role','prodavac')->get();
     }
 }
 

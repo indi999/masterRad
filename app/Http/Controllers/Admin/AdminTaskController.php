@@ -71,10 +71,10 @@ class AdminTaskController extends Controller
         if( Auth::user()->is_admin) {
             $attributes = request()->validate( [
                 'number' => ['required', 'integer', 'unique:tasks'],
-                'user_id' => ['required', 'integer', 'max:10'],
+                'user_id' => ['required', 'integer'],
                 'brand' => ['required', 'string', 'max:50'],
                 'client' => ['required', 'string', 'max:50'],
-                'sale' => ['required', 'string', 'max:255'],
+                'saller_id' => ['required', 'integer'],
                 'desc' => ['required', 'string', 'max:1000'],
                 'date_end' => ['required', 'string', 'max:50'],
                 //'time_end' => ['required', 'string', 'max:50'],

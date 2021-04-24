@@ -57,6 +57,12 @@ class AdminUsersController extends Controller
         return view('admins.users.managers',compact('users'));
     }
 
+    public function sellers()
+    {
+        $users = User::where('role','=','prodavac')->get();
+        return view('admins.users.sellers',compact('users'));
+    }
+
 
     /**
      * Show the form for creating a new resource.

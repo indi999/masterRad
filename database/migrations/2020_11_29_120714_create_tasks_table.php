@@ -16,10 +16,10 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('number')->unique();
-            $table->unsignedInteger('user_id');  //manager
+            $table->unsignedInteger('user_id');  //manager(users)
             $table->string('brand');
             $table->string('client');
-            $table->string('sale');
+            $table->unsignedInteger('saller_id'); //saller(users)
             $table->longText('desc');
 
             // Date end

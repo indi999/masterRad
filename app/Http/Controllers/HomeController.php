@@ -44,8 +44,8 @@ class HomeController extends Controller
      */
     public function home()
     {
+        $user = Auth::user();
 
-         $user = Auth::user();
         if($user->role == 'manager')  {
           // if manager
           $tasks = Task::where('finish', false)->where('user_id','=', $user->id)->get();
@@ -56,6 +56,12 @@ class HomeController extends Controller
             $tasks = Task::where('finish', false)->get();
             return view('tasks.monitor', compact('tasks'));
         }
+        if($user->role == 'prodavac'){
+            // if manager
+            $tasks = Task::where('finish', false)->where('saller_id','=', $user->id)->get();
+            return view('tasks.sellers', compact('tasks'));
+        }
+
       // if employees
       //$tasks = Task::where('finish', false)->departments()->where('name','=',$user->department->name)->get();
       $tasks = Task::where('finish', false)->get();
