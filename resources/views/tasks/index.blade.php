@@ -58,51 +58,54 @@
                                         <td scope="row">{{$task->desc}}</td>
                                         <td scope="row">{{ date('d M,Y', strtotime($task->date_end)) }}- {{ date('H:i:s', strtotime($task->time_end)) }}  <i class="fa fa-calendar" aria-hidden="true"></i></td>
 
-                                        <!-- late, finish if array -->
-                                        @php  $late=[]; $finish=[]; @endphp
-                                        @foreach($task->departments as $department)
-                                            @if($department->pivot->is_active)
-                                                @php  $late[] = $department->pivot->is_late @endphp
-                                                @php  $finish[] = $department->pivot->is_finish @endphp
-                                            @endif
-                                        @endforeach
+                                        
+                                            <!-- late, finish if array -->
+                                            @php  $late=[]; $finish=[]; @endphp
+                                            @foreach($task->departments as $department)
+                                                @if($department->pivot->is_active)
+                                                    @php  $late[] = $department->pivot->is_late @endphp
+                                                    @php  $finish[] = $department->pivot->is_finish @endphp
+                                                @endif
+                                            @endforeach
+                                            
+                                            @if(!in_array(false, $finish))
+                                                <td scope="row" class="complete">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
+                                            @elseif(in_array(true, $late) || $task->expected_date_end > $task->date_end)
+                                                <td scope="row" class="alert-job">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
+                                            @else
+                                                <td scope="row">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
+                                            @endif 
+                                                    <i class="fa fa-calendar changeDate" aria-hidden="true" id="{{$task->id}}" data-toggle="modal" data-target="#modalDate-{{$task->id}}"></i>
+                                                </td>  
+                                            <!-- expected_date_end modal -->
+                                            @if(auth()->user()->role == 'manager') 
+                                                <div class="modal fade addNewDate" id="modalDate-{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                            <div class="modal-body">
 
-                                        @if(!in_array(false, $finish))
-                                            <td scope="row" class="complete">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
-                                        @elseif(in_array(true, $late) || $task->expected_date_end > $task->date_end)
-                                            <td scope="row" class="alert-job">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
-                                        @else
-                                            <td scope="row">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
-                                        @endif
-                                                <i class="fa fa-calendar changeDate" aria-hidden="true" id="{{$task->id}}" data-toggle="modal" data-target="#modalDate-{{$task->id}}"></i>
-                                            </td>
-                                        <!-- expected_date_end modal -->
-                                        <div class="modal fade addNewDate" id="modalDate-{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                    <div class="modal-body">
+                                                                <div class="form-header">
+                                                                    <i class="fa fa-plus" aria-hidden="true"></i> Dodeli novo vreme
+                                                                </div>
+                                                                <div class="container deleteUser createUser">
+                                                                    <div class="wrap-form">
+                                                                        <form action="{{ route('jobs.update', ['task' => $task->id]) }}" method="POST" class="new-date">
+                                                                            @method('PATCH')
+                                                                            @csrf
 
-                                                        <div class="form-header">
-                                                            <i class="fa fa-plus" aria-hidden="true"></i> Dodeli novo vreme
-                                                        </div>
-                                                        <div class="container deleteUser createUser">
-                                                            <div class="wrap-form">
-                                                                <form action="{{ route('jobs.update', ['task' => $task->id]) }}" method="POST" class="new-date">
-                                                                    @method('PATCH')
-                                                                    @csrf
-
-                                                                    <input type="text" class="form-control" name="expected_date_end" data-toggle="datepicker" autocomplete="off" placeholder="31.12.2020">
-                                                                    <button type="submit" name="submit" class="btn btn-primary">Dodeli</button>
-                                                                </form>
+                                                                            <input type="text" class="form-control" name="expected_date_end" data-toggle="datepicker" autocomplete="off" placeholder="31.12.2020">
+                                                                            <button type="submit" name="submit" class="btn btn-primary">Dodeli</button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
+                                            @endif
 
                                         @foreach($task->departments as $department)
                                                 @switch([$department->name, $department->pivot->is_active])
@@ -141,7 +144,6 @@
                                         @endforeach
 
                                         @if(auth()->user()->role == 'manager')
-                                                {{auth()->user()->role}} ,  {{auth()->user()->id}}
                                             <td class="delete-user">
                                                 <button type="submit" class="btn del-job" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
                                                     <i class="fa fa-trash"></i>
