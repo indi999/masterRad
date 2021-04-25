@@ -195,8 +195,10 @@
                                                 </div>
                                             </form>
                                             @else
-                                                @if($task->finish == 'checked')
-                                                  Završeno
+                                                @if($task->finish)
+                                                  Završen
+                                                @else
+                                                  U izradi
                                                 @endif
                                             @endif
                                         </td>
