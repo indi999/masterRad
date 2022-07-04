@@ -44,8 +44,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                           @if($users->count()>0)
-                            @foreach($users as $user)
+                           @endforelse($users as $user)
                                 @if(!$user->is_admin)
 
                                  <tr>
@@ -97,8 +96,11 @@
                                      </div>
                                 </tr>
                                  @endif
-                            @endforeach
-                        @endif
+                            @empty
+                                 <tr>
+                                     <td>Nema Registrovanih korisnika</td>
+                                 </tr>
+                            @endforelse
 
                         </tbody>
                         </table>

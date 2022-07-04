@@ -44,8 +44,7 @@
                         <tbody>
                         <tr>
                         <!-- JOBS -->
-                        @if($tasks->count()>0)
-                            @foreach($tasks as $task)
+                        @forelse($tasks as $task)
                                 <tr>
                                     <th scope="row">{{$task->number}}</th>
                                     <td scope="row">{{$task->brand}}</td>
@@ -142,6 +141,7 @@
                                             <td scope="row" class="inactive"></td>
                                         @endswitch
                                     @endforeach
+
                                     <td class="delete-user">
                                         <button type="submit" class="btn del-job" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
                                             <i class="fa fa-trash"></i>
@@ -193,11 +193,13 @@
                                     </td>
 
                                 </tr>
-                            @endforeach
-                        @endif
-                        </tr>
+
+                        @empty
+                               <td>Nema zadatih poslova</td>
+                            </tr>
                         </tbody>
 
+                        @endforelse
                     </table>
                 </div>
             </div>

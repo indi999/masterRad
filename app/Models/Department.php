@@ -33,4 +33,3 @@ class Department extends Model
         return static::all();
     }
 }
-

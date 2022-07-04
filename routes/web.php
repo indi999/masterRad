@@ -1,41 +1,12 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-/*
-Route::get('/', function () {
-    return view('welcome');
-});
-*/
-/*
-Route::get('/monitor', function () {
-    return view('monitor');
-});
-*/
-
-
 Auth::routes();
-
 Route::get('/', 'App\Http\Controllers\HomeController@welcome')->name('welcome');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
-
 //USERS
-
-
 // Tasks
 Route::get('/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks');
-
     // Task List
     Route::get('/jobs', 'App\Http\Controllers\TaskController@index')->name('jobs.index'); // active tasks
     Route::get('/jobs/arhive', 'App\Http\Controllers\TaskController@arhive')->name('jobs.arhive'); // arhive tasks
@@ -50,35 +21,27 @@ Route::get('/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks')
     Route::patch('/jobs/{task}/finishJob', 'App\Http\Controllers\TaskController@finishJob')->name('jobs.finishJob');
     // task delete
     Route::delete('/jobs/{task}', 'App\Http\Controllers\TaskController@destroy')->name('jobs.destroy');
-
     // all users
     Route::get('/employees', 'App\Http\Controllers\UserController@employees')->name('users.employees');
     Route::get('/monitor','App\Http\Controllers\UsersController@monitor')->name('users.monitor');
     Route::get('/sellers','App\Http\Controllers\UsersController@sellers')->name('users.sellers');
-
     // show sektors
     Route::get('/sektors/{sektor}', 'App\Http\Controllers\DepartmentController@show')->name('sektors.show');
 
-
-
 // ADMIN ROUTES -------------------------------------------------------------------------------------------------
 Route::middleware('is_admin')->prefix('admin')->group(function(){
-
     // Dashboard
     Route::get('/', 'App\Http\Controllers\HomeController@dashboard')->name('admin.dashboard');
-
     //Tasks
     Route::get('/jobs/arhive', 'App\Http\Controllers\Admin\AdminTaskController@arhive')->name('admin.jobs.arhive'); // arhive tasks
     Route::patch('/jobs/{job}/finishJob', 'App\Http\Controllers\Admin\AdminTaskController@finishJob')->name('admin.jobs.finishJob');
     Route::resource('/jobs', 'App\Http\Controllers\Admin\AdminTaskController',[
         'as' => 'admin'
     ]);
-
     //Deparments
     Route::resource('/sektors', 'App\Http\Controllers\Admin\AdminDepartmentController',[
         'as' => 'admin'
     ])->except('create');
-
     // Users
     Route::get('/users/managers','App\Http\Controllers\Admin\AdminUsersController@managers')->name('admin.users.managers');
     Route::get('/users/employees','App\Http\Controllers\Admin\AdminUsersController@employees')->name('admin.users.employees');
@@ -89,5 +52,4 @@ Route::middleware('is_admin')->prefix('admin')->group(function(){
     Route::resource('/users', 'App\Http\Controllers\Admin\AdminUsersController',[
         'as' => 'admin'
     ])->except('create');
-
 });

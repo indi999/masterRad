@@ -37,8 +37,8 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                @if($departments->count()>0)
-                                    @foreach($departments as $department)
+
+                                @forelse($departments as $department)
                                     <th scope="row">{{$department->id}}</th>
                                         <td>{{$department->name}}</td>
                                         <td class="delete-user">
@@ -76,8 +76,10 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    @endforeach
-                                @endif
+                                @empty
+                                    <td>Nema zadatih poslova</td>
+                                @endforelse
+
                                 </tr>
                             </tbody>
                         </table>
