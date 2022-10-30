@@ -61,6 +61,20 @@ class AdminTaskController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Task  $task
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Task $job)
+    {
+        if( Auth::user()->is_admin ){
+            return view('admins.tasks.show', compact('job'));
+        }
+        return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -103,29 +117,15 @@ class AdminTaskController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Task $task)
-    {
-        if( Auth::user()->is_admin )  {
-            return view('admins.tasks.show', compact('task'));
-        }
-        return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)
+    public function edit(Task $job)
     {
         if( Auth::user()->is_admin )  {
-            return view('admins.tasks.edit', compact('task'));
+            return view('admins.tasks.edit', compact('job'));
         }
         return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
     }
