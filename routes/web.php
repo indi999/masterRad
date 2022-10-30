@@ -23,8 +23,8 @@ Route::get('/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks')
     Route::delete('/jobs/{task}', 'App\Http\Controllers\TaskController@destroy')->name('jobs.destroy');
     // all users
     Route::get('/employees', 'App\Http\Controllers\UserController@employees')->name('users.employees');
-    Route::get('/monitor','App\Http\Controllers\UsersController@monitor')->name('users.monitor');
-    Route::get('/sellers','App\Http\Controllers\UsersController@sellers')->name('users.sellers');
+    Route::get('/monitor','App\Http\Controllers\UserController@monitor')->name('users.monitor');
+    Route::get('/sellers','App\Http\Controllers\UserController@sellers')->name('users.sellers');
     // show sektors
     Route::get('/sektors/{sektor}', 'App\Http\Controllers\DepartmentController@show')->name('sektors.show');
 

@@ -17,3 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//USERS-------------------------------------------------------------------------------
+// Tasks api
+Route::prefix('api')->group(function() {
+    Route::get('tasks', 'App\Http\Controllers\Api\V1\TasksController@index');
+    Route::get('task/{id}', 'App\Http\Controllers\Api\V1\TasksController@show');
+    Route::post('task', 'App\Http\Controllers\Api\V1\TasksController@store');
+    Route::put('task/{task}', 'App\Http\Controllers\Api\V1\TasksController@update');
+    Route::delete('tasks/{task}', 'App\Http\Controllers\Api\V1\TasksController@delete');
+});
+// ADMIN------------------------------------------------------------------------------
+
