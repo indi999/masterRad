@@ -44,7 +44,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                           @endforelse($users as $user)
+                           @forelse($users as $user)
                                 @if(!$user->is_admin)
 
                                  <tr>
