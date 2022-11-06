@@ -9,7 +9,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.jobs.index') }}">Lista Poslova</a>
+                <a class="nav-link" href="{{ route('admin.dashboard') }}">Lista Poslova</a>
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="{{ route('admin.jobs.create') }}">Kreiraj posao</a>
