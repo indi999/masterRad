@@ -89,7 +89,7 @@ class AdminTaskController extends Controller
                 'brand' => ['required', 'string', 'max:50'],
                 'client' => ['required', 'string', 'max:50'],
                 'saller_id' => ['required', 'integer'],
-                'desc' => ['required', 'string', 'max:1000'],
+                'desc' => ['required', 'string', 'max:10000'],
                 'date_end' => ['required', 'string', 'max:50'],
                 //'time_end' => ['required', 'string', 'max:50'],
             ]);

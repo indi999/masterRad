@@ -30,13 +30,13 @@
                                 <th scope="col">Brend</th>
                                 <th scope="col">Klijent</th>
                                 <th scope="col">Prodaja</th>
-                                <th scope="col">Opis posla</th>
                                 <th scope="col">Planirani završetak</th>
                                 <th scope="col">Očekivani završetak</th>
                                 <th class="design" scope="col">Dizajn/priprema</th>
                                 <th class="poduction" scope="col">Produkcija</th>
                                 <th class="add" scope="col">Dorada</th>
                                 <th class="delivery" scope="col">Isporuka</th>
+                                <th style="color#0d1e31" scope="col"></th>
                                 <th style="color#0d1e31" scope="col"></th>
                                 <th class="" scope="col">Status projekta</th>
                             </tr>
@@ -51,7 +51,6 @@
                                 <td scope="row">
                                     {{$task->saller->firstname}} {{$task->saller->lastname}}
                                 </td>
-                                <td scope="row">{{$task->desc}}</td>
                                 <td scope="row">{{ date('Y-m-d', strtotime($task->date_end)) }} - {{ date('H:i:s', strtotime($task->time_end)) }} <i class="fa fa-calendar" aria-hidden="true"></i></td>
 
                                 <!-- late, finish if array -->
@@ -140,6 +139,11 @@
                                         <td scope="row" class="inactive"></td>
                                     @endswitch
                                 @endforeach
+                                <td class="delete-user">
+                                    <button type="submit" class="btn del-job" id="{{ $task->id }}">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                </td>
 
                                 <td class="delete-user">
                                     <button type="submit" class="btn del-job" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
