@@ -61,33 +61,11 @@
                                     <i class="fa fa-calendar" aria-hidden="true"></i></td>
                             </tr>
 
+                            <!-- Comment -->
                             <tr>
-
-
                                 <td scope="row">
-                                    <div class="table-responsive  table-striped table-bordered">
-                                        <table class="table">
-                                            <thead>
-                                            <tr>
-                                                <th scope="col">Radni Nalog Broj: #{{$job->number}}</th>
-
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-
-                                            <tr>
-                                                <td>
-
-                                                    @include('admins.tasks.comments')
-
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                    @include('admins.tasks.comments')
                                 </td>
-
-
                             </tr>
 
                             </tbody>
@@ -99,7 +77,5 @@
         </div>
     </div>
 </main>
-<!-- Comment -->
-
 
 @endsection
