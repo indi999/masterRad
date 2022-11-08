@@ -53,7 +53,7 @@
                             </tr>
 
                             <tr>
-                                <td>Responsible Department: @include('admins.tasks.departments')</td>
+                                <td>Responsible Department: XXX</td>
                             </tr>
 
                             <tr>
