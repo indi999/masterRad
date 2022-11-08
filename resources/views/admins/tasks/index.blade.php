@@ -6,21 +6,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="part-table admin-table">
-
-                <!-- Succes message -->
-                @if(session('message'))
-                    <div class="alert alert-success">
-                        {{session('message')}}
-                    </div>
-                @endif
-                <!-- Error message -->
-                @if(count($errors)>0)
-                    @foreach($errors->all() as $error)
-                        <div class="alert alert-danger">
-                            {{$error}}
-                        </div>
-                    @endforeach
-                @endif
+                @include('messages.messages')
 
                 <div class="table-responsive  table-striped table-bordered">
                     <table class="table">
@@ -52,30 +38,25 @@
                                     {{$job->saller->firstname}} {{$job->saller->lastname}}
                                 </td>
                                 <td scope="row">{{ date('Y-m-d', strtotime($job->date_end)) }} - {{ date('H:i:s', strtotime($job->time_end)) }} <i class="fa fa-calendar" aria-hidden="true"></i></td>
-
-                                <!-- late, finish if array -->
-                                @php  $late=[]; $finish=[]; @endphp
-                                @foreach($job->departments as $department)
-                                    @if($department->pivot->is_active)
-                                        @php  $late[] = $department->pivot->is_late @endphp
-                                        @php  $finish[] = $department->pivot->is_finish @endphp
-                                    @endif
-                                @endforeach
-
-                            <!-- proveriti ulogu koda -->
-                            <?php
-                                $endDate = date('Y-m-d', strtotime($job->date_end));
-                                $eDate = date('Y-m-d', strtotime($job->expected_date_end));
-                            ?>
-
-                                @if(!in_array(false, $finish))
+                                @php
+                                    //create late, finish if array -->
+                                    $late=[];
+                                    $finish=[];
+                                    foreach($job->departments as $department){
+                                        if($department->pivot->is_active){
+                                            $late[] = $department->pivot->is_late;
+                                            $finish[] = $department->pivot->is_finish;
+                                        }
+                                    }
+                                @endphp
+                                @if(!in_array(false, $finish ?? ''))
                                     <td scope="row" class="complete">{{ date('d M,Y', strtotime($job->expected_date_end)) }}
                                 @elseif(in_array(true, $late) || $job->expected_date_end > $job->date_end)
                                     <td scope="row" class="alert-job">{{ date('d M,Y', strtotime($job->expected_date_end)) }}
                                 @else
                                     <td scope="row">{{ date('d M,Y', strtotime($job->expected_date_end)) }}
                                 @endif
-                                     <i class="fa fa-calendar changeDate" aria-hidden="true" id="{{$job->id}}" data-toggle="modal" data-target="#modalDate-{{$job->id}}"></i>
+                                    <i class="fa fa-calendar changeDate" aria-hidden="true" id="{{$job->id}}" data-toggle="modal" data-target="#modalDate-{{$job->id}}"></i>
                                 </td>
                                 <!-- expected_date_end modal -->
                                 <div class="modal fade addNewDate" id="modalDate-{{$job->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
