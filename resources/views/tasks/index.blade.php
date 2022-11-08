@@ -42,8 +42,8 @@
                                 </td>
                                 <td scope="row">{{$job->desc}}</td>
                                 <td scope="row">{{ date('d M,Y', strtotime($job->date_end)) }}- {{ date('H:i:s', strtotime($job->time_end)) }}  <i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                <!-- create late, finish if array -->
                                 @php
-                                    //create late, finish if array -->
                                     $late=[];
                                     $finish=[];
                                     foreach($job->departments as $department){
