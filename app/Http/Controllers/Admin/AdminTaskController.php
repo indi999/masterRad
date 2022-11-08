@@ -31,8 +31,8 @@ class AdminTaskController extends Controller
     {
         if( Auth::user()->is_admin )  {
             // if manager
-            $tasks = Task::where('finish', false)->get();
-            return view('admins.tasks.index', compact('tasks'));
+            $jobs = Task::where('finish', false)->get();
+            return view('admins.tasks.index', compact('jobs'));
         }
         return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
     }
@@ -40,8 +40,8 @@ class AdminTaskController extends Controller
     public function arhive()
     {
         if( Auth::user()->is_admin )  {
-            $tasks = Task::where('finish', true)->get();
-            return view('admins.tasks.index', compact('tasks'));
+            $jobs = Task::where('finish', true)->get();
+            return view('admins.tasks.index', compact('jobs'));
         }
         return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
     }

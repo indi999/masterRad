@@ -1,4 +1,4 @@
-@foreach($task->departments as $department)
+@foreach($job->departments as $department)
     @switch([$department->name, $department->pivot->is_active])
         @case(['DIZAJN/PRIPREMA',true])
         <td scope="row" class="active">

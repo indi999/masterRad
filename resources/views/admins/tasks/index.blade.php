@@ -43,19 +43,19 @@
                         </thead>
                         <tbody>
                             <!-- JOBS -->
-                            @forelse($tasks as $task)
+                            @forelse($jobs as $job)
                             <tr>
-                                <th scope="row"><a href="{{ route('admin.jobs.show', ['job'=>$task->id ])}}">{{$task->number}}</a></th>
-                                <td scope="row">{{$task->brand}}</td>
-                                <td scope="row">{{$task->client}}</td>
+                                <th scope="row"><a href="{{ route('admin.jobs.show', ['job'=>$job->id ])}}">{{$job->number}}</a></th>
+                                <td scope="row">{{$job->brand}}</td>
+                                <td scope="row">{{$job->client}}</td>
                                 <td scope="row">
-                                    {{$task->saller->firstname}} {{$task->saller->lastname}}
+                                    {{$job->saller->firstname}} {{$job->saller->lastname}}
                                 </td>
-                                <td scope="row">{{ date('Y-m-d', strtotime($task->date_end)) }} - {{ date('H:i:s', strtotime($task->time_end)) }} <i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                <td scope="row">{{ date('Y-m-d', strtotime($job->date_end)) }} - {{ date('H:i:s', strtotime($job->time_end)) }} <i class="fa fa-calendar" aria-hidden="true"></i></td>
 
                                 <!-- late, finish if array -->
                                 @php  $late=[]; $finish=[]; @endphp
-                                @foreach($task->departments as $department)
+                                @foreach($job->departments as $department)
                                     @if($department->pivot->is_active)
                                         @php  $late[] = $department->pivot->is_late @endphp
                                         @php  $finish[] = $department->pivot->is_finish @endphp
@@ -64,21 +64,21 @@
 
                             <!-- proveriti ulogu koda -->
                             <?php
-                                $endDate = date('Y-m-d', strtotime($task->date_end));
-                                $eDate = date('Y-m-d', strtotime($task->expected_date_end));
+                                $endDate = date('Y-m-d', strtotime($job->date_end));
+                                $eDate = date('Y-m-d', strtotime($job->expected_date_end));
                             ?>
 
                                 @if(!in_array(false, $finish))
-                                    <td scope="row" class="complete">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
-                                @elseif(in_array(true, $late) || $task->expected_date_end > $task->date_end)
-                                    <td scope="row" class="alert-job">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
+                                    <td scope="row" class="complete">{{ date('d M,Y', strtotime($job->expected_date_end)) }}
+                                @elseif(in_array(true, $late) || $job->expected_date_end > $job->date_end)
+                                    <td scope="row" class="alert-job">{{ date('d M,Y', strtotime($job->expected_date_end)) }}
                                 @else
-                                    <td scope="row">{{ date('d M,Y', strtotime($task->expected_date_end)) }}
+                                    <td scope="row">{{ date('d M,Y', strtotime($job->expected_date_end)) }}
                                 @endif
-                                     <i class="fa fa-calendar changeDate" aria-hidden="true" id="{{$task->id}}" data-toggle="modal" data-target="#modalDate-{{$task->id}}"></i>
+                                     <i class="fa fa-calendar changeDate" aria-hidden="true" id="{{$job->id}}" data-toggle="modal" data-target="#modalDate-{{$job->id}}"></i>
                                 </td>
                                 <!-- expected_date_end modal -->
-                                <div class="modal fade addNewDate" id="modalDate-{{$task->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade addNewDate" id="modalDate-{{$job->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -91,7 +91,7 @@
 
                                                 <div class="container deleteUser createUser">
                                                     <div class="wrap-form">
-                                                        <form action="{{ route('admin.jobs.update', ['job' => $task->id]) }}" method="POST" class="new-date">
+                                                        <form action="{{ route('admin.jobs.update', ['job' => $job->id]) }}" method="POST" class="new-date">
                                                             @method('PATCH')
                                                             @csrf
 
@@ -106,17 +106,17 @@
                                 </div>
                                 @include('admins.tasks.departments')
                                 <td class="delete-user">
-                                    <button type="submit" class="btn del-job" id="{{ $task->id }}">
+                                    <button type="submit" class="btn del-job" id="{{ $job->id }}">
                                         <i class="fa fa-edit"></i>
                                     </button>
                                 </td>
 
                                 <td class="delete-user">
-                                    <button type="submit" class="btn del-job" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
+                                    <button type="submit" class="btn del-job" id="{{ $job->id }}" data-toggle="modal" data-target="#exampleModal-{{ $job->id }}">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                     <!-- delete modal -->
-                                    <div class="modal fade" id="exampleModal-{{ $task->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="exampleModal-{{ $job->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -129,7 +129,7 @@
                                                     <div class="container deleteUser createUser">
                                                         <div class="wrap-form">
 
-                                                            <form action="{{ route('admin.jobs.destroy', ['job' => $task->id] )}}" method="post">
+                                                            <form action="{{ route('admin.jobs.destroy', ['job' => $job->id] )}}" method="post">
                                                                 @method('delete')
                                                                 @csrf
 
@@ -147,13 +147,13 @@
                                 </td>
 
                                 <td class="complete-task">
-                                    <form method="POST" action="{{ route('admin.jobs.finishJob', ['job' => $task->id] )}}">
+                                    <form method="POST" action="{{ route('admin.jobs.finishJob', ['job' => $job->id] )}}">
                                         @method('PATCH')
                                         @csrf
 
                                         <div class="form-check">
                                             <input class="form-check-input" name="finish" type="checkbox"  id="defaultCheck1"
-                                                   onChange="this.form.submit()" {{ $task->finish ? 'checked' : '' }}>
+                                                   onChange="this.form.submit()" {{ $job->finish ? 'checked' : '' }}>
                                             <label class="form-check-label" for="defaultCheck1">
                                                 Završeno
                                             </label>
