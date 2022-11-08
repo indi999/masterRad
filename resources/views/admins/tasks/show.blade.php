@@ -53,7 +53,7 @@
                             </tr>
 
                             <tr>
-                                <td>Responsible: {{$job->number}}</td>
+                                <td>Responsible Department: @include('admins.tasks.departments')</td>
                             </tr>
 
                             <tr>
