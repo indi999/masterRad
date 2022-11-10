@@ -14,6 +14,7 @@ class CreateDepartmentTaskTable extends Migration
     public function up()
     {
         Schema::create('department_task', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('task_id')->unsigned();
             $table->integer('department_id')->unsigned();
