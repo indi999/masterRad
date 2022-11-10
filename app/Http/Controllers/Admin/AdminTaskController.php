@@ -132,7 +132,7 @@ class AdminTaskController extends Controller
             $saller = User::find($job->saller_id);
             $attributes['sallerData'] = ['sellerID' => $saller->id , 'fullName' => $saller->firstname.' '.$saller->lastname ];
             $attributes['managerData'] = ['managerID' => $manager->id , 'fullName' => $manager->firstname.' '.$manager->lastname ];
-            //dd($job, $manager, $saller,  $attributes);
+            dd($job, $manager, $saller,  $attributes);
 
             return view('admins.tasks.edit', compact('job','attributes'));
         }
@@ -149,11 +149,7 @@ class AdminTaskController extends Controller
     public function update(Task $job)
     {
         if( Auth::user()->is_admin ) {
-
-            $attributesR = request()->all();
             $attributes = [];
-            dd($attributesR,$attributes);
-
             if (request()->number) {
                 request()->validate(['number' => 'required|string|max:1000']);
                 $attributes['number'] = request()->number;
@@ -202,7 +198,6 @@ class AdminTaskController extends Controller
              }
 
             if($attributes != null){
-                dd($attributes);
                 $result = $job->update($attributes);
                 if($result) {
                     return back()->with('message', 'Podaci za navedeni poslovni nalog su promenjeni!.');
@@ -214,7 +209,13 @@ class AdminTaskController extends Controller
         return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
     }
 
-
+    /**
+     * Update expected_date_end the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Task  $job
+     * @return \Illuminate\Http\Response
+     */
     public function updateExpectedDateEnd(Task $job)
     {
         if( Auth::user()->is_admin ) {

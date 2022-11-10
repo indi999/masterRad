@@ -93,8 +93,8 @@
                             <div class="form-group row dateTime">
                                 <label for="inputDesc" class="col-sm-4 col-form-label">Rok za završetak</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" name="date_end" data-toggle="datepicker" placeholder="Datum"  autocomplete="off" required>
-                                    <input type="text" id="timePicker" class="form-control" name="time_end" data-toggle="timePicker" placeholder="Vreme" autocomplete="off"  required>
+                                    <input type="text" class="form-control" value="{{$job->date_end}}" name="date_end" data-toggle="datepicker" placeholder="Datum"  autocomplete="off" required>
+                                    <input type="text" id="timePicker" class="form-control" value="{{$job->time_end}}" name="time_end" data-toggle="timePicker" placeholder="Vreme" autocomplete="off"  required>
                                 </div>
                             </div>
 
