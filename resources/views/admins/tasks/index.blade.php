@@ -87,9 +87,9 @@
                                 </div>
                                 @include('admins.tasks.departments')
                                 <td class="delete-user">
-                                    <button type="submit" class="btn del-job" id="{{ $job->id }}">
+                                    <a href="{{route("admin.jobs.edit", ['job' => $job->id])}}" class="btn del-job">
                                         <i class="fa fa-edit"></i>
-                                    </button>
+                                    </a>
                                 </td>
 
                                 <td class="delete-user">

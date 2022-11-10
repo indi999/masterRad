@@ -92,6 +92,11 @@
                                 @include('admins.tasks.departments')
                                 @if(auth()->user()->role == 'manager')
                                     <td class="delete-user">
+                                        <a href="{{route("admin.jobs.edit", ['job' => $job->id])}}" class="btn del-job">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </td>
+                                    <td class="delete-user">
                                         <button type="submit" class="btn del-job" id="{{ $job->id }}" data-toggle="modal" data-target="#exampleModal-{{ $job->id }}">
                                             <i class="fa fa-trash"></i>
                                         </button>
