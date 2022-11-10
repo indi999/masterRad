@@ -4,25 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="col-7">
-
                 @if ( auth()->user()->is_admin )
-
-                    <!-- Succes message -->
-                    @if(session('message'))
-                        <div class="alert alert-danger">
-                            {{session('message')}}
-                        </div>
-                    @endif
-                    <!-- Error message -->
-                    @if(count($errors)>0)
-                        @foreach($errors->all() as $error)
-                            <div class="alert alert-danger">
-                                {{$error}}
-                            </div>
-                        @endforeach
-                    @endif
-
-
+                    @include('messages.messages')
                     <div class="menu-items">
                         <ul>
                             <!--<li class="users"><a href="#"><i class="fa fa-users" aria-hidden="true"></i>Lista korisnika</a></li>-->

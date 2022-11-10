@@ -28,14 +28,23 @@ class AppServiceProvider extends ServiceProvider
     {
         //Admin panel
         view()->composer('admins.users.index', function($view){
-                $view->with('departments' , Department::sectors());
+            $view->with('departments' , Department::sectors());
+        });
+        view()->composer('admins.tasks.show', function($view){
+            $view->with('departments' , Department::sectors())
+                 ->with('managers' , User::managers())
+                 ->with('sellers' , User::sellers());
         });
         view()->composer('admins.tasks.create', function($view){
             $view->with('departments' , Department::sectors())
                  ->with('managers' , User::managers())
                  ->with('sellers' , User::sellers());
         });
-
+        view()->composer('admins.tasks.edit', function($view){
+            $view->with('departments' , Department::sectors())
+                 ->with('managers' , User::managers())
+                 ->with('sellers' , User::sellers());
+        });
 
 
         // Manager panel

@@ -72,7 +72,7 @@
 
                                                 <div class="container deleteUser createUser">
                                                     <div class="wrap-form">
-                                                        <form action="{{ route('admin.jobs.update', ['job' => $job->id]) }}" method="POST" class="new-date">
+                                                        <form action="{{ route('admin.jobs.updateExpectedDateEnd', ['job' => $job->id]) }}" method="POST" class="new-date">
                                                             @method('PATCH')
                                                             @csrf
 
