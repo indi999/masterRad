@@ -17,7 +17,6 @@
                                 <th scope="col">Brend</th>
                                 <th scope="col">Klijent2</th>
                                 <th scope="col">Prodaja</th>
-                                <th scope="col">Opis posla</th>
                                 <th scope="col">Planirani završetak</th>
                                 <th scope="col">Očekivani završetak</th>
                                 <th class="design" scope="col">Dizajn/priprema</th>
@@ -40,7 +39,6 @@
                                 <td scope="row">
                                     {{$job->saller->firstname}} {{$job->saller->lastname}}
                                 </td>
-                                <td scope="row">{{$job->desc}}</td>
                                 <td scope="row">{{ date('d M,Y', strtotime($job->date_end)) }}- {{ date('H:i:s', strtotime($job->time_end)) }}  <i class="fa fa-calendar" aria-hidden="true"></i></td>
                                 <!-- create late, finish if array -->
                                 @php

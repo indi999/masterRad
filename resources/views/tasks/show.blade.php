@@ -1,63 +1,81 @@
-@extends('layouts.app')
-
+@extends('layouts.master')
 @section('content')
 
-<h1>Show Task</h1>
+<main>
+    <div class="part-table justify-content-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
 
-<div class="container login createUser">
-    <div class="wrap-form">
-        <div class="form-header">
-            <i class="fa fa-plus" aria-hidden="true"></i>Kreiraj monitor
-        </div>
-        <div class="form-group">
-            <input type="email" class="form-control" name="email" placeholder="Email" autocomplete="off">
-            @error('email')
-            <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-            @enderror
-        </div>
+                    <div class="table-responsive  table-striped table-bordered">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Radni Nalog Broj: #{{$job->number}}</th>
+                                <th class="delete-user">
+                                    <button type="submit" class="btn del-job" id="{{ $job->id }}" data-toggle="modal" data-target="#exampleModal-{{ $job->id }}">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                </th>
+                                <th class="delete-user">
+                                    <button type="submit" class="btn del-job" id="{{ $job->id }}" data-toggle="modal" data-target="#exampleModal-{{ $job->id }}">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </th>
 
-        <div class="form-group">
-            <div class="form-group ">
-                <input type="password" class="form-control"  name="password" placeholder="Šifra" class="form-control @error('password') is-invalid @enderror" required autocomplete="new-password">
-                @error('password')
-                <span class="invalid-feedback" role="alert">
-                                         <strong>{{ $message }}</strong>
-                                    </span>
-                @enderror
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                <td>
+                                    <div class="jumbotron">
+                                        <p class="lead">Opis posla: </p>
+                                        <hr class="my-4">
+                                        <p class="my-4 ">{{$job->desc}}</p>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Prilozi: PDF,WORD,CSV</td>
+                            </tr>
+                            <tr>
+                                <td>Manager: {{$job->number}}</td>
+                            </tr>
+                            <tr>
+                                <td>Brend: {{$job->brand}}</td>
+                            </tr>
+                            <tr>
+                                <td>Klijent: {{$job->client}}</td>
+                            </tr>
+                            <tr>
+                                <td>Prodaja: {{$job->saller->firstname}} {{$job->saller->lastname}}</td>
+                            </tr>
+
+                            <tr>
+                                <td>Responsible Department: XXX</td>
+                            </tr>
+
+                            <tr>
+                                <td scope="row">{{ date('Y-m-d', strtotime($job->date_end)) }}
+                                    <i class="fa fa-calendar" aria-hidden="true"></i></td>
+                            </tr>
+
+                            <!-- Comment -->
+                            <tr>
+                                <td scope="row">
+                                    @include('admins.tasks.comments')
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
-
-            <div class="form-group ">
-                <input id="password-confirm" type="password" class="form-control"  name="password_confirmation" placeholder="Potvrda Šifre" name="password_confirmation" required autocomplete="new-password">
-            </div>
         </div>
-
-        <div class="form-group">
-            <select class="custom-select custom-select-lg mb-3" name="department_id">
-                <option value="0">Svi</option>
-            </select>
-            @error('department_id')
-            <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-            @enderror
-        </div>
-
-        <div class="form-group">
-            <select class="custom-select custom-select-lg mb-3" name="role">
-                <option value="monitor" selected>Monitor</option>
-            </select>
-            @error('role')
-            <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-            @enderror
-        </div>
-
-        <!-- comments -->
-
     </div>
-</div>
+</main>
 
 @endsection
