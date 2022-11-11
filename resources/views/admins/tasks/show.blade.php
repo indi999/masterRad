@@ -63,8 +63,9 @@
                                                 <div class="form-check">
                                                     <input class="form-check-input"  type="checkbox" value="{{$department->id}}" id="inputSectorsD"
                                                            @if($department->pivot->is_active == true)
-                                                           checked="checked">
-                                                    @endif
+                                                                checked="checked"
+                                                           @endif
+                                                           disabled>
                                                     <label class="form-check-label" for="inputSectorsD">
                                                         {{$department->name}}
                                                     </label>

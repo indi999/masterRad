@@ -9,7 +9,7 @@
                     <div class="menu-items">
                         <ul>
                             <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-list" aria-hidden="true"></i>Lista poslova</a></li>
-                            <li><a href="{{ route('admin.jobs.show', ['job' => $job->id])  }}"><i class="fa fa-list" aria-hidden="true"></i>Prikazi nalog br: #{{$job->number}}</a></li>
+                            <li><a href="{{ route('admin.jobs.show', ['job' => $job->id])  }}"><i class="fa fa-tasks" aria-hidden="true"></i>Prikazi nalog br: #{{$job->number}}</a></li>
                             <li class="add-job"><a href="#"><i class="fa fa-plus" aria-hidden="false"></i>Izmeni podatke za posao br: #{{$job->number}}</a></li>
                         </ul>
                     </div>
@@ -46,7 +46,6 @@
                                 <label for="inputJobId" class="col-sm-4 col-form-label">Prodaja</label>
                                 <div class="col-sm-8">
                                     <select class="custom-select custom-select-lg mb-3 form-control" value="{{$job->saller_id}}" name="saller_id">
-
                                         <option value="{{$attributes['sallerData']['sellerID']}}">{{$attributes['sallerData']['fullName']}}</option>
                                         @foreach($sellers as $seller) <!--$users-->
                                             <option value="{{$seller->id}}">{{$seller->firstname}} {{$seller->lastname}}</option>
@@ -58,20 +57,22 @@
                             <div class="form-group row">
                                 <label for="inputDesc" class="col-sm-4 col-form-label">Opis posla</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" value="{{$job->desc}}" name="desc" id="inputDesc" required autocomplete="off">
-                                </div
+                                    <textarea class="form-control" name="desc" id="exampleFormControlTextarea1"
+                                              rows="10" id="inputDesc" required autocomplete="off">{{$job->desc}}</textarea>
                                 </div>
                             </div>
 
                             <div class="form-group row sectors">
                                 <label for="inputSectors" class="col-sm-4 col-form-label">Sektori</label>
                                 <div class="col-sm-8">
-                                    @foreach($job->departments as $department)
+                                    @foreach($departments as $department)
                                         <div class="form-check">
                                             <input class="form-check-input"  type="checkbox" value="{{$department->id}}" id="inputSectorsD"
-                                                   @if($department->pivot->is_active == true)
-                                                       checked="checked">
-                                                   @endif
+                                            @foreach($job->departments as $setupDepartment)
+                                                @if($department->name == $setupDepartment->name && $setupDepartment->pivot->is_active == true)
+                                                   checked="checked">
+                                                @endif
+                                            @endforeach
                                             <label class="form-check-label" for="inputSectorsD">
                                                 {{$department->name}}
                                             </label>

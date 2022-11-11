@@ -29,9 +29,10 @@ class DepartmentTask extends Model
     {
         $sectorItems = json_decode($sectorItems);
         $departments = Department::all();
+
         foreach($departments as $department) {
             $department_id = $department->id;
-            if (in_array((string)$department_id, $sectorItems)) {
+            if (in_array((string)$department->id, $sectorItems)) {
                 $is_active = true;
                 static::create(compact('department_id', 'task_id', 'is_active'));
             }else{
@@ -41,4 +42,31 @@ class DepartmentTask extends Model
         }
     }
 
+    public static function updateDepartments($sectorItems, $task_id)
+    {
+        $sectorItems = json_decode($sectorItems); // [1,6]
+        $departments = Department::all();  //[1,2,3,4,6]
+        $selectDs = DepartmentTask::where('task_id', $task_id)->get(); //[1,2,3,4]
+
+
+
+
+
+        foreach ($departments as $department) {
+            $department_id = $department->id;
+            if (in_array((string)$department->id, $sectorItems)) {
+                foreach($selectDs as $selectD){
+                    if (!in_array((string)$selectD->department_id, $sectorItems)) {
+                        $is_active = true;
+                        static::create(compact('department_id', 'task_id', 'is_active'));
+                    }
+                }
+            }else{
+                $is_active = false;
+                static::create(compact('department_id', 'task_id', 'is_active'));
+                //dd($department->id); //delete
+            }
+
+        }
+    }
 }

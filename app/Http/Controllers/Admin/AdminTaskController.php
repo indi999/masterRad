@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use DB;
 
 use App\Models\Task;
 use App\Models\User;
@@ -101,6 +102,8 @@ class AdminTaskController extends Controller
             $task = Task::create($attributes);
             DepartmentTask::addDepartments(request()->sectorItems,$task->id);
 
+//dd(request()->sectorItems, $task->id);
+
             if($task){
                 $sectorItems = request()->sectorItems;
                 // $user = User::where('id',$attributes['user_id'])->first();
@@ -148,6 +151,7 @@ class AdminTaskController extends Controller
     public function update(Task $job)
     {
         if( Auth::user()->is_admin ) {
+
             $attributes = [];
             if (request()->number) {
                 request()->validate(['number' => 'required|string|max:1000']);
@@ -191,17 +195,18 @@ class AdminTaskController extends Controller
                 DepartmentTask::where('task_id',$job->id)->update(['is_late' => false]);
             }
 
-             if (request()->finish) {
-                 request()->validate(['finish' => 'required', 'string', 'max:1000']);
-                 $attributes['finish'] = request()->finish;
-             }
-
             if($attributes != null){
+                //DB::beginTransaction();
                 $result = $job->update($attributes);
-                if($result) {
-                    return back()->with('message', 'Podaci za navedeni poslovni nalog su promenjeni!.');
+                if(!$result) {
+                    //DB::rollBack();
+                    return back()->with('message', 'Podaci nisu za navedeni poslovni nalog promenjeni!.Doslo je do greske!');
                 }
-                return back()->with('message', 'Podaci nisu za navedeni poslovni nalog promenjeni!.Doslo je do greske!');
+//dd(request()->sectorItems, $job->id);
+                DepartmentTask::updateDepartments(request()->sectorItems, $job->id);
+                //DB::commit();
+
+                return back()->with('message', 'Podaci za navedeni poslovni nalog su promenjeni!.');
             }
             return back()->with('message', 'Nisu unete promene u poslovnom nalogu!');
         }
