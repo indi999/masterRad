@@ -30,6 +30,10 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('admins.users.index', function($view){
             $view->with('departments' , Department::sectors());
         });
+
+        view()->composer('admins.tasks.index', function($view){
+            $view->with('sektors' , Department::sectors());
+        });
         view()->composer('admins.tasks.show', function($view){
             $view->with('departments' , Department::sectors())
                  ->with('managers' , User::managers())

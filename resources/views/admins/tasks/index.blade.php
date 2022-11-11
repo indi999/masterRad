@@ -18,10 +18,9 @@
                                 <th scope="col">Prodaja</th>
                                 <th scope="col">Planirani završetak</th>
                                 <th scope="col">Očekivani završetak</th>
-                                <th class="design" scope="col">Dizajn/priprema</th>
-                                <th class="poduction" scope="col">Produkcija</th>
-                                <th class="add" scope="col">Dorada</th>
-                                <th class="delivery" scope="col">Isporuka</th>
+                                @foreach($sektors as $selectSector)
+                                    <th class="design" scope="col">{{$selectSector->name}}</th>
+                                @endforeach
                                 <th style="color#0d1e31" scope="col"></th>
                                 <th style="color#0d1e31" scope="col"></th>
                                 <th class="" scope="col">Status projekta</th>
