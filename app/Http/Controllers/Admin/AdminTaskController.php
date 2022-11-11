@@ -127,12 +127,11 @@ class AdminTaskController extends Controller
         if( Auth::user()->is_admin ){
 
             $attributes=[];
-            //dd($job, $job->user_id, $job->saller_id,  $attributes);
+
             $manager = User::find($job->user_id);
             $saller = User::find($job->saller_id);
             $attributes['sallerData'] = ['sellerID' => $saller->id , 'fullName' => $saller->firstname.' '.$saller->lastname ];
             $attributes['managerData'] = ['managerID' => $manager->id , 'fullName' => $manager->firstname.' '.$manager->lastname ];
-            dd($job, $manager, $saller,  $attributes);
 
             return view('admins.tasks.edit', compact('job','attributes'));
         }

@@ -13,9 +13,9 @@
                             <tr>
                                 <th scope="col">Radni Nalog Broj: #{{$job->number}}</th>
                                 <th class="delete-user">
-                                    <button type="submit" class="btn del-job" id="{{ $job->id }}" data-toggle="modal" data-target="#exampleModal-{{ $job->id }}">
+                                    <a href="{{route("admin.jobs.edit", ['job' => $job->id])}}" class="btn del-job">
                                         <i class="fa fa-edit"></i>
-                                    </button>
+                                    </a>
                                 </th>
                                 <th class="delete-user">
                                     <button type="submit" class="btn del-job" id="{{ $job->id }}" data-toggle="modal" data-target="#exampleModal-{{ $job->id }}">
@@ -52,15 +52,85 @@
                                 <td>Prodaja: {{$job->saller->firstname}} {{$job->saller->lastname}}</td>
                             </tr>
 
+                            <div class="b-example-divider"></div>
+
                             <tr>
-                                <td>Responsible Department: XXX</td>
+                                <td>
+                                    <div class="form-group row sectors">
+                                        <label for="inputSectors" class="col-sm-4 col-form-label">Odgovorni sektori</label>
+                                        <div class="col-sm-8">
+                                            @foreach($job->departments as $department)
+                                                <div class="form-check">
+                                                    <input class="form-check-input"  type="checkbox" value="{{$department->id}}" id="inputSectorsD"
+                                                           @if($department->pivot->is_active == true)
+                                                           checked="checked">
+                                                    @endif
+                                                    <label class="form-check-label" for="inputSectorsD">
+                                                        {{$department->name}}
+                                                    </label>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+
+                                    <div class="b-example-divider"></div>
+
+
+
+                                </td>
                             </tr>
 
                             <tr>
-                                <td scope="row">{{ date('Y-m-d', strtotime($job->date_end)) }}
-                                    <i class="fa fa-calendar" aria-hidden="true"></i></td>
+                                <td scope="row">Rok za realizaciju naloga: {{ date('Y-m-d', strtotime($job->date_end)) }}
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </td>
                             </tr>
+                            <tr>
+                                <td class="complete-task">
+                                    <label for="inputSectors" class="col-sm-4 col-form-label">Status poslovnog naloga: </label>
 
+                                    <div class="d-flex gap-5 justify-content-center">
+                                        <div class="list-group mx-0 w-auto">
+                                            <label class="list-group-item d-flex gap-2">
+
+                                            <form method="POST" action="/jobs/{{$department->pivot->id}}/finish">
+                                                @method('PATCH')
+                                                @csrf
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input flex-shrink-0" type="checkbox" name="is_finish" id="group1"
+                                                           onChange="this.form.submit()" {{ $department->pivot->is_finish ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="group1">
+                                                        <span>
+                                                        Završeno
+                                                            <small class="d-block small opacity-50">Cekirati u slucaju zavrsenog naloga.</small>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="list-group mx-0 w-auto">
+                                            <label class="list-group-item d-flex gap-2">
+
+                                            <form method="POST" action="/jobs/{{$department->pivot->id}}/late">
+                                                @method('PATCH')
+                                                @csrf
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input flex-shrink-0" type="checkbox" name="is_late" id="defaultCheck1"
+                                                           onChange="this.form.submit()" {{ $department->pivot->is_late ? 'checked' : '' }}>
+                                                    <span>
+                                                        Kasni
+                                                        <small class="d-block text-muted">Cekirati u slucaju da nalog kasni.</small>
+                                                    </span>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
                             <!-- Comment -->
                             <tr>
                                 <td scope="row">

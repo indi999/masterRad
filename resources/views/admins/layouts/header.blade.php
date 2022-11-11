@@ -12,4 +12,4 @@
     <link rel="stylesheet" href="{{ asset('assets/css/timePicker.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
-<body @if(Route::is('admin.jobs.create') ) class="" @else class="white-bg" @endif >
+<body @if(Route::is('admin.jobs.create') || Route::is('admin.jobs.edit')) class="" @else class="white-bg" @endif >

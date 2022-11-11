@@ -8,9 +8,9 @@
                     @include('messages.messages')
                     <div class="menu-items">
                         <ul>
-
                             <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-list" aria-hidden="true"></i>Lista poslova</a></li>
-                            <li class="add-job"><a href="#"><i class="fa fa-plus" aria-hidden="false"></i>Izmeni podatke za posao</a></li>
+                            <li><a href="{{ route('admin.jobs.show', ['job' => $job->id])  }}"><i class="fa fa-list" aria-hidden="true"></i>Prikazi nalog br: #{{$job->number}}</a></li>
+                            <li class="add-job"><a href="#"><i class="fa fa-plus" aria-hidden="false"></i>Izmeni podatke za posao br: #{{$job->number}}</a></li>
                         </ul>
                     </div>
 
@@ -66,9 +66,12 @@
                             <div class="form-group row sectors">
                                 <label for="inputSectors" class="col-sm-4 col-form-label">Sektori</label>
                                 <div class="col-sm-8">
-                                    @foreach($departments as $department)
+                                    @foreach($job->departments as $department)
                                         <div class="form-check">
-                                            <input class="form-check-input"  type="checkbox" value="{{$department->id}}" id="inputSectorsD" >
+                                            <input class="form-check-input"  type="checkbox" value="{{$department->id}}" id="inputSectorsD"
+                                                   @if($department->pivot->is_active == true)
+                                                       checked="checked">
+                                                   @endif
                                             <label class="form-check-label" for="inputSectorsD">
                                                 {{$department->name}}
                                             </label>
@@ -94,7 +97,6 @@
                                 <label for="inputDesc" class="col-sm-4 col-form-label">Rok za završetak</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" value="{{$job->date_end}}" name="date_end" data-toggle="datepicker" placeholder="Datum"  autocomplete="off" required>
-                                    <input type="text" id="timePicker" class="form-control" value="{{$job->time_end}}" name="time_end" data-toggle="timePicker" placeholder="Vreme" autocomplete="off"  required>
                                 </div>
                             </div>
 
@@ -133,11 +135,7 @@
                 </div>
                 @else
 
-
-
                 @endif
-
-
             </div>
         </div>
     </div>
