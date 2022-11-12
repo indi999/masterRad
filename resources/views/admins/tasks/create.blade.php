@@ -10,7 +10,7 @@
                         <ul>
                             <!--<li class="users"><a href="#"><i class="fa fa-users" aria-hidden="true"></i>Lista korisnika</a></li>-->
                             <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-list" aria-hidden="true"></i>Lista poslova</a></li>
-                            <li class="add-job"><a href="#"><i class="fa fa-plus" aria-hidden="true"></i>Dodaj posao</a></li>
+                            <li class="add-job"><a href="#"><i class="fa fa-plus" aria-hidden="false"></i>Dodaj posao</a></li>
                         </ul>
                     </div>
 

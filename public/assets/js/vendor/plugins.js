@@ -155,7 +155,7 @@ b=20===a[0].offsetTop||15===a[0].offsetTop;a.remove();return b}());f.extend(b.de
 /*========= Isotope PACKAGED v2.2.0 =========*/
 /*!
  * imagesLoaded PACKAGED v3.1.8
- * JavaScript is all like "You images are done yet or what?"
+ * JavaScript is all like "You img are done yet or what?"
  * MIT License
  */
 
@@ -558,7 +558,7 @@ qe[Xc]=d(N(yb)),qe[Zc]=d(N(Mb+" "+Ob+rc,N(ic))),qe[Yc]=d(N(Mb+" "+Nb+rc,N(hc))),
     }
   };
 
-  // Display the image and its details and begin preload neighboring images.
+  // Display the image and its details and begin preload neighboring img.
   Lightbox.prototype.showImage = function() {
     this.$lightbox.find('.lb-loader').stop(true).hide();
     this.$lightbox.find('.lb-image').fadeIn(this.options.imageFadeDuration);
@@ -643,7 +643,7 @@ qe[Xc]=d(N(yb)),qe[Zc]=d(N(Mb+" "+Ob+rc,N(ic))),qe[Yc]=d(N(Mb+" "+Nb+rc,N(hc))),
     });
   };
 
-  // Preload previous and next images in set.
+  // Preload previous and next img in set.
   Lightbox.prototype.preloadNeighboringImages = function() {
     if (this.album.length > this.currentImageIndex + 1) {
       var preloadNext = new Image();

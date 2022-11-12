@@ -135,6 +135,18 @@
                                             <input class="form-check-input" name="finish" type="checkbox"  id="defaultCheck1"
                                                    onChange="this.form.submit()" {{ $job->finish ? 'checked' : '' }}>
                                             <label class="form-check-label" for="defaultCheck1">
+                                                U Izradi
+                                            </label>
+                                        </div>
+                                    </form>
+                                    <form method="POST" action="{{ route('admin.jobs.finishJob', ['job' => $job->id] )}}">
+                                        @method('PATCH')
+                                        @csrf
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" name="finish" type="checkbox"  id="defaultCheck1"
+                                                   onChange="this.form.submit()" {{ $job->finish ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="defaultCheck1">
                                                 Završeno
                                             </label>
                                         </div>
