@@ -52,12 +52,16 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Department::class);
     }
-    public function task()
+    public function tasks()
     {
-        return $this->hasOne(Task::class);
+        return $this->hasMany(Task::class);
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
-//
+// ---------------------------------------------------------------------
     public static function managers()
     {
         return static::where('role','manager')->get();

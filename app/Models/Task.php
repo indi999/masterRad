@@ -19,13 +19,13 @@ class Task extends Model
         'number',
         'user_id', // manager
         'brand',
+        'ime_end',
+        'expected_date_end',
         'client',
         'saller_id', // saller
         'desc',
         'date_end',
-        'time_end',
         'expected_date_end',
-        'expected_time_end',
         'finish',
     ];
 
@@ -40,6 +40,10 @@ class Task extends Model
     public function saller()
     {
         return $this->belongsTo(User::class, 'saller_id'); // select user use saller_id
+    }
+    public function comments()
+    {
+        return $this->hasMany(Commit::class);
     }
 
 

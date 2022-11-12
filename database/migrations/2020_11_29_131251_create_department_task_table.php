@@ -16,19 +16,21 @@ class CreateDepartmentTaskTable extends Migration
         Schema::create('department_task', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('task_id')->unsigned();
             $table->integer('department_id')->unsigned();
-            $table->boolean('is_active');
+            $table->integer('task_id')->unsigned();
+            $table->boolean('is_active')->default(true);
+
+            $table->boolean('in_progres')->default(false);
             $table->boolean('is_late')->default(false);
             $table->boolean('is_finish')->default(false);
 
+            $table->timestamps();
+
             $table->foreign('task_id')->references('id')->on('tasks')
-                  ->onDelete('cascade');
+                ->onDelete('cascade');
 
             $table->foreign('department_id')->references('id')->on('departments')
-                  ->onDelete('cascade');
-
-            $table->timestamps();
+                ->onDelete('cascade');
         });
     }
 
