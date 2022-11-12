@@ -25,10 +25,13 @@ class CreateTasksTable extends Migration
 
             // Date end
             $table->date('date_end');
-            //$table->date('time_end');
             $table->date('expected_date_end');
-            //$table->date('expected_time_end');
-            $table->boolean('finish')->default(false);
+            $table->boolean('status')->default(false);
+            $table->boolean('delete')->default(false); //delete
+
+            // Who created
+            $table->string('created_id')->unsign();
+            $table->string('modified_id')->unsign();
 
             $table->timestamps();
         });
