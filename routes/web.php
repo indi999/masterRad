@@ -4,33 +4,36 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/', 'App\Http\Controllers\HomeController@welcome')->name('welcome');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
+
 //USERS
 // Tasks
 Route::get('/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks');
 
-    // Task List
-    Route::get('/jobs', 'App\Http\Controllers\TaskController@index')->name('jobs.index'); // active tasks
-    Route::get('/jobs/arhive', 'App\Http\Controllers\TaskController@arhive')->name('jobs.arhive'); // arhive tasks
+// Task List
+Route::group(['prefix'=>'jobs'], function(){
+    Route::get('/', 'App\Http\Controllers\TaskController@index')->name('jobs.index'); // active tasks
+    Route::get('/arhive', 'App\Http\Controllers\TaskController@arhive')->name('jobs.arhive'); // arhive tasks
     // Add Task
-    Route::get('/jobs/create', 'App\Http\Controllers\TaskController@create')->name('jobs.create');
-    Route::post('/jobs/store', 'App\Http\Controllers\TaskController@store')->name('jobs.store');
+    Route::get('/create', 'App\Http\Controllers\TaskController@create')->name('jobs.create');
+    Route::post('/store', 'App\Http\Controllers\TaskController@store')->name('jobs.store');
     // task update
-    Route::get('/jobs/{job}/edit ', 'App\Http\Controllers\TaskController@edit')->name('jobs.edit');
-    Route::patch('/jobs/{job} ', 'App\Http\Controllers\TaskController@update')->name('jobs.update');
+    Route::get('/{job}/edit ', 'App\Http\Controllers\TaskController@edit')->name('jobs.edit');
+    Route::patch('/{job} ', 'App\Http\Controllers\TaskController@update')->name('jobs.update');
     // task chackbox
-    Route::patch('/jobs/{departmentTask}/late', 'App\Http\Controllers\TaskController@isLate')->name('jobs.late');
-    Route::patch('/jobs/{departmentTask}/finish', 'App\Http\Controllers\TaskController@isFinish')->name('jobs.finish');
-    Route::patch('/jobs/{task}/finishJob', 'App\Http\Controllers\TaskController@finishJob')->name('jobs.finishJob');
+    Route::patch('/{departmentTask}/late', 'App\Http\Controllers\TaskController@isLate')->name('jobs.late');
+    Route::patch('/{departmentTask}/finish', 'App\Http\Controllers\TaskController@isFinish')->name('jobs.finish');
+    Route::patch('/{task}/finishJob', 'App\Http\Controllers\TaskController@finishJob')->name('jobs.finishJob');
     // task delete
-    Route::delete('/jobs/{task}', 'App\Http\Controllers\TaskController@destroy')->name('jobs.destroy');
+    Route::delete('/{task}', 'App\Http\Controllers\TaskController@destroy')->name('jobs.destroy');
+});
 
-    // all users
-    Route::get('/employees', 'App\Http\Controllers\UserController@employees')->name('users.employees');
-    Route::get('/monitor','App\Http\Controllers\UserController@monitor')->name('users.monitor');
-    Route::get('/sellers','App\Http\Controllers\UserController@sellers')->name('users.sellers');
+// all users
+Route::get('/employees', 'App\Http\Controllers\UserController@employees')->name('users.employees');
+Route::get('/monitor','App\Http\Controllers\UserController@monitor')->name('users.monitor');
+Route::get('/sellers','App\Http\Controllers\UserController@sellers')->name('users.sellers');
 
-    // show sektors
-    Route::get('/sektors/{sektor}', 'App\Http\Controllers\DepartmentController@show')->name('sektors.show');
+// show sektors
+Route::get('/sektors/{sektor}', 'App\Http\Controllers\DepartmentController@show')->name('sektors.show');
 
 // ADMIN ROUTES -------------------------------------------------------------------------------------------------
 Route::middleware('is_admin')->prefix('admin')->group(function(){
@@ -44,6 +47,8 @@ Route::middleware('is_admin')->prefix('admin')->group(function(){
     Route::resource('/jobs', 'App\Http\Controllers\Admin\AdminTaskController',[
         'as' => 'admin'
     ]);
+    //Comments
+
 
     //Deparments
     Route::resource('/sektors', 'App\Http\Controllers\Admin\AdminDepartmentController',[
