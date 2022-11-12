@@ -60,24 +60,18 @@
                                         <label for="inputSectors" class="col-sm-4 col-form-label">Odgovorni sektori</label>
                                         <div class="col-sm-8">
                                             @foreach($job->departments as $department)
+                                                @if($department->pivot->is_active == true)
                                                 <div class="form-check">
                                                     <input class="form-check-input"  type="checkbox" value="{{$department->id}}" id="inputSectorsD"
-                                                           @if($department->pivot->is_active == true)
-                                                                checked="checked"
-                                                           @endif
-                                                           disabled>
+                                                           checked="checked" disabled>
                                                     <label class="form-check-label" for="inputSectorsD">
                                                         {{$department->name}}
                                                     </label>
                                                 </div>
+                                                @endif
                                             @endforeach
                                         </div>
                                     </div>
-
-                                    <div class="b-example-divider"></div>
-
-
-
                                 </td>
                             </tr>
 
@@ -90,7 +84,28 @@
                                 <td class="complete-task">
                                     <label for="inputSectors" class="col-sm-4 col-form-label">Status poslovnog naloga: </label>
 
+
                                     <div class="d-flex gap-5 justify-content-center">
+
+                                        <div class="list-group mx-0 w-auto">
+                                            <label class="list-group-item d-flex gap-2">
+
+                                                <form method="POST" action="/jobs/{{$department->pivot->id}}/finish">
+                                                    @method('PATCH')
+                                                    @csrf
+
+                                                    <div class="form-check">
+                                                        <input class="form-check-input flex-shrink-0" type="checkbox" name="is_finish" id="group1"
+                                                               onChange="this.form.submit()" {{ $department->pivot->is_finish ? 'checked' : '' }}>
+                                                        <label class="form-check-label" for="group1">
+                                                        <span>
+                                                        U izradi
+                                                            <small class="d-block small opacity-50">Kliknuti pre pocetka realizacije poslovnog naloga..</small>
+                                                        </span>
+                                                        </label>
+                                                    </div>
+                                                </form>
+                                        </div>
                                         <div class="list-group mx-0 w-auto">
                                             <label class="list-group-item d-flex gap-2">
 
