@@ -14,7 +14,7 @@
                             <tr>
                                 <th scope="col">Radni Nalog Broj: #{{$job->number}}</th>
                                 <th class="delete-user">
-                                    <a href="{{route("tasks.edit", ['job' => $job->id])}}" class="btn del-job">
+                                    <a href="{{route("admin.jobs.show", ['job' => $job->id])}}" class="btn del-job">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                 </th>
@@ -151,7 +151,7 @@
                             <!-- Comment -->
                             <tr>
                                 <td scope="row">
-                                    @include('admin.tasks.comments')
+                                    @include('admins.tasks.comments')
                                 </td>
                             </tr>
 
