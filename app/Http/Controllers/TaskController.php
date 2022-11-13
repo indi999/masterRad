@@ -101,10 +101,12 @@ class TaskController extends Controller
                 'saller_id' => ['required', 'integer'],
                 'desc' => ['required', 'string', 'max:1000'],
                 'date_end' => ['required', 'string', 'max:50'],
-                //'time_end' => ['required', 'string', 'max:1000'],
             ]);
+            //$attributes['number'] = 123456; // need algoritam!
             $attributes['user_id'] = auth()->user()->id;
             $attributes['expected_date_end'] =  $attributes['date_end'];
+            $attributes['created_by'] = auth()->user()->id;
+            $attributes['modified_by'] = auth()->user()->id;
             //$attributes['expected_time_end'] =  $attributes['date_end'];
 
             //dd($attributes,request()->sectorItems);
@@ -167,7 +169,11 @@ class TaskController extends Controller
             if (request()->expected_date_end) {
                 $attributes['expected_date_end'] = request()->expected_date_end;
                 // pivot table
-                DepartmentTask::where('task_id',$task->id)->update(['is_late' => false]);
+                DepartmentTask::where('task_id',$task->id)
+                              ->update([
+                                  'is_late' => false,
+                                  'modified_by' => auth()->user()->id,
+                                  ]);
              }
             //dd($attributes,request()->expected_date_end,request()->all(),$departmentTask );
             $task->update($attributes);
@@ -193,23 +199,42 @@ class TaskController extends Controller
         }
     }
 
-
     // Checkbox pivot DepartmentTask
+    public function inProgress(Task $job)
+    {
+        if( Auth::user()->is_admin ) {
+            $result = $job->update([
+                'in_progress' => request()->has('in_progress'),
+                'is_finish' => false,
+                'is_late' => false,
+                'modified_by' => auth()->user()->id,
+            ]);
+            if ($result) {
+                return back()->with('message', 'Task status changed.');
+            }
+            return back()->with('message', 'The Task status cannot be changed.');
+        }
+        return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
+    }
+
     public function isLate(DepartmentTask $departmentTask)
     {
         $departmentTask->update([
             'is_late' => request()->has('is_late'),
-            'is_finish' => false
+            'in_progress' => false,
+            'is_finish' => false,
+            'modified_by' => auth()->user()->id,
         ]);
         return back();
     }
 
     public function isFinish(DepartmentTask $departmentTask)
     {
-        //dd('yes12', $book);
         $departmentTask->update([
             'is_finish' => request()->has('is_finish'),
-            'is_late' => false
+            'in_progress' => false,
+            'is_late' => false,
+            'modified_by' => auth()->user()->id,
         ]);
         return back();
     }
@@ -217,7 +242,10 @@ class TaskController extends Controller
     public function finishJob(Task $task)
     {
         if( Auth::user()->role == 'manager' ) {
-            $result = $task->update(['finish' => request()->has('finish')]);
+            $result = $task->update([
+                'finish' => request()->has('finish'),
+                'modified_by' => auth()->user()->id,
+                ]);
             if ($result) {
                 //DepartmentTask::where('task_id',$task->id)->update(['is_late' => false]);
                 //DepartmentTask::where('task_id',$task->id)->update(['is_finish' => true]);

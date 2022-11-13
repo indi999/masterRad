@@ -90,13 +90,13 @@
                                         <div class="list-group mx-0 w-auto">
                                             <label class="list-group-item d-flex gap-2">
 
-                                                <form method="POST" action="/jobs/{{$department->pivot->id}}/finish">
+                                                <form method="POST" action="admin/jobs/{{$department->pivot->id}}/in_progress">
                                                     @method('PATCH')
                                                     @csrf
 
                                                     <div class="form-check">
-                                                        <input class="form-check-input flex-shrink-0" type="checkbox" name="is_finish" id="group1"
-                                                               onChange="this.form.submit()" {{ $department->pivot->is_finish ? 'checked' : '' }}>
+                                                        <input class="form-check-input flex-shrink-0" type="checkbox" name="in_progress" id="group1"
+                                                               onChange="this.form.submit()" {{ $department->pivot->in_progress ? 'checked' : '' }}>
                                                         <label class="form-check-label" for="group1">
                                                         <span>
                                                         U izradi
@@ -109,7 +109,7 @@
                                         <div class="list-group mx-0 w-auto">
                                             <label class="list-group-item d-flex gap-2">
 
-                                            <form method="POST" action="/jobs/{{$department->pivot->id}}/finish">
+                                            <form method="POST" action="admin/jobs/{{$department->pivot->id}}/finish">
                                                 @method('PATCH')
                                                 @csrf
 
@@ -128,7 +128,7 @@
                                         <div class="list-group mx-0 w-auto">
                                             <label class="list-group-item d-flex gap-2">
 
-                                            <form method="POST" action="/jobs/{{$department->pivot->id}}/late">
+                                            <form method="POST" action="admin/jobs/{{$department->pivot->id}}/late">
                                                 @method('PATCH')
                                                 @csrf
 

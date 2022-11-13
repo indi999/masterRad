@@ -16,6 +16,8 @@ class Department extends Model
      */
     protected $fillable = [
         'name',
+        'created_by',
+        'modified_by',
     ];
 
     public function tasks()

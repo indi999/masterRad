@@ -20,6 +20,7 @@ Route::group(['prefix'=>'jobs'], function(){
     Route::get('/{job}/edit ', 'App\Http\Controllers\TaskController@edit')->name('jobs.edit');
     Route::patch('/{job} ', 'App\Http\Controllers\TaskController@update')->name('jobs.update');
     // task chackbox
+    Route::patch('/{departmentTask}/in_progress', 'App\Http\Controllers\TaskController@inProgress')->name('jobs.inProgress');
     Route::patch('/{departmentTask}/late', 'App\Http\Controllers\TaskController@isLate')->name('jobs.late');
     Route::patch('/{departmentTask}/finish', 'App\Http\Controllers\TaskController@isFinish')->name('jobs.finish');
     Route::patch('/{task}/finishJob', 'App\Http\Controllers\TaskController@finishJob')->name('jobs.finishJob');
@@ -42,11 +43,15 @@ Route::middleware('is_admin')->prefix('admin')->group(function(){
 
     //Tasks
     Route::get('/jobs/arhive', 'App\Http\Controllers\Admin\AdminTaskController@arhive')->name('admin.jobs.arhive'); // arhive tasks
-    Route::patch('/jobs/{job}/finishJob', 'App\Http\Controllers\Admin\AdminTaskController@finishJob')->name('admin.jobs.finishJob');
     Route::patch('/jobs/{job}/update_expected_date_end', 'App\Http\Controllers\Admin\AdminTaskController@updateExpectedDateEnd')->name('admin.jobs.updateExpectedDateEnd');
+    Route::patch('/jobs/{job}/finishJob', 'App\Http\Controllers\Admin\AdminTaskController@finishJob')->name('admin.jobs.finishJob');
     Route::resource('/jobs', 'App\Http\Controllers\Admin\AdminTaskController',[
         'as' => 'admin'
     ]);
+    //Checkbox Task DepartmentsTask
+    Route::patch('/jobs/{departmentTask}/in_progress', 'App\Http\Controllers\Admin\AdminDepartmentTasksController@inProgress')->name('admin.jobs.inProgress');
+    Route::patch('/jobs/{departmentTask}/late', 'App\Http\Controllers\Admin\AdminDepartmentTasksController@islate')->name('admin.jobs.isLate');
+    Route::patch('/jobs/{departmentTask}/finish', 'App\Http\Controllers\Admin\AdminDepartmentTasksController@isFinish')->name('admin.jobs.isFinish');
     //Comments
 
 
@@ -54,6 +59,7 @@ Route::middleware('is_admin')->prefix('admin')->group(function(){
     Route::resource('/sektors', 'App\Http\Controllers\Admin\AdminDepartmentController',[
         'as' => 'admin'
     ])->except('create');
+
     // Users
     Route::get('/users/managers','App\Http\Controllers\Admin\AdminUsersController@managers')->name('admin.users.managers');
     Route::get('/users/employees','App\Http\Controllers\Admin\AdminUsersController@employees')->name('admin.users.employees');

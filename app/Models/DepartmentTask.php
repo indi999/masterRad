@@ -23,9 +23,12 @@ class DepartmentTask extends Model
     protected $fillable = [
         'task_id',
         'department_id',
+        'in_progress',
         'is_active',
         'is_late',
         'is_finish',
+        'created_by',
+        'modified_by',
     ];
 
     public static function addDepartments($sectorItems, $task_id)
@@ -35,12 +38,14 @@ class DepartmentTask extends Model
 
         foreach($departments as $department) {
             $department_id = $department->id;
+            $created_by = auth()->user()->id;
+            $modified_by = auth()->user()->id;
             if (in_array((string)$department->id, $sectorItems)) {
                 $is_active = true;
-                static::create(compact('department_id', 'task_id', 'is_active'));
+                static::create(compact('department_id', 'task_id', 'is_active','created_by','modified_by'));
             }else{
                 $is_active = false;
-                static::create(compact('department_id', 'task_id', 'is_active'));
+                static::create(compact('department_id', 'task_id', 'is_active','created_by','modified_by'));
             }
         }
     }
@@ -58,15 +63,16 @@ class DepartmentTask extends Model
                 //return "NE VALJA";
                 dd("Nije nesto u redu");
             }
-
             foreach($departments as $department) {
                 $department_id = $department->id;
+                $created_by = auth()->user()->id;
+                $modified_by = auth()->user()->id;
                 if (in_array((string)$department->id, $sectorItems)) {
                     $is_active = true;
-                    static::create(compact('department_id', 'task_id', 'is_active'));
+                    static::create(compact('department_id', 'task_id', 'is_active','created_by','modified_by'));
                 }else{
                     $is_active = false;
-                    static::create(compact('department_id', 'task_id', 'is_active'));
+                    static::create(compact('department_id', 'task_id', 'is_active','created_by','modified_by'));
                 }
             }
         DB::commit();

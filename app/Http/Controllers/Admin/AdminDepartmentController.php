@@ -59,6 +59,9 @@ class AdminDepartmentController extends Controller
                 'name' => ['required', 'string', 'max:50'],
             ]);
 
+            $attributes['created_by'] = auth()->user()->id;
+            $attributes['modified_by'] = auth()->user()->id;
+
             $deparment = Department::create($attributes);
 
             if($deparment){
@@ -112,6 +115,8 @@ class AdminDepartmentController extends Controller
             $attributes = request()->validate([
                 'name' => ['required', 'string', 'max:50'],
             ]);
+
+            $attributes['modified_by'] = auth()->user()->id;
 
             $result = $deparment->update($attributes);
             //dd($category, $result);

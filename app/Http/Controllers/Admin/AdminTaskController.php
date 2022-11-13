@@ -92,13 +92,15 @@ class AdminTaskController extends Controller
                 'saller_id' => ['required', 'integer'],
                 'desc' => ['required', 'string', 'max:10000'],
                 'date_end' => ['required', 'string', 'max:50'],
-                //'time_end' => ['required', 'string', 'max:50'],
             ]);
+            //$attributes['number'] = 123456; // need algoritam!
             //$attributes['date_end'] =  $attributes['date_end']." ". $attributes['time_end'];
             $attributes['expected_date_end'] =  $attributes['date_end'];
-            //$attributes['expected_time_end'] =  $attributes['time_end'];
+            $attributes['created_by'] = auth()->user()->id;
+            $attributes['modified_by'] = auth()->user()->id;
 
             //dd($attributes);
+
             $task = Task::create($attributes);
             DepartmentTask::addDepartments(request()->sectorItems,$task->id);
 
@@ -213,6 +215,25 @@ class AdminTaskController extends Controller
         return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
     }
 
+    public function finishJob(Task $job)
+    {
+        if( Auth::user()->is_admin ) {
+            $result = $job->update([
+                    'is_finish' => request()->has('is_finish'),
+                    'in_progress' => false,
+                    'is_late' => false,
+                    'modified_by' => auth()->user()->id,
+                ]);
+            if ($result) {
+                //DepartmentTask::where('task_id',$job->id)->update(['is_late' => false]);
+                //DepartmentTask::where('task_id',$job->id)->update(['is_finish' => true]);
+                return back()->with('message', 'Task status changed.');
+            }
+            return back()->with('message', 'The Task status cannot be changed.');
+        }
+        return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
+    }
+
     /**
      * Update expected_date_end the specified resource in storage.
      *
@@ -227,25 +248,14 @@ class AdminTaskController extends Controller
                 request()->validate(['expected_date_end' => 'required', 'string', 'max:1000']);
                 $attributes['expected_date_end'] = request()->expected_date_end;
                 //DepartmentTask pivot table
-                DepartmentTask::where('task_id',$job->id)->update(['is_late' => false]);
+                DepartmentTask::where('task_id',$job->id)->update([
+                    'is_late' => false,
+                    'modified_by' => auth()->user()->id,
+                ]);
                 $job->update($attributes);
                 return back()->with('message','Expected date je promenjen.');
             }
             return back()->with('message', 'Nije promenjen Expected date, pokusajte ponovo!');
-        }
-        return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
-    }
-
-    public function finishJob(Task $job)
-    {
-        if( Auth::user()->is_admin ) {
-            $result = $job->update(['finish' => request()->has('finish')]);
-            if ($result) {
-                //DepartmentTask::where('task_id',$job->id)->update(['is_late' => false]);
-                //DepartmentTask::where('task_id',$job->id)->update(['is_finish' => true]);
-                return back()->with('message', 'Task status changed.');
-            }
-            return back()->with('message', 'The Task status cannot be changed.');
         }
         return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
     }

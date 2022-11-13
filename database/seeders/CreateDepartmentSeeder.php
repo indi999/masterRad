@@ -17,15 +17,23 @@ class CreateDepartmentSeeder extends Seeder
         $department = [
             [
                 'name'=>'DIZAJN/PRIPREMA',
+                'created_by' => 1,
+                'modified_by' => 1,
             ],
             [
                 'name'=>'PRODUKCIJA',
+                'created_by' => 1,
+                'modified_by' => 1,
             ],
             [
                 'name'=>'DORADA',
+                'created_by' => 1,
+                'modified_by' => 1,
             ],
             [
                 'name'=>'ISPORUKA',
+                'created_by' => 1,
+                'modified_by' => 1,
             ],
 
         ];

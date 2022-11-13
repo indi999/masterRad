@@ -27,6 +27,8 @@ class Task extends Model
         'date_end',
         'expected_date_end',
         'finish',
+        'created_by',
+        'modified_by',
     ];
 
     public function departments()

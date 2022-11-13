@@ -19,11 +19,12 @@ class CreateDepartmentTaskTable extends Migration
             $table->integer('department_id')->unsigned();
             $table->integer('task_id')->unsigned();
             $table->boolean('is_active')->default(true);
-
-            $table->boolean('in_progres')->default(false);
+            $table->boolean('in_progress')->default(false);
             $table->boolean('is_late')->default(false);
             $table->boolean('is_finish')->default(false);
 
+            $table->integer('created_by')->unsign();
+            $table->integer('modified_by')->unsign();
             $table->timestamps();
 
             $table->foreign('task_id')->references('id')->on('tasks')

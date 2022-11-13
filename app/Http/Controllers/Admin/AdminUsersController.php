@@ -109,7 +109,9 @@ class AdminUsersController extends Controller
         //Password
         $attributes['password'] = Hash::make($attributes['password']);
 
-        //dd($attributes);
+        $attributes['created_by'] = auth()->user()->id;
+        $attributes['modified_by'] = auth()->user()->id;
+
         $user = User::create($attributes);
 
         if($user){

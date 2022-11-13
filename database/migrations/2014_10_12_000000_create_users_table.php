@@ -25,12 +25,12 @@ class CreateUsersTable extends Migration
             $table->string('role');   // Admin/Manager/Korisnik/Prodavac
             $table->boolean('status')->default(true); //true/false
             $table->string('image')->default("none");
-            $table->string('created_id')->unsign();
-            $table->string('modified_id')->unsign();
-
-            $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('email_verified_at')->nullable(true);
             $table->string('password');
             $table->rememberToken();
+
+            $table->integer('created_by')->unsign();
+            $table->integer('modified_by')->unsign();
             $table->timestamps();
         });
     }

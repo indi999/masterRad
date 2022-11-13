@@ -25,7 +25,8 @@ class CreateUserSeeder extends Seeder
                 'is_admin'=>true,
                 'password'=> bcrypt('secret'),
                 'role'=>'admin',
-
+                'created_by' => 1,
+                'modified_by' => 1,
             ],
             [
                 'department_id'=>0,
@@ -35,7 +36,8 @@ class CreateUserSeeder extends Seeder
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
                 'role'=>'manager',
-
+                'created_by' => 1,
+                'modified_by' => 1,
             ],
             [
                 'department_id'=>0,
@@ -45,7 +47,8 @@ class CreateUserSeeder extends Seeder
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
                 'role'=>'manager',
-
+                'created_by' => 1,
+                'modified_by' => 1,
             ],
             [
                 'department_id'=>1,
@@ -55,7 +58,8 @@ class CreateUserSeeder extends Seeder
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
                 'role'=>'user',
-
+                'created_by' => 1,
+                'modified_by' => 1,
             ],
             [
                 'department_id'=>2,
@@ -65,7 +69,8 @@ class CreateUserSeeder extends Seeder
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
                 'role'=>'user',
-
+                'created_by' => 1,
+                'modified_by' => 1,
             ],
             [
                 'department_id'=>3,
@@ -75,7 +80,8 @@ class CreateUserSeeder extends Seeder
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
                 'role'=>'user',
-
+                'created_by' => 1,
+                'modified_by' => 1,
             ],
             [
                 'department_id'=>4,
@@ -85,7 +91,8 @@ class CreateUserSeeder extends Seeder
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
                 'role'=>'user',
-
+                'created_by' => 1,
+                'modified_by' => 1,
             ],
 
             [
@@ -96,7 +103,8 @@ class CreateUserSeeder extends Seeder
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
                 'role'=>'user',
-
+                'created_by' => 1,
+                'modified_by' => 1,
             ],
 
             [
@@ -107,7 +115,8 @@ class CreateUserSeeder extends Seeder
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
                 'role'=>'monitor',
-
+                'created_by' => 1,
+                'modified_by' => 1,
             ],
 
             [
@@ -118,7 +127,8 @@ class CreateUserSeeder extends Seeder
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
                 'role'=>'prodavac',
-
+                'created_by' => 1,
+                'modified_by' => 1,
             ],
             [
                 'department_id'=>0,
@@ -128,7 +138,8 @@ class CreateUserSeeder extends Seeder
                 'is_admin'=>false,
                 'password'=> bcrypt('123456'),
                 'role'=>'prodavac',
-
+                'created_by' => 1,
+                'modified_by' => 1,
             ],
         ];
 

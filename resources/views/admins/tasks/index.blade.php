@@ -127,13 +127,13 @@
                                 </td>
 
                                 <td class="complete-task">
-                                    <form method="POST" action="{{ route('admin.jobs.finishJob', ['job' => $job->id] )}}">
+                                    <form method="POST" action="admin/jobs/{{$department->pivot->id}}/in_progress">
                                         @method('PATCH')
                                         @csrf
 
                                         <div class="form-check">
-                                            <input class="form-check-input" name="finish" type="checkbox"  id="defaultCheck1"
-                                                   onChange="this.form.submit()" {{ $job->finish ? 'checked' : '' }}>
+                                            <input class="form-check-input" name="in_progress" type="checkbox"  id="defaultCheck1"
+                                                   onChange="this.form.submit()" {{ $department->pivot->in_progress ? 'checked' : '' }}>
                                             <label class="form-check-label" for="defaultCheck1">
                                                 U Izradi
                                             </label>

@@ -26,6 +26,8 @@ class User extends Authenticatable
         'status',
         'image',
         'password',
+        'created_by',
+        'modified_by',
     ];
 
     /**
