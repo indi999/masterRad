@@ -24,17 +24,17 @@ class HomeController extends Controller
           $user = Auth::user();
           if($user->role == 'manager')  {
               // if manager
-              $jobs = Task::where('finish', false)->where('user_id','=', $user->id)->get();
-              return view('home', compact('jobs'));
+              $taskss = Task::where('finish', false)->where('user_id','=', $user->id)->get();
+              return view('home', compact('tasks'));
           }
           if($user->role == 'monitor'){
                 // if manager
-                $jobs = Task::where('finish', true)->get();
+                $tasks = Task::where('finish', true)->get();
                 return view('tasks.monitor', compact('tasks'));
           }
-
-          $jobs = Task::where('finish', false)->get();
-          return view('tasks.sectorJobs', compact('jobs'));
+          // if employees
+          $tasks = Task::where('finish', false)->get();
+          return view('tasks.sectorJobs', compact('tasks'));
     }
 
     /**
@@ -44,26 +44,23 @@ class HomeController extends Controller
      */
     public function home()
     {
-        $user = Auth::user();
-
+        $user = auth()->user();
         if($user->role == 'manager')  {
           // if manager
-          $jobs = Task::where('finish', false)->where('user_id','=', $user->id)->get();
-          return view('home', compact('jobs'));
+          $tasks = Task::where('finish', false)->where('user_id','=', $user->id)->get();
+          return view('home', compact('tasks'));
         }
         if($user->role == 'monitor'){
             // if manager
-            $jobs = Task::where('finish', false)->get();
-            return view('tasks.monitor', compact('jobs'));
+            $tasks = Task::where('finish', false)->get();
+            return view('tasks.monitor', compact('tasks'));
         }
         if($user->role == 'prodavac'){
             // if manager
-            $jobs = Task::where('finish', false)->where('saller_id','=', $user->id)->get();
-            return view('home', compact('jobs'));
+            $tasks = Task::where('finish', false)->where('saller_id','=', $user->id)->get();
+            return view('home', compact('tasks'));
         }
-
       // if employees
-      //$tasks = Task::where('finish', false)->departments()->where('name','=',$user->department->name)->get();
       $tasks = Task::where('finish', false)->get();
       return view('tasks.sectorJobs', compact('tasks'));
 
@@ -76,8 +73,8 @@ class HomeController extends Controller
      */
     public function dashboard()
     {
-        if( Auth::user()->is_admin )  {
-            // if manager
+        // Is Admin
+        if(auth()->user()->is_admin)  {
             $jobs = Task::where('finish', false)->get();
             return view('admins.tasks.index', compact('jobs'));
         }

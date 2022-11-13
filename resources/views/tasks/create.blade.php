@@ -24,15 +24,12 @@
 
                         <div class="menu-items">
                             <ul>
-                                <!--<li class="users"><a href="#"><i class="fa fa-users" aria-hidden="true"></i>Lista korisnika</a></li>-->
                                 <li><a href="{{ route('home') }}"><i class="fa fa-list" aria-hidden="true"></i>Lista poslova</a></li>
                                 <li class="add-job"><a href="#"><i class="fa fa-plus" aria-hidden="true"></i>Dodaj posao</a></li>
                             </ul>
                         </div>
-
-
                         <div class="job-details">
-                            <form action="{{route('jobs.store')}}" method="post" class="">
+                            <form action="{{route('tasks.store')}}" method="post" class="">
                                 @csrf
 
                                 <input type="hidden" name="sectorItems" value="[]">
@@ -108,24 +105,6 @@
                     </div>
                     <div class="col-5">
                     <div class="wrap-form add-user">
-                        <!--<div class="form-header">
-                            <i class="fa fa-plus" aria-hidden="true"></i>Dodeli korisnika
-                        </div>
-                        <div class="part-form login">
-                            <form action="" method="">
-                                <div class="form-group">
-                                    <select class="custom-select custom-select-lg mb-3">
-                                    <option selected>Lista korisnika</option>
-                                    <option value="1">Dizajn korisnik</option>
-                                    <option value="2">Produkcija korisnik</option>
-                                    <option value="3">Dorada korisnik</option>
-                                    <option value="3">Isporuka korisnik</option>
-                                </select>
-                                </div>
-
-                                <button type="submit" name="submit" class="btn btn-primary">Dodeli</button>
-                            </form>
-                        </div>-->
                         <div class="form-footer">
                             <a href="list-users-managerView.html"><i class="fa fa-list" aria-hidden="true"></i>Lista korisnika</a>
                         </div>
@@ -133,8 +112,6 @@
                     @else
 
                     @endif
-
-
                 </div>
             </div>
         </div>

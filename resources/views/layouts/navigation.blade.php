@@ -8,9 +8,7 @@
         </div>
         <img src="{{asset('assets/img/white-fps.png')}}" class="logo" alt="">
     </nav>
-
 @else
-
     @if(auth()->user()->role == 'manager')
         <nav class="navbar navbar-expand-lg">
         <!--<span class="date">{{ date('Y-m-d') }}</span>-->
@@ -22,10 +20,10 @@
                     <a class="nav-link" href="{{ route('home') }}">Lista poslova</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('jobs.create') }}">Kreiraj posao</a>
+                    <a class="nav-link" href="{{ route('tasks.create') }}">Kreiraj posao</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('jobs.arhive') }}">Arhiva poslova</a>
+                    <a class="nav-link" href="{{ route('tasks.arhive') }}">Arhiva poslova</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}
@@ -50,12 +48,11 @@
             <a class="navbar-brand" href="#">Prodavac</a>
 
             <ul class="navbar-nav mr-auto">
-
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">Lista poslova</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('jobs.arhive') }}">Arhiva poslova</a>
+                    <a class="nav-link" href="{{ route('tasks.arhive') }}">Arhiva poslova</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}
@@ -96,6 +93,7 @@
             @default
             <nav class="navbar navbar-expand-lg">
         @endswitch
+
                 <a class="navbar-brand" href="#">{{ auth()->user()->department->name}}</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -103,7 +101,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('jobs.arhive') }}">Arhiva</a>
+                            <a class="nav-link" href="{{ route('home') }}">Lista poslova</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('tasks.arhive') }}">Arhiva</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> {{ __('Logout') }}
@@ -116,6 +117,7 @@
                 </div>
                 <img src="{{asset('assets/img/white-fps.png')}}" class="logo" alt="">
             </nav>
+
     @elseif( auth()->user()->role == 'monitor')
 
     @elseif( auth()->user()->role == 'customer')

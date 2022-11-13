@@ -52,7 +52,14 @@ class AppServiceProvider extends ServiceProvider
 
 
         // Manager panel
+        view()->composer('tasks.index', function($view){
+            $view->with('sektors' , Department::sectors());
+        });
         view()->composer('tasks.create', function($view){
+            $view->with('departments' , Department::sectors())
+                 ->with('sellers' , User::sellers());
+        });
+        view()->composer('tasks.show', function($view){
             $view->with('departments' , Department::sectors())
                  ->with('sellers' , User::sellers());
         });

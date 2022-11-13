@@ -49,13 +49,25 @@
                                     </ul>-->
 
                                     <tr>
-                                        <th scope="row">{{$task->number}}</th>
+                                        <th scope="row"><a href="{{route('tasks.show', ['task'=>$task->id ])}}">{{$task->number}}</a></th>
                                         <td>{{$task->brand}}</td>
                                         <td>{{$task->desc}}</td>
                                         <td>{{$task->date_end}}</td>
                                         <td>{{$task->expected_date_end}}</td>
                                         <td class="status">
-                                            <form method="POST" action="/jobs/{{$department->pivot->id}}/finish">
+                                            <form method="POST" action="/tasks/{{$department->pivot->id}}/in_progress">
+                                                @method('PATCH')
+                                                @csrf
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input unique" name="in_progress" type="checkbox" id="group1"
+                                                           onChange="this.form.submit()" {{ $department->pivot->in_progress ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="group1">
+                                                        U Izradi
+                                                    </label>
+                                                </div>
+                                            </form>
+                                            <form method="POST" action="/tasks/{{$department->pivot->id}}/finish">
                                                 @method('PATCH')
                                                 @csrf
 
@@ -63,11 +75,11 @@
                                                     <input class="form-check-input unique" name="is_finish" type="checkbox" id="group1"
                                                            onChange="this.form.submit()" {{ $department->pivot->is_finish ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="group1">
-                                                    Završeno
+                                                        Završeno
                                                     </label>
                                                 </div>
                                             </form>
-                                            <form method="POST" action="/jobs/{{$department->pivot->id}}/late">
+                                            <form method="POST" action="/tasks/{{$department->pivot->id}}/late">
                                                 @method('PATCH')
                                                 @csrf
 
@@ -75,7 +87,7 @@
                                                     <input class="form-check-input unique" name="is_late" type="checkbox"  id="defaultCheck1"
                                                            onChange="this.form.submit()" {{ $department->pivot->is_late ? 'checked' : '' }}>
                                                     <label class="form-check-label" for="defaultCheck1">
-                                                    Kasni
+                                                        Kasni
                                                     </label>
                                                 </div>
                                             </form>

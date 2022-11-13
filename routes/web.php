@@ -5,35 +5,24 @@ Auth::routes();
 Route::get('/', 'App\Http\Controllers\HomeController@welcome')->name('welcome');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 
-//USERS
-// Tasks
-Route::get('/tasks', 'App\Http\Controllers\TaskController@index')->name('tasks');
+// Tasks Route for Users and managers
+Route::resource('/tasks', 'App\Http\Controllers\TaskController');
+Route::group(['prefix'=>'tasks'], function(){
+    Route::get('/arhive', 'App\Http\Controllers\TaskController@arhive')->name('tasks.arhive'); // arhive tasks
+    Route::patch('/{task}/finishJob', 'App\Http\Controllers\TaskController@finishJob')->name('task.finishJob');
 
-// Task List
-Route::group(['prefix'=>'jobs'], function(){
-    Route::get('/', 'App\Http\Controllers\TaskController@index')->name('jobs.index'); // active tasks
-    Route::get('/arhive', 'App\Http\Controllers\TaskController@arhive')->name('jobs.arhive'); // arhive tasks
-    // Add Task
-    Route::get('/create', 'App\Http\Controllers\TaskController@create')->name('jobs.create');
-    Route::post('/store', 'App\Http\Controllers\TaskController@store')->name('jobs.store');
-    // task update
-    Route::get('/{job}/edit ', 'App\Http\Controllers\TaskController@edit')->name('jobs.edit');
-    Route::patch('/{job} ', 'App\Http\Controllers\TaskController@update')->name('jobs.update');
-    // task chackbox
-    Route::patch('/{departmentTask}/in_progress', 'App\Http\Controllers\TaskController@inProgress')->name('jobs.inProgress');
-    Route::patch('/{departmentTask}/late', 'App\Http\Controllers\TaskController@isLate')->name('jobs.late');
-    Route::patch('/{departmentTask}/finish', 'App\Http\Controllers\TaskController@isFinish')->name('jobs.finish');
-    Route::patch('/{task}/finishJob', 'App\Http\Controllers\TaskController@finishJob')->name('jobs.finishJob');
-    // task delete
-    Route::delete('/{task}', 'App\Http\Controllers\TaskController@destroy')->name('jobs.destroy');
+    // DepartmentTask chackbox
+    Route::patch('/{departmentTask}/in_progress', 'App\Http\Controllers\TaskController@inProgress')->name('task.inProgress');
+    Route::patch('/{departmentTask}/late', 'App\Http\Controllers\TaskController@isLate')->name('task.late');
+    Route::patch('/{departmentTask}/finish', 'App\Http\Controllers\TaskController@isFinish')->name('task.finish');
+
 });
 
-// all users
+// All users
 Route::get('/employees', 'App\Http\Controllers\UserController@employees')->name('users.employees');
 Route::get('/monitor','App\Http\Controllers\UserController@monitor')->name('users.monitor');
 Route::get('/sellers','App\Http\Controllers\UserController@sellers')->name('users.sellers');
-
-// show sektors
+// Show sektors
 Route::get('/sektors/{sektor}', 'App\Http\Controllers\DepartmentController@show')->name('sektors.show');
 
 // ADMIN ROUTES -------------------------------------------------------------------------------------------------

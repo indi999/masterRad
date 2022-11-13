@@ -22,14 +22,14 @@ class TaskController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the Tasks.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         // Get the currently authenticated user's
-        $user = Auth::user();
+        $user = auth()->user();
         if($user->role == 'manager')  {
           // if manager
           $tasks = Task::where('finish', false)->where('user_id','=', $user->id)->get();
@@ -40,15 +40,21 @@ class TaskController extends Controller
             return view('tasks.index', compact('tasks'));
         }
       // if employees
-      //$tasks = Task::where('finish', false)->departments()->where('name','=',$user->department->name)->get();
       $tasks = Task::where('finish', false)->get();
       return view('tasks.sectorJobs', compact('tasks'));
     }
 
+    /**
+     * Display a Arhive listing of the Tasks.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Task  $task
+     * @return \Illuminate\Http\Response
+     */
     public function arhive()
     {
         // Get the currently authenticated user's
-        $user = Auth::user();
+        $user = auth()->user();
         if($user->role == 'manager')  {
             // if manager
             $tasks = Task::where('finish', true)->where('user_id','=', $user->id)->get();
@@ -59,24 +65,21 @@ class TaskController extends Controller
             return view('tasks.index', compact('tasks'));
         }
         // if employees
-        //$tasks = Task::where('finish', true)->departments()->where('name','=',$user->department->name)->get();
         $tasks = Task::where('finish', true)->get();
         return view('tasks.sectorJobs', compact('tasks'));
     }
 
     public function monitor()
     {
-        if($user->role == 'monitor'){
+        if(auth()->user()->role == 'monitor'){  //auth()->user()->role
             // if monitor
             $tasks = Task::where('finish', false)->get();
-            dd($tasks);
             return view('tasks.monitor', compact('tasks'));
         }
     }
 
-
     /**
-     * Show the form for creating a new resource.
+     * creating a new task.
      *
      * @return \Illuminate\Http\Response
      */
@@ -93,7 +96,7 @@ class TaskController extends Controller
      */
     public function store()
     {
-        if( Auth::user()->rola = 'manager' )  {
+        if(auth()->user()->role = 'manager') {
             $attributes = request()->validate( [
                 'number' => ['required', 'integer', 'unique:tasks'],
                 'brand' => ['required', 'string', 'max:50'],
@@ -137,7 +140,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        if( Auth::user()->role == 'manager' ) {
+        if(Auth::user()) {
             return view('tasks.show', compact('task'));
         }
     }
@@ -162,11 +165,12 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(Task $task)
     {
-        if( Auth::user()->role == 'manager' ) {
-            request()->validate(['expected_date_end' => 'required', 'string', 'max:1000']);
+        if(auth()->user()->role == 'manager') {
+
             if (request()->expected_date_end) {
+                request()->validate(['expected_date_end' => 'required', 'string', 'max:1000']);
                 $attributes['expected_date_end'] = request()->expected_date_end;
                 // pivot table
                 DepartmentTask::where('task_id',$task->id)
@@ -174,10 +178,32 @@ class TaskController extends Controller
                                   'is_late' => false,
                                   'modified_by' => auth()->user()->id,
                                   ]);
+                $task->update($attributes);
+                return back()->with('message','Expected date je promenjen.');
              }
-            //dd($attributes,request()->expected_date_end,request()->all(),$departmentTask );
-            $task->update($attributes);
-            return back()->with('message','Expected date je promenjen.');
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Task  $task
+     * @return \Illuminate\Http\Response
+     */
+    public function finishJob(Task $task)
+    {
+        if(auth()->user()->role == 'manager') {
+            $result = $task->update([
+                'finish' => request()->has('finish'),
+                'modified_by' => auth()->user()->id,
+            ]);
+            if ($result) {
+                //DepartmentTask::where('task_id',$task->id)->update(['is_late' => false]);
+                //DepartmentTask::where('task_id',$task->id)->update(['is_finish' => true]);
+                return back()->with('message', 'Task is Finish.');
+            }
+            return back()->with('message', 'The Task status  cannot be changed.');
         }
     }
 
@@ -189,8 +215,9 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        if( Auth::user()->role == 'manager' ) {
-            DepartmentTask::where('task_id',$task->id)->delete();
+        if(auth()->user()->role == 'manager') {
+
+            DepartmentTask::where('task_id', $task->id)->delete();
             $result = $task->delete();
             if($result){
                 return back()->with('message', 'The Job has been deleted.');
@@ -199,11 +226,18 @@ class TaskController extends Controller
         }
     }
 
-    // Checkbox pivot DepartmentTask
-    public function inProgress(Task $job)
+    // Checkbox pivot DepartmentTask ---------------------------------------------------------------------
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Task  $task
+     * @return \Illuminate\Http\Response
+     */
+    public function inProgress(Task $task)
     {
-        if( Auth::user()->is_admin ) {
-            $result = $job->update([
+        if(auth()->user()) {
+            $result = $task->update([
                 'in_progress' => request()->has('in_progress'),
                 'is_finish' => false,
                 'is_late' => false,
@@ -214,45 +248,46 @@ class TaskController extends Controller
             }
             return back()->with('message', 'The Task status cannot be changed.');
         }
-        return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
+        return back()->with('message', 'Nemate Manager permisije za izabranu operaciju');
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Task  $task
+     * @return \Illuminate\Http\Response
+     */
     public function isLate(DepartmentTask $departmentTask)
     {
-        $departmentTask->update([
-            'is_late' => request()->has('is_late'),
-            'in_progress' => false,
-            'is_finish' => false,
-            'modified_by' => auth()->user()->id,
-        ]);
-        return back();
+        if(auth()->user()) {
+            $departmentTask->update([
+                'is_late' => request()->has('is_late'),
+                'in_progress' => false,
+                'is_finish' => false,
+                'modified_by' => auth()->user()->id,
+            ]);
+            return back();
+        }
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Task  $task
+     * @return \Illuminate\Http\Response
+     */
     public function isFinish(DepartmentTask $departmentTask)
     {
-        $departmentTask->update([
-            'is_finish' => request()->has('is_finish'),
-            'in_progress' => false,
-            'is_late' => false,
-            'modified_by' => auth()->user()->id,
-        ]);
-        return back();
-    }
-
-    public function finishJob(Task $task)
-    {
-        if( Auth::user()->role == 'manager' ) {
-            $result = $task->update([
-                'finish' => request()->has('finish'),
+        if(auth()->user()) {
+            $departmentTask->update([
+                'is_finish' => request()->has('is_finish'),
+                'in_progress' => false,
+                'is_late' => false,
                 'modified_by' => auth()->user()->id,
-                ]);
-            if ($result) {
-                //DepartmentTask::where('task_id',$task->id)->update(['is_late' => false]);
-                //DepartmentTask::where('task_id',$task->id)->update(['is_finish' => true]);
-                return back()->with('message', 'Task is Finish.');
-            }
-            return back()->with('message', 'The Task status  cannot be changed.');
-
+            ]);
+            return back();
         }
     }
 }
