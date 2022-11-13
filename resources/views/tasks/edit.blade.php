@@ -48,8 +48,8 @@
                                 <div class="col-sm-8">
                                     <select class="custom-select custom-select-lg mb-3 form-control" value="{{$task->saller_id}}" name="saller_id">
                                         <option value="{{$attributes['sallerData']['sellerID']}}">{{$attributes['sallerData']['fullName']}}</option>
-                                    @foreach($sellers as $seller) <!--$users-->
-                                        <option value="{{$seller->id}}">{{$seller->firstname}} {{$seller->lastname}}</option>
+                                        @foreach($sellers as $seller) <!--$users-->
+                                            <option value="{{$seller->id}}">{{$seller->firstname}} {{$seller->lastname}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -69,7 +69,7 @@
                                     @foreach($departments as $department)
                                         <div class="form-check">
                                             <input class="form-check-input"  type="checkbox" value="{{$department->id}}" id="inputSectorsD"
-                                                   @foreach($job->departments as $setupDepartment)
+                                                   @foreach($task->departments as $setupDepartment)
                                                    @if($department->name == $setupDepartment->name && $setupDepartment->pivot->is_active == true)
                                                    checked="checked">
                                             @endif

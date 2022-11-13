@@ -8,6 +8,7 @@ use Carbon\Carbon;
 
 use App\Models\Task;
 use App\Models\DepartmentTask;
+use App\Models\User;
 
 class TaskController extends Controller
 {
@@ -140,7 +141,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        if(Auth::user()) {
+        if(auth()->user()) {
             return view('tasks.show', compact('task'));
         }
     }
@@ -153,9 +154,14 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        if( Auth::user()->role == 'manager' ) {
-            return view('tasks.edit', compact('task'));
+        if(auth()->user()->role == 'manager') {
+            $attributes=[];
+            $saller = User::find($task->saller_id);
+            $attributes['sallerData'] = ['sellerID' => $saller->id , 'fullName' => $saller->firstname.' '.$saller->lastname ];
+
+            return view('tasks.edit', compact('task','attributes'));
         }
+        return back()->with('message', 'Nemate permisije za izabranu operaciju');
     }
 
     /**
@@ -167,21 +173,92 @@ class TaskController extends Controller
      */
     public function update(Task $task)
     {
-        if(auth()->user()->role == 'manager') {
+        if( Auth::user()->role == 'manager' ) {
+
+            $attributes = [];
+            if (request()->number) {
+                request()->validate(['number' => 'required|string|max:1000']);
+                $attributes['number'] = request()->number;
+            }
+
+            if (request()->user_id) {
+                request()->validate(['user_id' => 'required|integer']);
+                $attributes['user_id'] = request()->user_id;
+            }
+
+            if (request()->brand) {
+                request()->validate(['brand' => 'required|string|max:50']);
+                $attributes['brand'] = request()->brand;
+            }
+
+            if (request()->client) {
+                request()->validate(['client' => 'required|string|max:50']);
+                $attributes['client'] = request()->client;
+            }
+
+            if (request()->saller_id) {
+                request()->validate(['saller_id' => 'required|integer']);
+                $attributes['saller_id'] = request()->saller_id;
+            }
+
+            if (request()->desc) {
+                request()->validate(['desc' => 'required|string|max:10000']);
+                $attributes['desc'] = request()->desc;
+            }
+
+            if (request()->date_end) {
+                request()->validate(['date_end' => 'required|string|max:50']);
+                $attributes['date_end'] = request()->date_end;
+            }
 
             if (request()->expected_date_end) {
                 request()->validate(['expected_date_end' => 'required', 'string', 'max:1000']);
                 $attributes['expected_date_end'] = request()->expected_date_end;
                 // pivot table
-                DepartmentTask::where('task_id',$task->id)
-                              ->update([
-                                  'is_late' => false,
-                                  'modified_by' => auth()->user()->id,
-                                  ]);
+                DepartmentTask::where('task_id',$task->id)->update(['is_late' => false]);
+            }
+
+            if($attributes != null){
+                //DB::beginTransaction();
+                $result = $task->update($attributes);
+                if(!$result) {
+                    //DB::rollBack();
+                    return back()->with('message', 'Podaci nisu za navedeni poslovni nalog promenjeni!.Doslo je do greske!');
+                }
+                DepartmentTask::updateDepartments(request()->sectorItems, $task->id);
+                //DB::commit();
+
+                return back()->with('message', 'Podaci za navedeni poslovni nalog su promenjeni!.');
+            }
+            return back()->with('message', 'Nisu unete promene u poslovnom nalogu!');
+        }
+        return back()->with('message', 'Nemate Admin permisije za izabranu operaciju');
+    }
+
+    /**
+     * Update expected_date_end the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Task  $job
+     * @return \Illuminate\Http\Response
+     */
+    public function updateExpectedDateEnd(Task $task)
+    {
+        if(auth()->user()->role == 'manager') {
+            if (request()->expected_date_end) {
+                request()->validate(['expected_date_end' => 'required', 'string', 'max:1000']);
+                $attributes['expected_date_end'] = request()->expected_date_end;
+                //DepartmentTask pivot table
+                DepartmentTask::where('task_id',$task->id)->update([
+                    'is_late' => false,
+                    'modified_by' => auth()->user()->id,
+                ]);
                 $task->update($attributes);
                 return back()->with('message','Expected date je promenjen.');
-             }
+            }
+            return back()->with('message', 'Nije promenjen Expected date, pokusajte ponovo!');
         }
+        return back()->with('message', 'Nemate Manager permisije za izabranu operaciju');
     }
 
     /**
@@ -205,6 +282,7 @@ class TaskController extends Controller
             }
             return back()->with('message', 'The Task status  cannot be changed.');
         }
+        return back()->with('message', 'Nemate permisije za izabranu operaciju');
     }
 
     /**
@@ -224,6 +302,7 @@ class TaskController extends Controller
             }
             return back()->with('warnings', 'Can not Job delete.');
         }
+        return back()->with('message', 'Nemate permisije za izabranu operaciju');
     }
 
     // Checkbox pivot DepartmentTask ---------------------------------------------------------------------

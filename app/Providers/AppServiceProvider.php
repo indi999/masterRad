@@ -50,7 +50,6 @@ class AppServiceProvider extends ServiceProvider
                  ->with('sellers' , User::sellers());
         });
 
-
         // Manager panel
         view()->composer('tasks.index', function($view){
             $view->with('sektors' , Department::sectors());
@@ -63,8 +62,10 @@ class AppServiceProvider extends ServiceProvider
             $view->with('departments' , Department::sectors())
                  ->with('sellers' , User::sellers());
         });
-
-
+        view()->composer('tasks.edit', function($view){
+            $view->with('departments' , Department::sectors())
+                 ->with('sellers' , User::sellers());
+        });
 
     }
 }

@@ -78,7 +78,7 @@
                                                     </div>
                                                     <div class="container deleteUser createUser">
                                                         <div class="wrap-form">
-                                                            <form action="{{ route('tasks.update', ['task' => $task->id]) }}" method="POST" class="new-date">
+                                                            <form action="{{ route('tasks.updateExpectedDateEnd', ['task' => $task->id]) }}" method="POST" class="new-date">
                                                                 @method('PATCH')
                                                                 @csrf
 
