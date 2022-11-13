@@ -8,7 +8,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name(
 // Tasks Route for Users and managers
 Route::resource('/tasks', 'App\Http\Controllers\TaskController');
 Route::group(['prefix'=>'tasks'], function(){
-    Route::patch('/{task}/update_expected_date_end', 'App\Http\Controllers\TaskController@updateExpectedDateEnd')->name('task.updateExpectedDateEnd');
+    Route::patch('/{task}/update_expected_date_end', 'App\Http\Controllers\TaskController@updateExpectedDateEnd')->name('tasks.updateExpectedDateEnd');
     Route::get('/arhive', 'App\Http\Controllers\TaskController@arhive')->name('tasks.arhive'); // arhive tasks
     Route::patch('/{task}/finishJob', 'App\Http\Controllers\TaskController@finishJob')->name('task.finishJob');
 
