@@ -1,4 +1,5 @@
 @extends('admins.layouts.master')
+
 @section('content')
 
 <main>
@@ -11,14 +12,14 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col">Radni Nalog Broj: #{{$task->number}}</th>
+                                <th scope="col">Radni Nalog Broj: #{{$job->number}}</th>
                                 <th class="delete-user">
-                                    <a href="{{route("tasks.edit", ['task' => $task->id])}}" class="btn del-job">
+                                    <a href="{{route("tasks.edit", ['job' => $job->id])}}" class="btn del-job">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                 </th>
                                 <th class="delete-user">
-                                    <button type="submit" class="btn del-job" id="{{ $task->id }}" data-toggle="modal" data-target="#exampleModal-{{ $task->id }}">
+                                    <button type="submit" class="btn del-job" id="{{ $job->id }}" data-toggle="modal" data-target="#exampleModal-{{ $job->id }}">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </th>
@@ -32,7 +33,7 @@
                                     <div class="jumbotron">
                                         <p class="lead">Opis posla: </p>
                                         <hr class="my-4">
-                                        <p class="my-4 ">{{$task->desc}}</p>
+                                        <p class="my-4 ">{{$job->desc}}</p>
                                     </div>
                                 </td>
                             </tr>
@@ -40,16 +41,16 @@
                                 <td>Prilozi: PDF,WORD,CSV</td>
                             </tr>
                             <tr>
-                                <td>Manager: {{$task->number}}</td>
+                                <td>Manager: {{$job->number}}</td>
                             </tr>
                             <tr>
-                                <td>Brend: {{$task->brand}}</td>
+                                <td>Brend: {{$job->brand}}</td>
                             </tr>
                             <tr>
-                                <td>Klijent: {{$task->client}}</td>
+                                <td>Klijent: {{$job->client}}</td>
                             </tr>
                             <tr>
-                                <td>Prodaja: {{$task->saller->firstname}} {{$task->saller->lastname}}</td>
+                                <td>Prodaja: {{$job->saller->firstname}} {{$job->saller->lastname}}</td>
                             </tr>
 
                             <div class="b-example-divider"></div>
@@ -59,7 +60,7 @@
                                     <div class="form-group row sectors">
                                         <label for="inputSectors" class="col-sm-4 col-form-label">Odgovorni sektori</label>
                                         <div class="col-sm-8">
-                                            @foreach($task->departments as $department)
+                                            @foreach($job->departments as $department)
                                                 @if($department->pivot->is_active == true)
                                                 <div class="form-check">
                                                     <input class="form-check-input"  type="checkbox" value="{{$department->id}}" id="inputSectorsD"
@@ -76,7 +77,7 @@
                             </tr>
 
                             <tr>
-                                <td scope="row">Rok za realizaciju naloga: {{ date('Y-m-d', strtotime($task->date_end)) }}
+                                <td scope="row">Rok za realizaciju naloga: {{ date('Y-m-d', strtotime($job->date_end)) }}
                                     <i class="fa fa-calendar" aria-hidden="true"></i>
                                 </td>
                             </tr>
@@ -150,7 +151,7 @@
                             <!-- Comment -->
                             <tr>
                                 <td scope="row">
-                                    @include('tasks.comments')
+                                    @include('admin.tasks.comments')
                                 </td>
                             </tr>
 
