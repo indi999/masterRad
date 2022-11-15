@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Models\Task;
 use App\Models\DepartmentTask;
 use App\Models\User;
+use App\Models\Comment;
 
 class TaskController extends Controller
 {

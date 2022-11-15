@@ -16,6 +16,9 @@
                     </div>
                 </div>
 
+                <!-- All Comments -->
+                @forelse($task->comments as $comment)
+
                 <div class="card mb-3">
                     <div class="card-body">
                         <div class="d-flex flex-start align-items-center">
@@ -23,17 +26,15 @@
                                  src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="60"
                                  height="60" />
                             <div>
-                                <h6 class="fw-bold text-primary mb-1">Lily Coleman</h6>
+                                <h6 class="fw-bold text-primary mb-1"></h6>
                                 <p class="text-muted small mb-0">
-                                    Design Team - 22 Jan 2020
+                                   V Team - 22 Jan 2020
                                 </p>
                             </div>
                         </div>
 
                         <p class="mt-3 mb-4 pb-2">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.
+                            {{$comment->body}}
                         </p>
                         <div class="small d-flex justify-content-start">
                             <a href="#!" class="d-flex align-items-center me-3">
@@ -51,6 +52,8 @@
                         </div>
                     </div>
                 </div>
+                @empty
+                @endforelse
 
                 <span class="badge badge-primary">Primary</span>
                 <span class="badge badge-secondary">Secondary</span>
@@ -61,69 +64,52 @@
                 <span class="badge badge-light">Light</span>
                 <span class="badge badge-dark">Dark</span>
 
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <div class="d-flex flex-start align-items-center">
-                            <img class="rounded-circle shadow-1-strong me-3"
-                                 src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="60"
-                                 height="60" />
-                            <div>
-                                <h6 class="fw-bold text-primary mb-1">Lily Coleman</h6>
-                                <p class="text-muted small mb-0">
-                                    Production Team - 22 Jan 2020
-                                </p>
-                            </div>
-                        </div>
-                        <p class="mt-3 mb-4 pb-2">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.
-                        </p>
-                        <div class="small d-flex justify-content-start">
-                            <a href="#!" class="d-flex align-items-center me-3">
-                                <i class="fa fa-thumbs-up me-2"></i>
-                                <p class="mb-0">Like</p>
-                            </a>
-                            <a href="#!" class="d-flex align-items-center me-3">
-                                <i class="fa fa-comment-dots me-2"></i>
-                                <p class="mb-0">Comment</p>
-                            </a>
-                            <a href="#!" class="d-flex align-items-center me-3">
-                                <i class="fa fa-share me-2"></i>
-                                <p class="mb-0">Share</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-
                 <!-- Create new comment -->
                 <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
-                    <div class="d-flex flex-start w-100">
-                        <img class="rounded-circle shadow-1-strong me-3"
-                             src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="40"
-                             height="40" />
-                        <div class="form-outline w-100">
-                                <textarea class="form-control" id="textAreaExample" rows="4"
-                                          style="background: #fff;"></textarea>
-                            <label class="form-label" for="textAreaExample">Message</label>
-                        </div>
-                    </div>
-                    <!-- Upload files -->
-                    <div class="form-group">
-                        <label for="exampleFormControlFile1">Pridruzi Prilog</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                    </div>
-                    <!-- Submit -->
-                    <div class="float-right-end mt-2 pt-1">
-                        <button type="button" class="btn btn-primary btn-sm">Post comment</button>
-                        <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
-                    </div>
 
+                    <!-- Succes message -->
+                    @if(session('message'))
+                        <div class="alert alert-danger">
+                            {{session('message')}}
+                        </div>
+                    @endif
+                <!-- Error message from app to git-->
+                    @if(count($errors)>0)
+                        @foreach($errors->all() as $error)
+                            <div class="alert alert-danger">
+                                {{$error}}
+                            </div>
+                        @endforeach
+                    @endif
+
+                    <form action="{{route('task.comment.store',['task' => $task->id])}}" method="post" class="">
+                        @csrf
+
+                        <div class="d-flex flex-start w-100">
+                            <img class="rounded-circle shadow-1-strong me-3"
+                                 src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp" alt="avatar" width="40"
+                                 height="40" />
+                                <div class="form-outline w-100">
+                                     <textarea class="form-control" name="body" id="textAreaExample"
+                                                  rows="4" style="background: #fff;"></textarea>
+                                     <label class="form-label" for="textAreaExample">Komentar</label>
+                                </div>
+                        </div>
+
+                        <!-- Upload files -->
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Pridruzi prilog</label>
+                            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="float-right-end mt-2 pt-1">
+                            <button type="submit" class="btn btn-primary btn-sm">Unesi komentar</button>
+                            <button type="submit" class="btn btn-outline-primary btn-sm">Odustani</button>
+                        </div>
+                    </form>
                 </div>
                 <!-- End Create new comment -->
-
-
             </div>
         </div>
     </div>

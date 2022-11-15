@@ -11,6 +11,8 @@ Route::group(['prefix'=>'tasks'], function(){
     Route::patch('/{task}/update_expected_date_end', 'App\Http\Controllers\TaskController@updateExpectedDateEnd')->name('tasks.updateExpectedDateEnd');
     Route::get('/arhive', 'App\Http\Controllers\TaskController@arhive')->name('tasks.arhive'); // arhive tasks
     Route::patch('/{task}/finishJob', 'App\Http\Controllers\TaskController@finishJob')->name('task.finishJob');
+    // Comments
+    Route::post('/{task}/comment', 'App\Http\Controllers\CommentsController@store')->name('task.comment.store');
 
     // DepartmentTask chackbox
     Route::patch('/{departmentTask}/in_progress', 'App\Http\Controllers\TaskController@inProgress')->name('task.inProgress');

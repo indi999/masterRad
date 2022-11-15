@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
+use App\Models\User;
+use Auth;
+
 class Task extends Model
 {
     use HasFactory;
@@ -15,6 +18,8 @@ class Task extends Model
      *
      * @var array
      */
+    protected $table = 'tasks';
+
     protected $fillable = [
         'number',
         'user_id', // manager
@@ -45,7 +50,24 @@ class Task extends Model
     }
     public function comments()
     {
-        return $this->hasMany(Commit::class);
+        return $this->hasMany(Comment::class, 'created_by');
+    }
+
+    public function addcomment($task_id, $body){
+        $created_by = auth()->user()->id;
+        $modified_by = auth()->user()->id;
+
+        //dd($task_id,$body,$created_by, $modified_by);
+        return $this->comments()->create(compact('task_id', 'body', 'created_by', 'modified_by'));
+        /*
+        return Page::create([
+                        'user_id' => $user_id,
+                        'task_id' => $this->id,
+                        'body' => $body,
+                        'created_by' => $user_id,
+                        'modified_by' => $user_id
+                ]);
+        */
     }
 
 

@@ -14,6 +14,8 @@ class Department extends Model
      *
      * @var array
      */
+    protected $table = 'departments';
+
     protected $fillable = [
         'name',
         'created_by',

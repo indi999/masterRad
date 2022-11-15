@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 use App\Models\Comment;
+use App\Models\Task;
 use App\Http\Classes\Comments as ServiceComments;
 
 
@@ -26,31 +28,30 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Task $task)
     {
-        if( Auth::user()->is_admin) {
+        if( Auth::user()) {
             $attributes = request()->validate([
-                'user_id' => ['required|integer'],
-                'task_id' => ['required|integer'],
-                'body' => ['required|string|max:10000'],
+                'body' => 'required|string|max:10000',
             ]);
-            $attributes['user_id'] = auth()->user()->id;
+            /*
+            $attributes['task_id'] = $task->id;
             $attributes['created_by'] = auth()->user()->id;
             $attributes['modified_by'] = auth()->user()->id;
-
-            Comment::create($attributes);
-
+            //Comment::create($attributes);
+            */
+            //dd(request()->all(), $task, $attributes);
+            $task->addComment($task->id, $attributes['body']);
             return back();
         }
     }
 
-    public function update(Comment $comment)
+    public function update(Task $task, Comment $comment)
     {
         if (Auth::user()->is_admin) {
             $attributes = request()->validate([
-                'user_id' => ['required|integer'],
-                'task_id' => ['required|integer'],
-                'body' => ['required|string|max:10000'],
+                'task_id' => 'required|integer',
+                'body' => 'required|string|max:10000',
             ]);
             $attributes['modified_by'] = auth()->user()->id;
 

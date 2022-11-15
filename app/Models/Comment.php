@@ -14,11 +14,11 @@ class Comment extends Model
      *
      * @var array
      */
+    protected $table = 'comments';
+
     protected $fillable = [
-        'user_id',
         'task_id',
         'body',
-        'ime_end',
         'created_by',
         'modified_by',
     ];
@@ -31,4 +31,6 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+
 }

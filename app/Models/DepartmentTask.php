@@ -13,13 +13,13 @@ class DepartmentTask extends Model
 {
     use HasFactory;
 
-    public $table = 'department_task';
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
+    protected $table = 'department_task';
+
     protected $fillable = [
         'task_id',
         'department_id',
