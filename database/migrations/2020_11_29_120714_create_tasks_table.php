@@ -17,7 +17,7 @@ class CreateTasksTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('number')->unique();
-            $table->unsignedInteger('user_id')->unsign();;  //manager(users)
+            $table->unsignedInteger('user_id')->unsign();  //manager(users)
             $table->string('brand');
             $table->string('client'); // Klijent id clients-table
             $table->unsignedInteger('saller_id')->default(null); //saller(users)
